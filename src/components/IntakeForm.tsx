@@ -480,5 +480,3 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
 IntakeForm.displayName = "IntakeForm";
 
 export default IntakeForm;
-
-}
