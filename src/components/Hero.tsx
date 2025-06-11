@@ -34,8 +34,8 @@ const Hero = () => {
         </div>
 
         {/* Main heading */}
-        <div className="mb-8 sm:mb-12">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium italic text-foreground mb-4 sm:mb-6">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light italic text-foreground mb-4 sm:mb-6">
             Join "GLO"
           </h1>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black gradient-text relative">
@@ -53,15 +53,15 @@ const Hero = () => {
           </h2>
         </div>
 
-        {/* Description */}
-        <div className="mb-12 sm:mb-16 space-y-2">
-          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-muted-foreground max-w-5xl mx-auto">
+        {/* Description - Better proportioned */}
+        <div className="mb-10 sm:mb-12 space-y-1">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-muted-foreground max-w-4xl mx-auto leading-tight">
             Silicon Valley's High-Traction Tech Community Builder.
           </p>
-          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-muted-foreground max-w-5xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-muted-foreground max-w-4xl mx-auto leading-tight">
             Exclusive Events, Private Slack Communities and over $4.6M
           </p>
-          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-muted-foreground max-w-5xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-muted-foreground max-w-4xl mx-auto leading-tight">
             in B2B SaaS perks for members.
           </p>
         </div>
@@ -70,7 +70,7 @@ const Hero = () => {
         <div className="flex justify-center mb-8">
           <Button 
             size="lg" 
-            className="minimal-button px-8 py-4 font-black rounded-full text-xl sm:text-2xl md:text-3xl hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl orange-glow"
+            className="minimal-button px-12 py-6 font-black rounded-full text-xl sm:text-2xl md:text-3xl hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl orange-glow"
             onClick={scrollToIntakeForm}
           >
             Apply Now

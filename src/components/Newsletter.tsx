@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Linkedin, Twitter, Mail, Youtube } from "lucide-react";
+import { Linkedin, Twitter, Mail, Youtube, Calendar } from "lucide-react";
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
@@ -16,22 +16,25 @@ const Newsletter = () => {
   return (
     <section className="py-16 sm:py-24 px-4 sm:px-6 bg-background">
       <div className="max-w-4xl mx-auto text-center">
-        {/* Social Icons */}
+        {/* Social Icons - Updated design */}
         <div className="mb-12">
-          <div className="inline-block border border-border rounded-lg px-8 py-6">
-            <h3 className="text-foreground text-xl font-semibold mb-6">Our Socials</h3>
-            <div className="flex items-center justify-center gap-6">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Linkedin size={24} />
+          <div className="inline-block border border-border rounded-xl px-12 py-8 bg-card/10">
+            <h3 className="text-foreground text-xl font-semibold mb-8">Our Socials</h3>
+            <div className="flex items-center justify-center gap-8">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors p-2">
+                <Linkedin size={28} />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Twitter size={24} />
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors p-2">
+                <Twitter size={28} />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Youtube size={24} />
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors p-2">
+                <Calendar size={28} />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Mail size={24} />
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors p-2">
+                <Youtube size={28} />
+              </a>
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors p-2">
+                <Mail size={28} />
               </a>
             </div>
           </div>
