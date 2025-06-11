@@ -6,7 +6,7 @@ const Hero = () => {
   const [isFollowHovered, setIsFollowHovered] = useState(false);
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-6 text-center bg-background relative overflow-hidden">
+    <section className="min-h-[85vh] flex flex-col items-center justify-center px-6 text-center bg-background relative overflow-hidden">
       {/* Sparkle effects */}
       <div className="sparkle"></div>
       <div className="sparkle"></div>
@@ -19,7 +19,7 @@ const Hero = () => {
 
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Follow button */}
-        <div className="mb-12">
+        <div className="mb-8">
           <button
             className="flex items-center gap-2 px-6 py-3 bg-secondary border border-purple-500 rounded-full font-medium hover:scale-105 transition-all duration-200 text-foreground"
             onMouseEnter={() => setIsFollowHovered(true)}
@@ -30,11 +30,11 @@ const Hero = () => {
         </div>
 
         {/* Main heading */}
-        <div className="mb-8">
-          <h1 className="text-6xl md:text-8xl font-bold text-foreground mb-4">
+        <div className="mb-6">
+          <h1 className="text-5xl md:text-7xl font-black text-foreground mb-3">
             Join "GLO"
           </h1>
-          <h2 className="text-4xl md:text-6xl font-black gradient-text relative">
+          <h2 className="text-3xl md:text-5xl font-black gradient-text relative">
             Global Entrepreneurs Hub
             {/* Additional sparkles around the gradient text */}
             <span className="absolute -top-2 -right-4 text-yellow-400 text-2xl animate-pulse">✨</span>
@@ -43,7 +43,7 @@ const Hero = () => {
         </div>
 
         {/* Description */}
-        <div className="mb-12 space-y-2">
+        <div className="mb-8 space-y-1">
           <p className="text-lg md:text-xl font-semibold text-muted-foreground max-w-3xl mx-auto">
             Silicon Valley's High-Traction Tech Community Builder.
           </p>

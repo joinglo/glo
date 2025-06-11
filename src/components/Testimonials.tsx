@@ -1,3 +1,4 @@
+
 const Testimonials = () => {
   const testimonials = [
     {
@@ -27,28 +28,28 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-20 px-6 bg-background">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <div className="text-purple-400 text-sm font-semibold mb-4">Testimonial</div>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8">
+    <section className="py-16 px-6 bg-background">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-10">
+          <div className="text-purple-400 text-sm font-semibold mb-3">Testimonial</div>
+          <h2 className="text-3xl md:text-4xl font-black text-foreground mb-6">
             Silicon Valley's <span className="text-orange-400 font-black">Veterans</span> and <span className="text-orange-400 font-black">Rising Stars</span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-card border border-border rounded-2xl p-6">
-              <blockquote className="text-foreground mb-6 leading-relaxed font-medium">
+            <div key={index} className="bg-card border border-border rounded-xl p-5">
+              <blockquote className="text-foreground mb-4 leading-relaxed font-medium text-sm">
                 "{testimonial.quote}"
               </blockquote>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-black font-bold">
+                <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-black font-bold text-sm">
                   {testimonial.avatar}
                 </div>
                 <div>
-                  <div className="text-foreground font-bold">{testimonial.name}</div>
-                  <div className="text-muted-foreground text-sm font-medium">{testimonial.title}</div>
+                  <div className="text-foreground font-bold text-sm">{testimonial.name}</div>
+                  <div className="text-muted-foreground text-xs font-medium">{testimonial.title}</div>
                 </div>
               </div>
             </div>

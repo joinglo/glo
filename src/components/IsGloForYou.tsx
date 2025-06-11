@@ -1,3 +1,4 @@
+
 import { Check, X } from "lucide-react";
 
 const IsGloForYou = () => {
@@ -18,41 +19,41 @@ const IsGloForYou = () => {
   ];
 
   return (
-    <section className="py-20 px-6 bg-background">
+    <section className="py-16 px-6 bg-background">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left side - Description */}
           <div className="lg:col-span-1">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+            <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">
               Is <span className="text-orange-400 font-black">GLO</span> for you?
             </h2>
-            <p className="text-muted-foreground leading-relaxed font-semibold">
+            <p className="text-muted-foreground leading-relaxed font-semibold text-sm">
               Curated community of high-traction founders/CEOs, active investors, influencers & c-suite operators. 
               Bootstrapped or backed by the likes of YC, Techstars, a16z, 500 global, General Catalyst & so much more.
             </p>
           </div>
 
           {/* Middle - GLO is for */}
-          <div className="bg-card border border-orange-500 rounded-2xl p-6">
-            <h3 className="text-xl font-bold text-orange-400 mb-6">GLO is for:</h3>
-            <div className="space-y-4">
+          <div className="bg-card border border-orange-500 rounded-2xl p-5">
+            <h3 className="text-lg font-black text-orange-400 mb-4">GLO is for:</h3>
+            <div className="space-y-3">
               {gloIsFor.map((item, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <Check className="text-green-400 w-5 h-5 flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground text-sm leading-relaxed font-medium">{item}</span>
+                <div key={index} className="flex items-start gap-2">
+                  <Check className="text-green-400 w-4 h-4 flex-shrink-0 mt-0.5" />
+                  <span className="text-foreground text-xs leading-relaxed font-medium">{item}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Right - GLO is not for */}
-          <div className="bg-card border border-red-500 rounded-2xl p-6">
-            <h3 className="text-xl font-bold text-red-400 mb-6">GLO is not for:</h3>
-            <div className="space-y-4">
+          <div className="bg-card border border-red-500 rounded-2xl p-5">
+            <h3 className="text-lg font-black text-red-400 mb-4">GLO is not for:</h3>
+            <div className="space-y-3">
               {gloIsNotFor.map((item, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <X className="text-red-400 w-5 h-5 flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground text-sm leading-relaxed font-medium">{item}</span>
+                <div key={index} className="flex items-start gap-2">
+                  <X className="text-red-400 w-4 h-4 flex-shrink-0 mt-0.5" />
+                  <span className="text-foreground text-xs leading-relaxed font-medium">{item}</span>
                 </div>
               ))}
             </div>

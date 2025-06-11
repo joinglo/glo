@@ -1,68 +1,65 @@
+
 import { Gift, Users, DollarSign, Briefcase, BookOpen, FileText } from "lucide-react";
 
 const Features = () => {
   const features = [
     {
-      icon: <Gift className="w-6 h-6" />,
+      icon: <Gift className="w-5 h-5" />,
       title: "Exclusive Events & Experiences",
       description: "Mansion parties, private dinners, featured guest speakers, professional networking events and soon GLO retreats."
     },
     {
-      icon: <Users className="w-6 h-6" />,
+      icon: <Users className="w-5 h-5" />,
       title: "Private Slack Community",
       description: "Application-based private slack community, highly vetted founder, active investors, influencers & operators."
     },
     {
-      icon: <DollarSign className="w-6 h-6" />,
+      icon: <DollarSign className="w-5 h-5" />,
       title: "$4.6M+ in B2B SaaS Perks",
       description: "Thats right, we've lined-up over $4.6 Million worth of of members-only perks to top B2B SaaS products from Notion Pro to AWS credits."
     },
     {
-      icon: <Briefcase className="w-6 h-6" />,
+      icon: <Briefcase className="w-5 h-5" />,
       title: "Community-Led Workshops",
       description: "Member & guest speaker lead workshops on hot topics from the people who've actually done it."
     },
     {
-      icon: <BookOpen className="w-6 h-6" />,
+      icon: <BookOpen className="w-5 h-5" />,
       title: "Resource Libraries",
       description: "A living library of notion boards, videos, articles of our communities collective experience and go-to resources. Digital tribal knowledge."
     },
     {
-      icon: <FileText className="w-6 h-6" />,
+      icon: <FileText className="w-5 h-5" />,
       title: "Bi-Weekly Insights Reports",
       description: "Featuring member-wins, highlighting key insights and dropping the hottest members-only B2B SaaS deals."
     }
   ];
 
   return (
-    <section className="py-20 px-6 bg-background">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left side - What's inside GLO */}
-          <div className="bg-card border border-border rounded-2xl p-8">
-            <h2 className="text-3xl font-black text-foreground mb-6">
-              What's inside <span className="text-orange-400">GLO</span>?
-            </h2>
-            <p className="text-muted-foreground leading-relaxed font-semibold">
-              Curated community of high-traction founders/CEOs, active investors, influencers & c-suite operators. 
-              Bootstrapped or backed by the likes of YC, Techstars, a16z, 500 global, General Catalyst & so much more.
-            </p>
-          </div>
+    <section className="py-16 px-6 bg-background">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">
+            What's inside <span className="text-orange-400">GLO</span>?
+          </h2>
+          <p className="text-lg text-muted-foreground leading-relaxed font-semibold max-w-4xl mx-auto">
+            Curated community of high-traction founders/CEOs, active investors, influencers & c-suite operators. 
+            Bootstrapped or backed by the likes of YC, Techstars, a16z, 500 global, General Catalyst & so much more.
+          </p>
+        </div>
 
-          {/* Right side - Features grid */}
-          <div className="space-y-6">
-            {features.map((feature, index) => (
-              <div key={index} className="bg-card border border-border rounded-xl p-6 flex gap-4">
-                <div className="text-orange-400 flex-shrink-0 mt-1">
-                  {feature.icon}
-                </div>
-                <div>
-                  <h3 className="text-foreground font-bold mb-2">{feature.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed font-medium">{feature.description}</p>
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {features.map((feature, index) => (
+            <div key={index} className="bg-card border border-border rounded-xl p-5 flex gap-4">
+              <div className="text-orange-400 flex-shrink-0 mt-1">
+                {feature.icon}
               </div>
-            ))}
-          </div>
+              <div>
+                <h3 className="text-foreground font-bold mb-2 text-sm">{feature.title}</h3>
+                <p className="text-muted-foreground text-xs leading-relaxed font-medium">{feature.description}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
