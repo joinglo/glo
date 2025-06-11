@@ -19,13 +19,14 @@ const Hero = () => {
 
       <div className="max-w-6xl mx-auto relative z-10 w-full">
         {/* Follow button */}
-        <div className="mb-8">
+        <div className="mb-8 flex justify-center">
           <button
-            className="flex items-center gap-2 px-6 py-3 bg-secondary border border-purple-500 rounded-full font-bold hover:scale-105 transition-all duration-200 text-foreground text-base"
+            className="relative flex items-center gap-2 px-6 py-3 bg-black border border-purple-400 rounded-lg font-semibold hover:scale-105 transition-all duration-200 text-white text-sm shadow-[0_0_20px_rgba(168,85,247,0.5)] hover:shadow-[0_0_30px_rgba(168,85,247,0.8)]"
             onMouseEnter={() => setIsFollowHovered(true)}
             onMouseLeave={() => setIsFollowHovered(false)}
           >
-            Follow on 𝕏
+            <span className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-500/20 to-blue-500/20 opacity-50"></span>
+            <span className="relative">Follow on 𝕏</span>
           </button>
         </div>
 
