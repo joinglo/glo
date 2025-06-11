@@ -1,4 +1,3 @@
-
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { IntakeFormRef } from "./IntakeForm";
@@ -94,5 +93,5 @@ const Hero = () => {
   );
 };
 
-export { IntakeFormRef };
+export type { IntakeFormRef };
 export default Hero;
