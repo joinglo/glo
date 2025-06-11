@@ -1,14 +1,20 @@
 
 import { Gift, Users, DollarSign, Briefcase, BookOpen, FileText } from "lucide-react";
+import { useState, useEffect } from "react";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  CarouselApi,
 } from "@/components/ui/carousel";
 
 const FeaturesCarousel = () => {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+
   const features = [
     {
       icon: <Gift className="w-5 h-5" />,
@@ -42,26 +48,62 @@ const FeaturesCarousel = () => {
     }
   ];
 
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
+
   return (
-    <Carousel className="w-full max-w-sm mx-auto lg:hidden">
-      <CarouselContent>
-        {features.map((feature, index) => (
-          <CarouselItem key={index}>
-            <div className="bg-card border border-border rounded-xl p-5 flex gap-4">
-              <div className="text-orange-400 flex-shrink-0 mt-1">
-                {feature.icon}
+    <div className="w-full max-w-sm mx-auto lg:hidden">
+      <Carousel className="w-full" setApi={setApi}>
+        <CarouselContent>
+          {features.map((feature, index) => (
+            <CarouselItem key={index}>
+              <div className="bg-card border border-border rounded-xl p-5 flex gap-4">
+                <div className="text-orange-400 flex-shrink-0 mt-1">
+                  {feature.icon}
+                </div>
+                <div>
+                  <h3 className="text-foreground font-bold mb-2 text-sm">{feature.title}</h3>
+                  <p className="text-muted-foreground text-xs leading-relaxed font-medium">{feature.description}</p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-foreground font-bold mb-2 text-sm">{feature.title}</h3>
-                <p className="text-muted-foreground text-xs leading-relaxed font-medium">{feature.description}</p>
-              </div>
-            </div>
-          </CarouselItem>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="left-2" />
+        <CarouselNext className="right-2" />
+      </Carousel>
+      
+      {/* Pagination Dots */}
+      <div className="flex justify-center gap-2 mt-4">
+        {Array.from({ length: count }).map((_, index) => (
+          <button
+            key={index}
+            className={`w-2 h-2 rounded-full transition-all duration-200 ${
+              index + 1 === current 
+                ? "bg-orange-400 w-6" 
+                : "bg-muted-foreground/30"
+            }`}
+            onClick={() => api?.scrollTo(index)}
+            aria-label={`Go to slide ${index + 1}`}
+          />
         ))}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
+      </div>
+      
+      {/* Counter */}
+      <div className="text-center mt-2 text-xs text-muted-foreground">
+        {current} of {count}
+      </div>
+    </div>
   );
 };
 
