@@ -26,7 +26,7 @@ const Hero = () => {
         {/* Follow button */}
         <div className="mb-6 flex justify-center">
           <button
-            className="relative flex items-center gap-2 px-4 py-2 bg-transparent rounded-lg font-medium hover:scale-105 transition-all duration-200 text-white text-base border border-purple-400/30 shadow-lg hover:shadow-purple-500/25"
+            className="relative flex items-center gap-2 px-4 py-2 bg-transparent rounded-md font-medium hover:scale-105 transition-all duration-200 text-white text-base border border-purple-400/30 shadow-lg hover:shadow-purple-500/25"
             onMouseEnter={() => setIsFollowHovered(true)}
             onMouseLeave={() => setIsFollowHovered(false)}
           >
@@ -42,15 +42,19 @@ const Hero = () => {
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black gradient-text relative">
             Global Entrepreneurs Hub
             
-            {/* Star sparkles positioned around the gradient text */}
-            <span className="absolute -top-4 sm:-top-6 -left-8 sm:-left-12 text-yellow-400 text-lg sm:text-xl animate-pulse">✦</span>
-            <span className="absolute -top-2 sm:-top-4 right-0 sm:right-4 text-yellow-400 text-sm sm:text-lg animate-pulse" style={{animationDelay: '0.3s'}}>✧</span>
-            <span className="absolute top-2 sm:top-4 -left-4 sm:-left-8 text-yellow-400 text-xs sm:text-sm animate-pulse" style={{animationDelay: '0.6s'}}>⭐</span>
-            <span className="absolute -bottom-3 sm:-bottom-5 right-8 sm:right-16 text-yellow-400 text-lg sm:text-xl animate-pulse" style={{animationDelay: '0.9s'}}>✦</span>
-            <span className="absolute bottom-1 sm:bottom-2 -left-6 sm:-left-10 text-yellow-400 text-sm sm:text-lg animate-pulse" style={{animationDelay: '1.2s'}}>✧</span>
-            <span className="absolute -top-1 sm:-top-2 left-1/4 text-yellow-400 text-xs sm:text-sm animate-pulse" style={{animationDelay: '0.15s'}}>⭐</span>
-            <span className="absolute bottom-0 sm:bottom-1 right-1/3 text-yellow-400 text-xs sm:text-sm animate-pulse" style={{animationDelay: '0.75s'}}>✦</span>
-            <span className="absolute -bottom-2 sm:-bottom-4 left-1/2 text-yellow-400 text-sm sm:text-lg animate-pulse" style={{animationDelay: '0.45s'}}>✧</span>
+            {/* Sophisticated animated stars positioned around the gradient text */}
+            <span className="absolute -top-6 sm:-top-8 -left-12 sm:-left-16 text-yellow-300 text-xl sm:text-2xl animate-pulse opacity-70" style={{animationDelay: '0s', animationDuration: '3s'}}>✦</span>
+            <span className="absolute -top-4 sm:-top-6 right-4 sm:right-8 text-yellow-400 text-lg sm:text-xl animate-pulse opacity-80" style={{animationDelay: '0.5s', animationDuration: '2.5s'}}>✧</span>
+            <span className="absolute top-2 sm:top-4 -left-8 sm:-left-12 text-yellow-200 text-sm sm:text-base animate-pulse opacity-60" style={{animationDelay: '1s', animationDuration: '3.5s'}}>⭐</span>
+            <span className="absolute -bottom-5 sm:-bottom-7 right-12 sm:right-20 text-yellow-300 text-xl sm:text-2xl animate-pulse opacity-75" style={{animationDelay: '1.5s', animationDuration: '2.8s'}}>✦</span>
+            <span className="absolute bottom-1 sm:bottom-2 -left-10 sm:-left-14 text-yellow-400 text-lg sm:text-xl animate-pulse opacity-85" style={{animationDelay: '2s', animationDuration: '3.2s'}}>✧</span>
+            <span className="absolute -top-2 sm:-top-3 left-1/4 text-yellow-200 text-sm sm:text-base animate-pulse opacity-65" style={{animationDelay: '0.3s', animationDuration: '2.7s'}}>⭐</span>
+            <span className="absolute bottom-0 sm:bottom-1 right-1/3 text-yellow-300 text-base sm:text-lg animate-pulse opacity-70" style={{animationDelay: '1.2s', animationDuration: '3.1s'}}>✦</span>
+            <span className="absolute -bottom-3 sm:-bottom-5 left-1/2 text-yellow-400 text-lg sm:text-xl animate-pulse opacity-80" style={{animationDelay: '0.8s', animationDuration: '2.9s'}}>✧</span>
+            <span className="absolute top-6 sm:top-8 right-1/4 text-yellow-200 text-sm sm:text-base animate-pulse opacity-60" style={{animationDelay: '1.8s', animationDuration: '3.3s'}}>⭐</span>
+            <span className="absolute -top-8 sm:-top-10 left-1/2 text-yellow-300 text-base sm:text-lg animate-pulse opacity-75" style={{animationDelay: '2.3s', animationDuration: '2.6s'}}>✦</span>
+            <span className="absolute top-8 sm:top-10 -left-6 sm:-left-10 text-yellow-400 text-sm sm:text-base animate-pulse opacity-65" style={{animationDelay: '0.7s', animationDuration: '3.4s'}}>✧</span>
+            <span className="absolute -bottom-8 sm:-bottom-10 left-1/3 text-yellow-200 text-base sm:text-lg animate-pulse opacity-70" style={{animationDelay: '1.7s', animationDuration: '2.4s'}}>⭐</span>
           </h2>
         </div>
 
@@ -70,7 +74,7 @@ const Hero = () => {
         {/* CTA Button */}
         <div className="flex justify-center mb-6">
           <button 
-            className="px-8 py-3 text-white bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 border border-orange-400/50 rounded-full hover:scale-110 transition-all duration-200 font-normal text-lg sm:text-xl md:text-2xl shadow-xl hover:shadow-2xl hover:shadow-orange-500/30 scale-105 ring-2 ring-orange-400/20"
+            className="px-8 py-3 text-white bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 border-2 border-orange-400/50 rounded-full hover:scale-110 transition-all duration-200 font-normal text-base sm:text-lg shadow-xl hover:shadow-2xl hover:shadow-orange-500/30 scale-105 ring-2 ring-orange-400/30 shadow-[0_0_20px_rgba(251,146,60,0.4)]"
             onClick={scrollToIntakeForm}
           >
             Apply Now
