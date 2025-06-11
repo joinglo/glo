@@ -15,11 +15,11 @@ const Index = () => {
     <div className="min-h-screen">
       <Header />
       <Hero />
+      <IntakeForm ref={intakeFormRef} />
       <Testimonials />
       <Communities />
       <Features />
       <IsGloForYou />
-      <IntakeForm ref={intakeFormRef} />
     </div>
   );
 };

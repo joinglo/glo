@@ -395,7 +395,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
   };
 
   return (
-    <section id="intake-form" className="py-20 px-6 bg-background">
+    <section id="intake-form" className="py-12 px-6 bg-background">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -409,6 +409,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
           <Button
             onClick={() => setIsFormExpanded(!isFormExpanded)}
             className="minimal-button px-8 py-4 font-bold rounded-full text-lg hover:scale-105 transition-all duration-200 flex items-center gap-2 mx-auto"
+            data-expand-form
           >
             {isFormExpanded ? "Hide Application Form" : "Start Application"}
             {isFormExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
