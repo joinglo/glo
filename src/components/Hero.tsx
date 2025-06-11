@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const Hero = () => {
   const [isFollowHovered, setIsFollowHovered] = useState(false);
@@ -35,7 +36,7 @@ const Hero = () => {
 
         {/* Main heading */}
         <div className="mb-4 sm:mb-6">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-foreground mb-3 sm:mb-4">
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light text-foreground mb-3 sm:mb-4">
             JOIN GLO.
           </h1>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black gradient-text relative">
@@ -69,21 +70,35 @@ const Hero = () => {
         {/* CTA Button */}
         <div className="flex justify-center mb-6">
           <button 
-            className="px-8 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-bold text-xl sm:text-2xl md:text-3xl hover:scale-105 shadow-lg hover:shadow-xl"
+            className="px-8 py-3 text-foreground bg-secondary border border-border rounded-full hover:scale-110 transition-all duration-200 font-bold text-xl sm:text-2xl md:text-3xl shadow-xl hover:shadow-2xl scale-105"
             onClick={scrollToIntakeForm}
           >
             Apply Now
           </button>
         </div>
 
-        {/* Rating */}
-        <div className="flex items-center justify-center gap-3">
+        {/* Rating with profile pictures */}
+        <div className="flex items-center justify-center gap-2">
           <div className="flex text-yellow-400">
             {[...Array(5)].map((_, i) => (
-              <span key={i} className="text-3xl sm:text-4xl md:text-5xl">★</span>
+              <span key={i} className="text-sm sm:text-base">★</span>
             ))}
           </div>
-          <span className="text-muted-foreground text-xl sm:text-2xl md:text-3xl font-bold">
+          <div className="flex -space-x-1 mx-2">
+            <Avatar className="w-6 h-6 border-2 border-background">
+              <AvatarImage src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=100&h=100&fit=crop&crop=face" />
+              <AvatarFallback className="text-xs">A</AvatarFallback>
+            </Avatar>
+            <Avatar className="w-6 h-6 border-2 border-background">
+              <AvatarImage src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=100&h=100&fit=crop&crop=face" />
+              <AvatarFallback className="text-xs">B</AvatarFallback>
+            </Avatar>
+            <Avatar className="w-6 h-6 border-2 border-background">
+              <AvatarImage src="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=100&h=100&fit=crop&crop=face" />
+              <AvatarFallback className="text-xs">C</AvatarFallback>
+            </Avatar>
+          </div>
+          <span className="text-muted-foreground text-sm sm:text-base font-bold">
             members are ballers
           </span>
         </div>
