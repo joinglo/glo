@@ -24,30 +24,31 @@ const Newsletter = () => {
     >
       <div className="max-w-4xl mx-auto text-center">
         {/* Social Icons */}
-        <div className="mb-8">
-          <div className="text-center mb-6">
-            <div className="inline-block px-4 py-2 bg-primary/10 rounded-full mb-4">
+        <div className="mb-6">
+          <div className="text-center mb-2">
+            <div className="inline-block px-4 py-2 bg-primary/10 rounded-full mb-2">
               <span className="text-primary font-semibold text-sm uppercase tracking-wide">Our Socials</span>
             </div>
           </div>
-          <div className="border border-border rounded-xl px-6 py-4 bg-card/30 backdrop-blur-sm">
-            <div className="flex items-center justify-center gap-4">
-              <a href="https://www.linkedin.com/company/global-entrepreneurs-hub/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2">
-                <Linkedin size={24} />
-              </a>
-              <a href="https://x.com/join_glo" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2">
-                <Twitter size={24} />
-              </a>
-              <a href="https://chat.whatsapp.com/CbN9EFNLkwf732wHkvFf58" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2">
-                <MessageCircle size={24} />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors p-2">
-                <Youtube size={24} />
-              </a>
-              <a href="mailto:hello@joinglocommunity.com" className="text-muted-foreground hover:text-primary transition-colors p-2">
-                <Mail size={24} />
-              </a>
-            </div>
+          <p className="text-muted-foreground text-base mb-4">
+            Reach out to our founder Eli Al-Shamari on LinkedIn, WhatsApp or via email.
+          </p>
+          <div className="flex items-center justify-center gap-4">
+            <a href="https://www.linkedin.com/in/eli-al-shamari-b3629110b/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2">
+              <Linkedin size={24} />
+            </a>
+            <a href="https://x.com/join_glo" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2">
+              <Twitter size={24} />
+            </a>
+            <a href="https://chat.whatsapp.com/CbN9EFNLkwf732wHkvFf58" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2">
+              <MessageCircle size={24} />
+            </a>
+            <a href="#" className="text-muted-foreground hover:text-primary transition-colors p-2">
+              <Youtube size={24} />
+            </a>
+            <a href="mailto:hello@joinglocommunity.com" className="text-muted-foreground hover:text-primary transition-colors p-2">
+              <Mail size={24} />
+            </a>
           </div>
         </div>
 
