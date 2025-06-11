@@ -21,7 +21,7 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-start pt-6 px-4 sm:px-6 text-center bg-background relative overflow-hidden">
-      <div className="max-w-6xl mx-auto relative z-10 w-full">
+      <div className="max-w-6xl mx-auto relative z-10 w-full animate-fade-in">
         {/* Follow button */}
         <div className="mb-6 flex justify-center">
           <button
@@ -35,8 +35,8 @@ const Hero = () => {
 
         {/* Main heading */}
         <div className="mb-4 sm:mb-6">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light italic text-foreground mb-3 sm:mb-4">
-            Join "<span className="font-light italic">GLO</span>"
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-foreground mb-3 sm:mb-4">
+            Join "<span className="font-light">GLO</span>"
           </h1>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black gradient-text relative">
             Global Entrepreneurs Hub
@@ -53,8 +53,8 @@ const Hero = () => {
           </h2>
         </div>
 
-        {/* Description - Better proportioned */}
-        <div className="mb-8 sm:mb-10 space-y-1">
+        {/* Description */}
+        <div className="mb-6 sm:mb-8 space-y-1">
           <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-muted-foreground max-w-4xl mx-auto leading-tight">
             Silicon Valley's High-Traction Tech Community Builder.
           </p>

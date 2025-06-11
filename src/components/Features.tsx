@@ -1,8 +1,11 @@
 
 import { Gift, Users, DollarSign, Briefcase, BookOpen, FileText } from "lucide-react";
 import FeaturesCarousel from "./FeaturesCarousel";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Features = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   const features = [
     {
       icon: <Gift className="w-5 h-5" />,
@@ -37,9 +40,14 @@ const Features = () => {
   ];
 
   return (
-    <section className="py-16 px-6 bg-background">
+    <section 
+      ref={ref}
+      className={`py-12 px-6 bg-background transition-all duration-700 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
+    >
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-10">
+        <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">
             What's inside <span className="text-orange-400">GLO</span>?
           </h2>
@@ -57,7 +65,7 @@ const Features = () => {
         {/* Desktop Grid */}
         <div className="hidden lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {features.map((feature, index) => (
-            <div key={index} className="bg-card border border-border rounded-xl p-5 flex gap-4">
+            <div key={index} className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-5 flex gap-4">
               <div className="text-orange-400 flex-shrink-0 mt-1">
                 {feature.icon}
               </div>

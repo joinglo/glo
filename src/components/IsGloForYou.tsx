@@ -1,7 +1,10 @@
 
 import { Check, X } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const IsGloForYou = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   const gloIsFor = [
     "Full-time founders either high-traction or early traction/high potential (2 communities).",
     "Ready to learn, actively contribute and add value to the growing community.",
@@ -19,7 +22,12 @@ const IsGloForYou = () => {
   ];
 
   return (
-    <section className="py-12 px-6 bg-background">
+    <section 
+      ref={ref}
+      className={`py-8 px-6 bg-background transition-all duration-700 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
+    >
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left side - Description */}

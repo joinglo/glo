@@ -6,8 +6,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const FAQ = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   const faqs = [
     {
       question: "What if I'm outside the general benchmarks?",
@@ -32,9 +35,14 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 px-4 sm:px-6 bg-background">
+    <section 
+      ref={ref}
+      className={`py-10 px-4 sm:px-6 bg-background transition-all duration-700 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
+    >
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-10">
+        <div className="text-center mb-8">
           <div className="inline-block px-4 py-2 bg-primary/10 rounded-full mb-4">
             <span className="text-primary font-semibold text-sm uppercase tracking-wide">FAQ</span>
           </div>

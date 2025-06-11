@@ -3,8 +3,10 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Linkedin, Twitter, Mail, Youtube, Calendar } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Newsletter = () => {
+  const { ref, isVisible } = useScrollAnimation();
   const [email, setEmail] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -14,34 +16,39 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="py-12 sm:py-16 px-4 sm:px-6 bg-background">
+    <section 
+      ref={ref}
+      className={`py-10 px-4 sm:px-6 bg-background transition-all duration-700 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
+    >
       <div className="max-w-4xl mx-auto text-center">
-        {/* Social Icons - Updated design */}
-        <div className="mb-10">
-          <div className="inline-block border border-border rounded-xl px-8 py-6 bg-card/20 backdrop-blur-sm">
-            <h3 className="text-foreground text-xl font-semibold mb-6">Our Socials</h3>
-            <div className="flex items-center justify-center gap-6">
+        {/* Social Icons */}
+        <div className="mb-8">
+          <div className="inline-block border border-border rounded-xl px-6 py-4 bg-card/30 backdrop-blur-sm">
+            <h3 className="text-foreground text-lg font-semibold mb-4">Our Socials</h3>
+            <div className="flex items-center justify-center gap-4">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors p-2">
-                <Linkedin size={28} />
+                <Linkedin size={24} />
               </a>
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors p-2">
-                <Twitter size={28} />
+                <Twitter size={24} />
               </a>
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors p-2">
-                <Calendar size={28} />
+                <Calendar size={24} />
               </a>
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors p-2">
-                <Youtube size={28} />
+                <Youtube size={24} />
               </a>
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors p-2">
-                <Mail size={28} />
+                <Mail size={24} />
               </a>
             </div>
           </div>
         </div>
 
         {/* Newsletter Section */}
-        <div className="bg-card/40 backdrop-blur-sm border border-border rounded-lg px-8 py-10">
+        <div className="bg-card/30 backdrop-blur-sm border border-border rounded-lg px-8 py-8">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             GLO Newsletter
           </h2>

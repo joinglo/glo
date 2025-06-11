@@ -1,7 +1,10 @@
 
 import TestimonialsCarousel from "./TestimonialsCarousel";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Testimonials = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   const testimonials = [
     {
       quote: "Eli from Global Entrepreneurs Hub has been an incredible partner, helping us at Persona host some truly impactful events. His energy, dedication, and creativity stood out, and I'm still amazed at his eagerness to grow and nurture his community. Love your ambition, Eli—keep building!",
@@ -30,9 +33,14 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-16 px-6 bg-background">
+    <section 
+      ref={ref}
+      className={`py-12 px-6 bg-background transition-all duration-700 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
+    >
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-10">
+        <div className="text-center mb-8">
           <div className="text-purple-400 text-base font-semibold mb-3">Testimonials</div>
           <h2 className="text-3xl md:text-4xl font-black text-foreground mb-6">
             Silicon Valley's <span className="text-orange-400 font-black">Veterans</span> and <span className="text-orange-400 font-black">Rising Stars</span>
@@ -47,7 +55,7 @@ const Testimonials = () => {
         {/* Desktop Grid */}
         <div className="hidden md:grid grid-cols-1 md:grid-cols-2 gap-4">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-card border border-border rounded-xl p-5">
+            <div key={index} className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
               <blockquote className="text-foreground mb-4 leading-relaxed font-medium text-base">
                 "{testimonial.quote}"
               </blockquote>
