@@ -34,7 +34,7 @@ const Hero = () => {
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground mb-6">
             Join "GLO"
           </h1>
-          <h2 className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black gradient-text relative">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-black gradient-text relative whitespace-nowrap">
             Global Entrepreneurs Hub
             {/* Additional sparkles around the gradient text */}
             <span className="absolute -top-3 -right-6 text-yellow-400 text-2xl animate-pulse">✨</span>
