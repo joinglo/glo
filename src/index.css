@@ -99,27 +99,4 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
-  .sparkle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: #FBBF24;
-    border-radius: 50%;
-    animation: sparkle 2s infinite;
-  }
-
-  .sparkle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
-  .sparkle:nth-child(2) { top: 40%; right: 20%; animation-delay: 0.5s; }
-  .sparkle:nth-child(3) { bottom: 30%; left: 25%; animation-delay: 1s; }
-  .sparkle:nth-child(4) { bottom: 20%; right: 15%; animation-delay: 1.5s; }
-  .sparkle:nth-child(5) { top: 60%; left: 10%; animation-delay: 0.3s; }
-  .sparkle:nth-child(6) { top: 25%; right: 30%; animation-delay: 0.8s; }
-  .sparkle:nth-child(7) { bottom: 45%; right: 25%; animation-delay: 1.3s; }
-  .sparkle:nth-child(8) { top: 70%; right: 10%; animation-delay: 0.2s; }
-
-  @keyframes sparkle {
-    0%, 100% { opacity: 0; transform: scale(0); }
-    50% { opacity: 1; transform: scale(1); }
-  }
 }

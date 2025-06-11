@@ -21,16 +21,6 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-start pt-8 px-4 sm:px-6 text-center bg-background relative overflow-hidden">
-      {/* Sparkle effects */}
-      <div className="sparkle"></div>
-      <div className="sparkle"></div>
-      <div className="sparkle"></div>
-      <div className="sparkle"></div>
-      <div className="sparkle"></div>
-      <div className="sparkle"></div>
-      <div className="sparkle"></div>
-      <div className="sparkle"></div>
-
       <div className="max-w-6xl mx-auto relative z-10 w-full">
         {/* Follow button */}
         <div className="mb-8 flex justify-center">
@@ -50,9 +40,16 @@ const Hero = () => {
           </h1>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black gradient-text relative">
             Global Entrepreneurs Hub
-            {/* Additional sparkles around the gradient text */}
-            <span className="absolute -top-2 sm:-top-3 -right-4 sm:-right-6 text-yellow-400 text-xl sm:text-2xl animate-pulse">✨</span>
-            <span className="absolute -bottom-2 sm:-bottom-3 -left-4 sm:-left-6 text-yellow-400 text-lg sm:text-xl animate-pulse" style={{animationDelay: '0.5s'}}>✨</span>
+            
+            {/* Star sparkles positioned around the gradient text */}
+            <span className="absolute -top-4 sm:-top-6 -left-8 sm:-left-12 text-yellow-400 text-lg sm:text-xl animate-pulse">✦</span>
+            <span className="absolute -top-2 sm:-top-4 right-0 sm:right-4 text-yellow-400 text-sm sm:text-lg animate-pulse" style={{animationDelay: '0.3s'}}>✧</span>
+            <span className="absolute top-2 sm:top-4 -left-4 sm:-left-8 text-yellow-400 text-xs sm:text-sm animate-pulse" style={{animationDelay: '0.6s'}}>⭐</span>
+            <span className="absolute -bottom-3 sm:-bottom-5 right-8 sm:right-16 text-yellow-400 text-lg sm:text-xl animate-pulse" style={{animationDelay: '0.9s'}}>✦</span>
+            <span className="absolute bottom-1 sm:bottom-2 -left-6 sm:-left-10 text-yellow-400 text-sm sm:text-lg animate-pulse" style={{animationDelay: '1.2s'}}>✧</span>
+            <span className="absolute -top-1 sm:-top-2 left-1/4 text-yellow-400 text-xs sm:text-sm animate-pulse" style={{animationDelay: '0.15s'}}>⭐</span>
+            <span className="absolute bottom-0 sm:bottom-1 right-1/3 text-yellow-400 text-xs sm:text-sm animate-pulse" style={{animationDelay: '0.75s'}}>✦</span>
+            <span className="absolute -bottom-2 sm:-bottom-4 left-1/2 text-yellow-400 text-sm sm:text-lg animate-pulse" style={{animationDelay: '0.45s'}}>✧</span>
           </h2>
         </div>
 
