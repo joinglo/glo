@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,7 +8,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
-const IntakeForm = () => {
+export interface IntakeFormRef {
+  expandForm: () => void;
+}
+
+const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
   const { toast } = useToast();
   const [isFormExpanded, setIsFormExpanded] = useState(false);
   const [formData, setFormData] = useState({
@@ -32,6 +36,12 @@ const IntakeForm = () => {
     referralSource: "",
     agreeTerms: false,
   });
+
+  useImperativeHandle(ref, () => ({
+    expandForm: () => {
+      setIsFormExpanded(true);
+    }
+  }));
 
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -352,6 +362,8 @@ const IntakeForm = () => {
       </div>
     </section>
   );
-};
+});
+
+IntakeForm.displayName = "IntakeForm";
 
 export default IntakeForm;

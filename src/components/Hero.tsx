@@ -1,14 +1,20 @@
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import { IntakeFormRef } from "./IntakeForm";
 
 const Hero = () => {
   const [isFollowHovered, setIsFollowHovered] = useState(false);
+  const intakeFormRef = useRef<IntakeFormRef>(null);
 
   const scrollToIntakeForm = () => {
     const intakeForm = document.getElementById('intake-form');
     if (intakeForm) {
       intakeForm.scrollIntoView({ behavior: 'smooth' });
+      // Expand the form after scrolling
+      setTimeout(() => {
+        intakeFormRef.current?.expandForm();
+      }, 500);
     }
   };
 
@@ -38,10 +44,10 @@ const Hero = () => {
 
         {/* Main heading */}
         <div className="mb-12">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground mb-6">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-foreground mb-6">
             Join "GLO"
           </h1>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-black gradient-text relative whitespace-nowrap">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black gradient-text relative">
             Global Entrepreneurs Hub
             {/* Additional sparkles around the gradient text */}
             <span className="absolute -top-3 -right-6 text-yellow-400 text-2xl animate-pulse">✨</span>
@@ -51,13 +57,13 @@ const Hero = () => {
 
         {/* Description */}
         <div className="mb-16 space-y-2">
-          <p className="text-lg md:text-xl lg:text-2xl font-bold text-muted-foreground max-w-5xl mx-auto">
+          <p className="text-xl md:text-2xl lg:text-3xl font-bold text-muted-foreground max-w-5xl mx-auto">
             Silicon Valley's High-Traction Tech Community Builder.
           </p>
-          <p className="text-lg md:text-xl lg:text-2xl font-bold text-muted-foreground max-w-5xl mx-auto">
+          <p className="text-xl md:text-2xl lg:text-3xl font-bold text-muted-foreground max-w-5xl mx-auto">
             Exclusive Events, Private Slack Communities and over $4.6M
           </p>
-          <p className="text-lg md:text-xl lg:text-2xl font-bold text-muted-foreground max-w-5xl mx-auto">
+          <p className="text-xl md:text-2xl lg:text-3xl font-bold text-muted-foreground max-w-5xl mx-auto">
             in B2B SaaS perks for members.
           </p>
         </div>
@@ -67,10 +73,10 @@ const Hero = () => {
           <div className="flex items-center gap-3">
             <div className="flex text-yellow-400">
               {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-3xl md:text-4xl">★</span>
+                <span key={i} className="text-4xl md:text-5xl">★</span>
               ))}
             </div>
-            <span className="text-muted-foreground text-lg md:text-xl font-bold">
+            <span className="text-muted-foreground text-xl md:text-2xl font-bold">
               members are ballers
             </span>
           </div>
@@ -88,4 +94,5 @@ const Hero = () => {
   );
 };
 
+export { IntakeFormRef };
 export default Hero;
