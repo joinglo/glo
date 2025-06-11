@@ -69,7 +69,7 @@ const TestimonialsCarousel = () => {
                   </div>
                   <div>
                     <div className="text-foreground font-bold text-base">{testimonial.name}</div>
-                    <div className="text-muted-foreground text-sm font-medium">{testimonial.title}</div>
+                    <div className="text-muted-foreground text-base font-medium">{testimonial.title}</div>
                   </div>
                 </div>
               </div>
@@ -95,7 +95,7 @@ const TestimonialsCarousel = () => {
       </div>
       
       {/* Counter */}
-      <div className="text-center mt-2 text-sm text-muted-foreground">
+      <div className="text-center mt-2 text-base text-muted-foreground">
         {current} of {count}
       </div>
     </div>

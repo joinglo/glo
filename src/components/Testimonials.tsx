@@ -41,7 +41,9 @@ const Testimonials = () => {
     >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8">
-          <div className="text-purple-400 text-base font-semibold mb-3">Testimonials</div>
+          <div className="inline-block px-4 py-2 bg-primary/10 rounded-full mb-4">
+            <span className="text-primary font-semibold text-sm uppercase tracking-wide">Testimonials</span>
+          </div>
           <h2 className="text-3xl md:text-4xl font-black text-foreground mb-6">
             Silicon Valley's <span className="text-orange-400 font-black">Veterans</span> and <span className="text-orange-400 font-black">Rising Stars</span>
           </h2>
