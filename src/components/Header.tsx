@@ -33,10 +33,10 @@ const Header = () => {
       
       {/* Desktop Navigation */}
       <nav className="hidden md:flex items-center gap-6">
-        <button className="flex items-center gap-2 px-4 py-2 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-base">
+        <a href="https://lu.ma/glo_community" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-base">
           <Calendar size={16} />
           Events
-        </button>
+        </a>
         <button className="px-4 py-2 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-base">
           Sign In
         </button>
@@ -57,10 +57,10 @@ const Header = () => {
         </SheetTrigger>
         <SheetContent side="right" className="w-[280px]">
           <div className="flex flex-col gap-4 mt-8">
-            <button className="flex items-center gap-2 px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium w-full justify-center text-base">
+            <a href="https://lu.ma/glo_community" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium w-full justify-center text-base">
               <Calendar size={16} />
               Events
-            </button>
+            </a>
             <button className="px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-center text-base">
               Sign In
             </button>

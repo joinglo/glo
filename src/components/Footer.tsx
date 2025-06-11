@@ -7,13 +7,13 @@ const Footer = () => {
           <a href="#" className="hover:text-foreground transition-colors font-medium text-base">
             About GLO
           </a>
-          <a href="#" className="hover:text-foreground transition-colors font-medium text-base">
+          <a href="https://lu.ma/glo_community" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors font-medium text-base">
             Events
           </a>
           <a href="#" className="hover:text-foreground transition-colors font-medium text-base">
             Apply
           </a>
-          <a href="#" className="hover:text-foreground transition-colors font-medium text-base">
+          <a href="https://global-entrepreneurs-hubs-newsletter.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors font-medium text-base">
             Newsletter
           </a>
         </nav>
