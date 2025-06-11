@@ -46,6 +46,11 @@
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 217 32% 17%;
     --sidebar-ring: 216 12% 84%;
+
+    /* Button colors matching your CSS */
+    --button-bg: #f5eee5;
+    --button-bg-hover: #e9e1d6;
+    --button-text: #111111;
   }
 }
 
@@ -63,15 +68,20 @@
 
 @layer utilities {
   .minimal-button {
-    background: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
-    border: 1px solid hsl(var(--primary));
-    transition: all 0.2s ease;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    font-family: inherit;
+    font-weight: 600;
+    border: none;
+    padding: 0.8em 1.6em;
+    border-radius: 999px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
   }
   
   .minimal-button:hover {
-    background: hsl(var(--primary) / 0.9);
-    transform: scale(1.05);
+    background-color: var(--button-bg-hover);
   }
 
   .gradient-text {
