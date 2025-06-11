@@ -36,7 +36,7 @@ const Hero = () => {
 
         {/* Main heading */}
         <div className="mb-4 sm:mb-6">
-          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light text-foreground mb-3 sm:mb-4">
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-foreground mb-3 sm:mb-4">
             JOIN GLO.
           </h1>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black gradient-text relative">
