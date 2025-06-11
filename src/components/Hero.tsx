@@ -6,12 +6,22 @@ const Hero = () => {
   const [isFollowHovered, setIsFollowHovered] = useState(false);
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-6 text-center bg-background">
-      <div className="max-w-4xl mx-auto">
+    <section className="min-h-screen flex flex-col items-center justify-center px-6 text-center bg-background relative overflow-hidden">
+      {/* Sparkle effects */}
+      <div className="sparkle"></div>
+      <div className="sparkle"></div>
+      <div className="sparkle"></div>
+      <div className="sparkle"></div>
+      <div className="sparkle"></div>
+      <div className="sparkle"></div>
+      <div className="sparkle"></div>
+      <div className="sparkle"></div>
+
+      <div className="max-w-4xl mx-auto relative z-10">
         {/* Follow button */}
         <div className="mb-12">
           <button
-            className="minimal-button px-6 py-3 rounded-full font-medium hover:scale-105 transition-all duration-200"
+            className="flex items-center gap-2 px-6 py-3 bg-secondary border border-purple-500 rounded-full font-medium hover:scale-105 transition-all duration-200 text-foreground"
             onMouseEnter={() => setIsFollowHovered(true)}
             onMouseLeave={() => setIsFollowHovered(false)}
           >
@@ -24,8 +34,11 @@ const Hero = () => {
           <h1 className="text-6xl md:text-8xl font-light text-foreground mb-4">
             Join "GLO"
           </h1>
-          <h2 className="text-4xl md:text-6xl font-medium text-foreground">
+          <h2 className="text-4xl md:text-6xl font-medium gradient-text relative">
             Global Entrepreneurs Hub
+            {/* Additional sparkles around the gradient text */}
+            <span className="absolute -top-2 -right-4 text-yellow-400 text-2xl animate-pulse">✨</span>
+            <span className="absolute -bottom-2 -left-4 text-yellow-400 text-xl animate-pulse" style={{animationDelay: '0.5s'}}>✨</span>
           </h2>
         </div>
 
@@ -45,7 +58,7 @@ const Hero = () => {
         {/* Rating and CTA */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-6">
           <div className="flex items-center gap-3">
-            <div className="flex text-foreground">
+            <div className="flex text-yellow-400">
               {[...Array(5)].map((_, i) => (
                 <span key={i} className="text-2xl">★</span>
               ))}

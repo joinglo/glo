@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -80,7 +79,7 @@ const IntakeForm = () => {
                   id="firstName"
                   value={formData.firstName}
                   onChange={(e) => handleInputChange("firstName", e.target.value)}
-                  className="bg-background border-border text-foreground"
+                  className="bg-secondary border-border text-foreground"
                   required
                 />
               </div>
@@ -91,7 +90,7 @@ const IntakeForm = () => {
                   id="lastName"
                   value={formData.lastName}
                   onChange={(e) => handleInputChange("lastName", e.target.value)}
-                  className="bg-background border-border text-foreground"
+                  className="bg-secondary border-border text-foreground"
                   required
                 />
               </div>
@@ -129,7 +128,7 @@ const IntakeForm = () => {
                 type="url"
                 value={formData.linkedin}
                 onChange={(e) => handleInputChange("linkedin", e.target.value)}
-                className="bg-background border-border text-foreground"
+                className="bg-secondary border-border text-foreground"
                 placeholder="https://linkedin.com/in/yourprofile"
               />
             </div>
@@ -247,7 +246,7 @@ const IntakeForm = () => {
                 id="teamSize"
                 value={formData.teamSize}
                 onChange={(e) => handleInputChange("teamSize", e.target.value)}
-                className="bg-background border-border text-foreground"
+                className="bg-secondary border-border text-foreground"
                 placeholder="e.g., 5-10 people"
               />
             </div>

@@ -8,44 +8,44 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 6.7%;
+    --background: 222 84% 5%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 6.7%;
+    --card: 222 84% 5%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 6.7%;
+    --popover: 222 84% 5%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 32 25% 85%;
-    --primary-foreground: 0 0% 6.7%;
+    --primary: 28 100% 70%;
+    --primary-foreground: 222 84% 5%;
 
-    --secondary: 32 35% 95%;
-    --secondary-foreground: 0 0% 6.7%;
+    --secondary: 222 47% 11%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 32 25% 90%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 215 32% 27%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 32 30% 83%;
-    --accent-foreground: 0 0% 6.7%;
+    --accent: 216 12% 84%;
+    --accent-foreground: 222 84% 5%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 32 25% 90%;
-    --input: 32 25% 90%;
-    --ring: 32 30% 83%;
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 216 12% 84%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 0 0% 6.7%;
-    --sidebar-primary: 32 25% 85%;
-    --sidebar-primary-foreground: 0 0% 6.7%;
-    --sidebar-accent: 32 25% 90%;
-    --sidebar-accent-foreground: 0 0% 6.7%;
-    --sidebar-border: 32 25% 90%;
-    --sidebar-ring: 32 30% 83%;
+    --sidebar-background: 222 84% 5%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 28 100% 70%;
+    --sidebar-primary-foreground: 222 84% 5%;
+    --sidebar-accent: 217 32% 17%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 217 32% 17%;
+    --sidebar-ring: 216 12% 84%;
   }
 }
 
@@ -65,12 +65,42 @@
   .minimal-button {
     background: hsl(var(--primary));
     color: hsl(var(--primary-foreground));
-    border: 1px solid hsl(var(--border));
+    border: 1px solid hsl(var(--primary));
     transition: all 0.2s ease;
   }
   
   .minimal-button:hover {
-    background: hsl(var(--accent));
-    border-color: hsl(var(--accent));
+    background: hsl(var(--primary) / 0.9);
+    transform: scale(1.05);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F59E0B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #FBBF24;
+    border-radius: 50%;
+    animation: sparkle 2s infinite;
+  }
+
+  .sparkle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+  .sparkle:nth-child(2) { top: 40%; right: 20%; animation-delay: 0.5s; }
+  .sparkle:nth-child(3) { bottom: 30%; left: 25%; animation-delay: 1s; }
+  .sparkle:nth-child(4) { bottom: 20%; right: 15%; animation-delay: 1.5s; }
+  .sparkle:nth-child(5) { top: 60%; left: 10%; animation-delay: 0.3s; }
+  .sparkle:nth-child(6) { top: 25%; right: 30%; animation-delay: 0.8s; }
+  .sparkle:nth-child(7) { bottom: 45%; right: 25%; animation-delay: 1.3s; }
+  .sparkle:nth-child(8) { top: 70%; right: 10%; animation-delay: 0.2s; }
+
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
   }
 }
