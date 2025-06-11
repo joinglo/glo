@@ -25,7 +25,7 @@ const Hero = () => {
         {/* Follow button */}
         <div className="mb-8 flex justify-center">
           <button
-            className="relative flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 via-purple-500 to-blue-600 rounded-full font-medium hover:scale-105 transition-all duration-200 text-white text-sm border border-purple-400/30 shadow-lg hover:shadow-purple-500/25"
+            className="relative flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 via-purple-500 to-blue-600 rounded-full font-medium hover:scale-105 transition-all duration-200 text-white text-base border border-purple-400/30 shadow-lg hover:shadow-purple-500/25"
             onMouseEnter={() => setIsFollowHovered(true)}
             onMouseLeave={() => setIsFollowHovered(false)}
           >
@@ -35,7 +35,7 @@ const Hero = () => {
 
         {/* Main heading */}
         <div className="mb-8 sm:mb-12">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-foreground mb-4 sm:mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium italic text-foreground mb-4 sm:mb-6">
             Join "GLO"
           </h1>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black gradient-text relative">
@@ -55,13 +55,13 @@ const Hero = () => {
 
         {/* Description */}
         <div className="mb-12 sm:mb-16 space-y-2">
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-muted-foreground max-w-5xl mx-auto">
+          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-muted-foreground max-w-5xl mx-auto">
             Silicon Valley's High-Traction Tech Community Builder.
           </p>
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-muted-foreground max-w-5xl mx-auto">
+          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-muted-foreground max-w-5xl mx-auto">
             Exclusive Events, Private Slack Communities and over $4.6M
           </p>
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-muted-foreground max-w-5xl mx-auto">
+          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-muted-foreground max-w-5xl mx-auto">
             in B2B SaaS perks for members.
           </p>
         </div>
@@ -84,7 +84,7 @@ const Hero = () => {
               <span key={i} className="text-3xl sm:text-4xl md:text-5xl">★</span>
             ))}
           </div>
-          <span className="text-muted-foreground text-lg sm:text-xl md:text-2xl font-bold">
+          <span className="text-muted-foreground text-xl sm:text-2xl md:text-3xl font-bold">
             members are ballers
           </span>
         </div>

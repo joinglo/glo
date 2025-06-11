@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import {
   Carousel,
@@ -59,7 +60,7 @@ const TestimonialsCarousel = () => {
           {testimonials.map((testimonial, index) => (
             <CarouselItem key={index}>
               <div className="bg-card border border-border rounded-xl p-5">
-                <blockquote className="text-foreground mb-4 leading-relaxed font-medium text-sm">
+                <blockquote className="text-foreground mb-4 leading-relaxed font-medium text-base">
                   "{testimonial.quote}"
                 </blockquote>
                 <div className="flex items-center gap-3">
@@ -67,8 +68,8 @@ const TestimonialsCarousel = () => {
                     {testimonial.avatar}
                   </div>
                   <div>
-                    <div className="text-foreground font-bold text-sm">{testimonial.name}</div>
-                    <div className="text-muted-foreground text-xs font-medium">{testimonial.title}</div>
+                    <div className="text-foreground font-bold text-base">{testimonial.name}</div>
+                    <div className="text-muted-foreground text-sm font-medium">{testimonial.title}</div>
                   </div>
                 </div>
               </div>
@@ -94,7 +95,7 @@ const TestimonialsCarousel = () => {
       </div>
       
       {/* Counter */}
-      <div className="text-center mt-2 text-xs text-muted-foreground">
+      <div className="text-center mt-2 text-sm text-muted-foreground">
         {current} of {count}
       </div>
     </div>

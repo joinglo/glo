@@ -33,7 +33,7 @@ const Testimonials = () => {
     <section className="py-16 px-6 bg-background">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
-          <div className="text-purple-400 text-sm font-semibold mb-3">Testimonial</div>
+          <div className="text-purple-400 text-base font-semibold mb-3">Testimonials</div>
           <h2 className="text-3xl md:text-4xl font-black text-foreground mb-6">
             Silicon Valley's <span className="text-orange-400 font-black">Veterans</span> and <span className="text-orange-400 font-black">Rising Stars</span>
           </h2>
@@ -48,7 +48,7 @@ const Testimonials = () => {
         <div className="hidden md:grid grid-cols-1 md:grid-cols-2 gap-4">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="bg-card border border-border rounded-xl p-5">
-              <blockquote className="text-foreground mb-4 leading-relaxed font-medium text-sm">
+              <blockquote className="text-foreground mb-4 leading-relaxed font-medium text-base">
                 "{testimonial.quote}"
               </blockquote>
               <div className="flex items-center gap-3">
@@ -56,8 +56,8 @@ const Testimonials = () => {
                   {testimonial.avatar}
                 </div>
                 <div>
-                  <div className="text-foreground font-bold text-sm">{testimonial.name}</div>
-                  <div className="text-muted-foreground text-xs font-medium">{testimonial.title}</div>
+                  <div className="text-foreground font-bold text-base">{testimonial.name}</div>
+                  <div className="text-muted-foreground text-sm font-medium">{testimonial.title}</div>
                 </div>
               </div>
             </div>

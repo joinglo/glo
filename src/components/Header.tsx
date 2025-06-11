@@ -33,15 +33,15 @@ const Header = () => {
       
       {/* Desktop Navigation */}
       <nav className="hidden md:flex items-center gap-6">
-        <button className="flex items-center gap-2 px-4 py-2 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium">
+        <button className="flex items-center gap-2 px-4 py-2 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-base">
           <Calendar size={16} />
           Events
         </button>
-        <button className="px-4 py-2 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium">
+        <button className="px-4 py-2 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-base">
           Sign In
         </button>
         <button 
-          className="minimal-button px-6 py-2 rounded-full font-bold glow-effect"
+          className="minimal-button px-6 py-2 rounded-full font-bold glow-effect text-base"
           onClick={scrollToIntakeForm}
         >
           Apply Now
@@ -57,15 +57,15 @@ const Header = () => {
         </SheetTrigger>
         <SheetContent side="right" className="w-[280px]">
           <div className="flex flex-col gap-4 mt-8">
-            <button className="flex items-center gap-2 px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium w-full justify-center">
+            <button className="flex items-center gap-2 px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium w-full justify-center text-base">
               <Calendar size={16} />
               Events
             </button>
-            <button className="px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-center">
+            <button className="px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-center text-base">
               Sign In
             </button>
             <button 
-              className="minimal-button px-6 py-3 rounded-full font-bold w-full"
+              className="minimal-button px-6 py-3 rounded-full font-bold w-full text-base"
               onClick={scrollToIntakeForm}
             >
               Apply Now
