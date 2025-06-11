@@ -1,12 +1,9 @@
-
 import { Gift, Users, DollarSign, Briefcase, BookOpen, FileText } from "lucide-react";
 import { useState, useEffect } from "react";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
   CarouselApi,
 } from "@/components/ui/carousel";
 
@@ -79,8 +76,6 @@ const FeaturesCarousel = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="left-2" />
-        <CarouselNext className="right-2" />
       </Carousel>
       
       {/* Pagination Dots */}

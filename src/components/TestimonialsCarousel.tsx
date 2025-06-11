@@ -1,11 +1,8 @@
-
 import { useState, useEffect } from "react";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
   CarouselApi,
 } from "@/components/ui/carousel";
 
@@ -46,7 +43,8 @@ const TestimonialsCarousel = () => {
       return;
     }
 
-    setCount(api.scrollSnapList().length);
+    const snapList = api.scrollSnapList();
+    setCount(snapList.length);
     setCurrent(api.selectedScrollSnap() + 1);
 
     api.on("select", () => {
@@ -77,8 +75,6 @@ const TestimonialsCarousel = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="left-2" />
-        <CarouselNext className="right-2" />
       </Carousel>
       
       {/* Pagination Dots */}
