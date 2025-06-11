@@ -30,11 +30,11 @@ const Hero = () => {
         </div>
 
         {/* Main heading */}
-        <div className="mb-8">
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-foreground mb-4">
+        <div className="mb-12">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground mb-6">
             Join "GLO"
           </h1>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black gradient-text relative">
+          <h2 className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black gradient-text relative">
             Global Entrepreneurs Hub
             {/* Additional sparkles around the gradient text */}
             <span className="absolute -top-3 -right-6 text-yellow-400 text-2xl animate-pulse">✨</span>
@@ -43,14 +43,14 @@ const Hero = () => {
         </div>
 
         {/* Description */}
-        <div className="mb-12 space-y-1">
-          <p className="text-base md:text-lg lg:text-xl font-bold text-muted-foreground max-w-5xl mx-auto">
+        <div className="mb-16 space-y-2">
+          <p className="text-lg md:text-xl lg:text-2xl font-bold text-muted-foreground max-w-5xl mx-auto">
             Silicon Valley's High-Traction Tech Community Builder.
           </p>
-          <p className="text-base md:text-lg lg:text-xl font-bold text-muted-foreground max-w-5xl mx-auto">
+          <p className="text-lg md:text-xl lg:text-2xl font-bold text-muted-foreground max-w-5xl mx-auto">
             Exclusive Events, Private Slack Communities and over $4.6M
           </p>
-          <p className="text-base md:text-lg lg:text-xl font-bold text-muted-foreground max-w-5xl mx-auto">
+          <p className="text-lg md:text-xl lg:text-2xl font-bold text-muted-foreground max-w-5xl mx-auto">
             in B2B SaaS perks for members.
           </p>
         </div>
@@ -60,17 +60,17 @@ const Hero = () => {
           <div className="flex items-center gap-3">
             <div className="flex text-yellow-400">
               {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-2xl md:text-3xl">★</span>
+                <span key={i} className="text-3xl md:text-4xl">★</span>
               ))}
             </div>
-            <span className="text-muted-foreground text-base md:text-lg font-bold">
+            <span className="text-muted-foreground text-lg md:text-xl font-bold">
               members are ballers
             </span>
           </div>
           
           <Button 
             size="lg" 
-            className="minimal-button px-8 py-4 font-black rounded-full text-lg md:text-xl hover:scale-105 transition-all duration-200"
+            className="minimal-button px-10 py-5 font-black rounded-full text-xl md:text-2xl hover:scale-105 transition-all duration-200"
           >
             Apply Now
           </Button>
