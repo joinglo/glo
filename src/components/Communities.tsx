@@ -23,6 +23,20 @@ const Communities = () => {
     "Oft. YC, Techstars, EF, Z-Fellows"
   ];
 
+  const scrollToIntakeForm = () => {
+    const intakeForm = document.getElementById('intake-form');
+    if (intakeForm) {
+      intakeForm.scrollIntoView({ behavior: 'smooth' });
+      // Expand the form after scrolling
+      setTimeout(() => {
+        const expandButton = document.querySelector('[data-expand-form]') as HTMLButtonElement;
+        if (expandButton) {
+          expandButton.click();
+        }
+      }, 500);
+    }
+  };
+
   return (
     <section className="py-16 px-6 bg-background">
       <div className="max-w-6xl mx-auto">
@@ -37,7 +51,7 @@ const Communities = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* High-Traction Community */}
-          <div className="bg-card border border-border rounded-2xl p-6 relative">
+          <div className="bg-card border border-border rounded-2xl p-4 sm:p-6 relative">
             <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
               <span className="bg-purple-600 text-white px-4 py-1 rounded-full text-sm font-bold">
                 Most Popular
@@ -45,7 +59,7 @@ const Communities = () => {
             </div>
             
             <div className="mb-5">
-              <h3 className="text-2xl font-black text-foreground mb-2">High-Traction</h3>
+              <h3 className="text-xl sm:text-2xl font-black text-foreground mb-2">High-Traction</h3>
               <div className="text-muted-foreground space-y-1 font-medium text-sm">
                 <div>General Benchmarks</div>
                 <div>Case by case</div>
@@ -61,15 +75,18 @@ const Communities = () => {
               ))}
             </div>
 
-            <Button className="w-full bg-orange-500 hover:bg-orange-600 text-black font-bold py-3 rounded-full">
+            <Button 
+              className="w-full bg-orange-500 hover:bg-orange-600 text-black font-bold py-3 rounded-full"
+              onClick={scrollToIntakeForm}
+            >
               Apply Now
             </Button>
           </div>
 
           {/* Early-Traction Community */}
-          <div className="bg-card border border-border rounded-2xl p-6">
+          <div className="bg-card border border-border rounded-2xl p-4 sm:p-6">
             <div className="mb-5">
-              <h3 className="text-2xl font-black text-foreground mb-2">Early-Traction</h3>
+              <h3 className="text-xl sm:text-2xl font-black text-foreground mb-2">Early-Traction</h3>
               <div className="text-muted-foreground space-y-1 font-medium text-sm">
                 <div>General Benchmarks</div>
                 <div>Case by case</div>
@@ -85,7 +102,10 @@ const Communities = () => {
               ))}
             </div>
 
-            <Button className="w-full bg-secondary hover:bg-secondary/80 text-foreground font-bold py-3 rounded-full border border-border">
+            <Button 
+              className="w-full bg-secondary hover:bg-secondary/80 text-foreground font-bold py-3 rounded-full border border-border"
+              onClick={scrollToIntakeForm}
+            >
               Get Started
             </Button>
           </div>

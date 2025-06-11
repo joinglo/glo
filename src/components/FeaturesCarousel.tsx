@@ -1,8 +1,14 @@
 
 import { Gift, Users, DollarSign, Briefcase, BookOpen, FileText } from "lucide-react";
-import FeaturesCarousel from "./FeaturesCarousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
-const Features = () => {
+const FeaturesCarousel = () => {
   const features = [
     {
       icon: <Gift className="w-5 h-5" />,
@@ -37,27 +43,11 @@ const Features = () => {
   ];
 
   return (
-    <section className="py-16 px-6 bg-background">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">
-            What's inside <span className="text-orange-400">GLO</span>?
-          </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed font-semibold max-w-4xl mx-auto">
-            Curated community of high-traction founders/CEOs, active investors, influencers & c-suite operators. 
-            Bootstrapped or backed by the likes of YC, Techstars, a16z, 500 global, General Catalyst & so much more.
-          </p>
-        </div>
-
-        {/* Mobile Carousel */}
-        <div className="lg:hidden">
-          <FeaturesCarousel />
-        </div>
-
-        {/* Desktop Grid */}
-        <div className="hidden lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {features.map((feature, index) => (
-            <div key={index} className="bg-card border border-border rounded-xl p-5 flex gap-4">
+    <Carousel className="w-full max-w-sm mx-auto lg:hidden">
+      <CarouselContent>
+        {features.map((feature, index) => (
+          <CarouselItem key={index}>
+            <div className="bg-card border border-border rounded-xl p-5 flex gap-4">
               <div className="text-orange-400 flex-shrink-0 mt-1">
                 {feature.icon}
               </div>
@@ -66,11 +56,13 @@ const Features = () => {
                 <p className="text-muted-foreground text-xs leading-relaxed font-medium">{feature.description}</p>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
   );
 };
 
-export default Features;
+export default FeaturesCarousel;
