@@ -70,7 +70,7 @@ const Hero = () => {
         {/* CTA Button */}
         <div className="flex justify-center mb-6">
           <button 
-            className="px-8 py-3 text-white bg-gradient-to-r from-orange-500 to-orange-600 border border-orange-400/30 rounded-full hover:scale-110 transition-all duration-200 font-medium text-2xl sm:text-3xl md:text-4xl shadow-xl hover:shadow-2xl scale-105"
+            className="px-8 py-3 text-white bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 border border-orange-400/30 rounded-full hover:scale-110 transition-all duration-200 font-medium text-xl sm:text-2xl md:text-3xl shadow-xl hover:shadow-2xl scale-105"
             onClick={scrollToIntakeForm}
           >
             Apply Now

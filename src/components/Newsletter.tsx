@@ -25,8 +25,12 @@ const Newsletter = () => {
       <div className="max-w-4xl mx-auto text-center">
         {/* Social Icons */}
         <div className="mb-8">
-          <div className="inline-block border border-border rounded-xl px-6 py-4 bg-card/30 backdrop-blur-sm">
-            <h3 className="text-foreground text-lg font-semibold mb-4">Our Socials</h3>
+          <div className="text-center mb-6">
+            <div className="inline-block px-4 py-2 bg-primary/10 rounded-full mb-4">
+              <span className="text-primary font-semibold text-sm uppercase tracking-wide">Our Socials</span>
+            </div>
+          </div>
+          <div className="border border-border rounded-xl px-6 py-4 bg-card/30 backdrop-blur-sm">
             <div className="flex items-center justify-center gap-4">
               <a href="https://www.linkedin.com/company/global-entrepreneurs-hub/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2">
                 <Linkedin size={24} />
