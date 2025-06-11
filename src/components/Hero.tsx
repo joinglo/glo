@@ -5,6 +5,13 @@ import { Button } from "@/components/ui/button";
 const Hero = () => {
   const [isFollowHovered, setIsFollowHovered] = useState(false);
 
+  const scrollToIntakeForm = () => {
+    const intakeForm = document.getElementById('intake-form');
+    if (intakeForm) {
+      intakeForm.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="min-h-screen flex flex-col items-center justify-start pt-8 px-6 text-center bg-background relative overflow-hidden">
       {/* Sparkle effects */}
@@ -71,6 +78,7 @@ const Hero = () => {
           <Button 
             size="lg" 
             className="minimal-button px-10 py-5 font-black rounded-full text-xl md:text-2xl hover:scale-105 transition-all duration-200"
+            onClick={scrollToIntakeForm}
           >
             Apply Now
           </Button>
