@@ -22,11 +22,11 @@ const Header = () => {
   return (
     <header className="w-full px-4 sm:px-6 py-4 sm:py-6 flex items-center justify-between bg-background">
       <div className="flex items-center">
-        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center overflow-hidden">
           <img 
             src="/lovable-uploads/558b4ef1-fd58-48d7-ae03-bc5034b3e530.png" 
             alt="GLO"
-            className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+            className="w-12 h-12 sm:w-14 sm:h-14 object-cover"
           />
         </div>
       </div>
@@ -41,7 +41,7 @@ const Header = () => {
           Sign In
         </button>
         <button 
-          className="minimal-button px-6 py-2 rounded-full font-bold"
+          className="minimal-button px-6 py-2 rounded-full font-bold glow-effect"
           onClick={scrollToIntakeForm}
         >
           Apply Now

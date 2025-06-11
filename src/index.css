@@ -84,6 +84,15 @@
     background-color: var(--button-bg-hover);
   }
 
+  .glow-effect {
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .glow-effect:hover {
+    box-shadow: 0 0 30px rgba(251, 191, 36, 0.5);
+  }
+
   .gradient-text {
     background: linear-gradient(90deg, #9F7AFE 0%, #FA8EB8 100%);
     -webkit-background-clip: text;

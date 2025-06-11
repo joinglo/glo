@@ -48,7 +48,7 @@ const Hero = () => {
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-foreground mb-4 sm:mb-6">
             Join "GLO"
           </h1>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black gradient-text relative">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black gradient-text relative">
             Global Entrepreneurs Hub
             {/* Additional sparkles around the gradient text */}
             <span className="absolute -top-2 sm:-top-3 -right-4 sm:-right-6 text-yellow-400 text-xl sm:text-2xl animate-pulse">✨</span>
@@ -84,7 +84,7 @@ const Hero = () => {
           
           <Button 
             size="lg" 
-            className="minimal-button px-6 py-2 font-black rounded-full text-lg sm:text-xl md:text-2xl hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl hover:shadow-orange-500/25"
+            className="minimal-button px-6 py-2 font-black rounded-full text-lg sm:text-xl md:text-2xl hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl hover:shadow-orange-500/25 glow-effect"
             onClick={scrollToIntakeForm}
           >
             Apply Now
