@@ -1,4 +1,3 @@
-
 import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,7 +7,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/hooks/use-toast";
-import { ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 
 export interface IntakeFormRef {
   expandForm: () => void;
@@ -406,14 +405,16 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
             how you'll contribute to and benefit from the GLO community.
           </p>
           
-          <Button
-            onClick={() => setIsFormExpanded(!isFormExpanded)}
-            className="minimal-button px-8 py-4 font-bold rounded-full text-lg hover:scale-105 transition-all duration-200 flex items-center gap-2 mx-auto"
-            data-expand-form
-          >
-            {isFormExpanded ? "Hide Application Form" : "Start Application"}
-            {isFormExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-          </Button>
+          {!isFormExpanded && (
+            <Button
+              onClick={() => setIsFormExpanded(true)}
+              className="minimal-button px-8 py-4 font-bold rounded-full text-lg hover:scale-105 transition-all duration-200 flex items-center gap-2 mx-auto"
+              data-expand-form
+            >
+              Start Application
+              <ChevronDown size={20} />
+            </Button>
+          )}
         </div>
 
         {isFormExpanded && (
@@ -479,3 +480,5 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
 IntakeForm.displayName = "IntakeForm";
 
 export default IntakeForm;
+
+}

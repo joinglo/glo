@@ -26,7 +26,7 @@ const Hero = () => {
         {/* Follow button */}
         <div className="mb-6 flex justify-center">
           <button
-            className="relative flex items-center gap-2 px-4 py-2 bg-transparent rounded-full font-medium hover:scale-105 transition-all duration-200 text-white text-base border border-purple-400/30 shadow-lg hover:shadow-purple-500/25"
+            className="relative flex items-center gap-2 px-4 py-2 bg-transparent rounded-lg font-medium hover:scale-105 transition-all duration-200 text-white text-base border border-purple-400/30 shadow-lg hover:shadow-purple-500/25"
             onMouseEnter={() => setIsFollowHovered(true)}
             onMouseLeave={() => setIsFollowHovered(false)}
           >
@@ -70,7 +70,7 @@ const Hero = () => {
         {/* CTA Button */}
         <div className="flex justify-center mb-6">
           <button 
-            className="px-8 py-3 text-white bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 border border-orange-400/30 rounded-full hover:scale-110 transition-all duration-200 font-medium text-xl sm:text-2xl md:text-3xl shadow-xl hover:shadow-2xl scale-105"
+            className="px-8 py-3 text-white bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 border border-orange-400/50 rounded-full hover:scale-110 transition-all duration-200 font-normal text-lg sm:text-xl md:text-2xl shadow-xl hover:shadow-2xl hover:shadow-orange-500/30 scale-105 ring-2 ring-orange-400/20"
             onClick={scrollToIntakeForm}
           >
             Apply Now
