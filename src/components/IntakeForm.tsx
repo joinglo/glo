@@ -56,42 +56,42 @@ const IntakeForm = () => {
   };
 
   return (
-    <section className="py-20 px-6 bg-gradient-to-b from-background to-background/50">
+    <section className="py-20 px-6 bg-background">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-light text-foreground mb-4">
             Join the Community
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Tell us about yourself and your entrepreneurial journey. This helps us understand 
             how you'll contribute to and benefit from the GLO community.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-8 bg-card/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+        <form onSubmit={handleSubmit} className="space-y-8 bg-card border border-border rounded-2xl p-8">
           {/* Personal Information */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-semibold text-white mb-4">Personal Information</h3>
+            <h3 className="text-2xl font-medium text-foreground mb-4">Personal Information</h3>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="firstName" className="text-white">First Name *</Label>
+                <Label htmlFor="firstName" className="text-foreground">First Name *</Label>
                 <Input
                   id="firstName"
                   value={formData.firstName}
                   onChange={(e) => handleInputChange("firstName", e.target.value)}
-                  className="bg-background/50 border-white/20 text-white"
+                  className="bg-background border-border text-foreground"
                   required
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="lastName" className="text-white">Last Name *</Label>
+                <Label htmlFor="lastName" className="text-foreground">Last Name *</Label>
                 <Input
                   id="lastName"
                   value={formData.lastName}
                   onChange={(e) => handleInputChange("lastName", e.target.value)}
-                  className="bg-background/50 border-white/20 text-white"
+                  className="bg-background border-border text-foreground"
                   required
                 />
               </div>
@@ -99,37 +99,37 @@ const IntakeForm = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-white">Email Address *</Label>
+                <Label htmlFor="email" className="text-foreground">Email Address *</Label>
                 <Input
                   id="email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange("email", e.target.value)}
-                  className="bg-background/50 border-white/20 text-white"
+                  className="bg-background border-border text-foreground"
                   required
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="phone" className="text-white">Phone Number</Label>
+                <Label htmlFor="phone" className="text-foreground">Phone Number</Label>
                 <Input
                   id="phone"
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => handleInputChange("phone", e.target.value)}
-                  className="bg-background/50 border-white/20 text-white"
+                  className="bg-background border-border text-foreground"
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="linkedin" className="text-white">LinkedIn Profile</Label>
+              <Label htmlFor="linkedin" className="text-foreground">LinkedIn Profile</Label>
               <Input
                 id="linkedin"
                 type="url"
                 value={formData.linkedin}
                 onChange={(e) => handleInputChange("linkedin", e.target.value)}
-                className="bg-background/50 border-white/20 text-white"
+                className="bg-background border-border text-foreground"
                 placeholder="https://linkedin.com/in/yourprofile"
               />
             </div>
@@ -137,34 +137,34 @@ const IntakeForm = () => {
 
           {/* Professional Background */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-semibold text-white mb-4">Professional Background</h3>
+            <h3 className="text-2xl font-medium text-foreground mb-4">Professional Background</h3>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="company" className="text-white">Current Company *</Label>
+                <Label htmlFor="company" className="text-foreground">Current Company *</Label>
                 <Input
                   id="company"
                   value={formData.company}
                   onChange={(e) => handleInputChange("company", e.target.value)}
-                  className="bg-background/50 border-white/20 text-white"
+                  className="bg-background border-border text-foreground"
                   required
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="jobTitle" className="text-white">Job Title *</Label>
+                <Label htmlFor="jobTitle" className="text-foreground">Job Title *</Label>
                 <Input
                   id="jobTitle"
                   value={formData.jobTitle}
                   onChange={(e) => handleInputChange("jobTitle", e.target.value)}
-                  className="bg-background/50 border-white/20 text-white"
+                  className="bg-background border-border text-foreground"
                   required
                 />
               </div>
             </div>
 
             <div className="space-y-3">
-              <Label className="text-white">Years of Experience *</Label>
+              <Label className="text-foreground">Years of Experience *</Label>
               <RadioGroup 
                 value={formData.yearsExperience} 
                 onValueChange={(value) => handleInputChange("yearsExperience", value)}
@@ -173,7 +173,7 @@ const IntakeForm = () => {
                 {["0-2 years", "3-5 years", "6-10 years", "10+ years"].map((option) => (
                   <div key={option} className="flex items-center space-x-2">
                     <RadioGroupItem value={option} id={option} />
-                    <Label htmlFor={option} className="text-white">{option}</Label>
+                    <Label htmlFor={option} className="text-foreground">{option}</Label>
                   </div>
                 ))}
               </RadioGroup>
@@ -181,24 +181,24 @@ const IntakeForm = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="industry" className="text-white">Industry *</Label>
+                <Label htmlFor="industry" className="text-foreground">Industry *</Label>
                 <Input
                   id="industry"
                   value={formData.industry}
                   onChange={(e) => handleInputChange("industry", e.target.value)}
-                  className="bg-background/50 border-white/20 text-white"
+                  className="bg-background border-border text-foreground"
                   placeholder="e.g., SaaS, Fintech, E-commerce"
                   required
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="techStack" className="text-white">Tech Stack</Label>
+                <Label htmlFor="techStack" className="text-foreground">Tech Stack</Label>
                 <Input
                   id="techStack"
                   value={formData.techStack}
                   onChange={(e) => handleInputChange("techStack", e.target.value)}
-                  className="bg-background/50 border-white/20 text-white"
+                  className="bg-background border-border text-foreground"
                   placeholder="e.g., React, Python, AWS"
                 />
               </div>
@@ -207,10 +207,10 @@ const IntakeForm = () => {
 
           {/* Business Information */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-semibold text-white mb-4">Business Information</h3>
+            <h3 className="text-2xl font-medium text-foreground mb-4">Business Information</h3>
             
             <div className="space-y-3">
-              <Label className="text-white">Current Annual Revenue</Label>
+              <Label className="text-foreground">Current Annual Revenue</Label>
               <RadioGroup 
                 value={formData.currentRevenue} 
                 onValueChange={(value) => handleInputChange("currentRevenue", value)}
@@ -219,14 +219,14 @@ const IntakeForm = () => {
                 {["Pre-revenue", "$0-$100K", "$100K-$1M", "$1M-$10M", "$10M+"].map((option) => (
                   <div key={option} className="flex items-center space-x-2">
                     <RadioGroupItem value={option} id={option} />
-                    <Label htmlFor={option} className="text-white">{option}</Label>
+                    <Label htmlFor={option} className="text-foreground">{option}</Label>
                   </div>
                 ))}
               </RadioGroup>
             </div>
 
             <div className="space-y-3">
-              <Label className="text-white">Funding Stage</Label>
+              <Label className="text-foreground">Funding Stage</Label>
               <RadioGroup 
                 value={formData.fundingStage} 
                 onValueChange={(value) => handleInputChange("fundingStage", value)}
@@ -235,19 +235,19 @@ const IntakeForm = () => {
                 {["Bootstrapped", "Pre-seed", "Seed", "Series A", "Series B+"].map((option) => (
                   <div key={option} className="flex items-center space-x-2">
                     <RadioGroupItem value={option} id={option} />
-                    <Label htmlFor={option} className="text-white">{option}</Label>
+                    <Label htmlFor={option} className="text-foreground">{option}</Label>
                   </div>
                 ))}
               </RadioGroup>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="teamSize" className="text-white">Team Size</Label>
+              <Label htmlFor="teamSize" className="text-foreground">Team Size</Label>
               <Input
                 id="teamSize"
                 value={formData.teamSize}
                 onChange={(e) => handleInputChange("teamSize", e.target.value)}
-                className="bg-background/50 border-white/20 text-white"
+                className="bg-background border-border text-foreground"
                 placeholder="e.g., 5-10 people"
               />
             </div>
@@ -255,62 +255,62 @@ const IntakeForm = () => {
 
           {/* Application Questions */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-semibold text-white mb-4">Application Questions</h3>
+            <h3 className="text-2xl font-medium text-foreground mb-4">Application Questions</h3>
             
             <div className="space-y-2">
-              <Label htmlFor="whyJoin" className="text-white">Why do you want to join GLO? *</Label>
+              <Label htmlFor="whyJoin" className="text-foreground">Why do you want to join GLO? *</Label>
               <Textarea
                 id="whyJoin"
                 value={formData.whyJoin}
                 onChange={(e) => handleInputChange("whyJoin", e.target.value)}
-                className="bg-background/50 border-white/20 text-white min-h-[100px]"
+                className="bg-background border-border text-foreground min-h-[100px]"
                 placeholder="Tell us about your motivation and what you hope to gain from the community..."
                 required
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="expectations" className="text-white">What are your expectations from the GLO community? *</Label>
+              <Label htmlFor="expectations" className="text-foreground">What are your expectations from the GLO community? *</Label>
               <Textarea
                 id="expectations"
                 value={formData.expectations}
                 onChange={(e) => handleInputChange("expectations", e.target.value)}
-                className="bg-background/50 border-white/20 text-white min-h-[100px]"
+                className="bg-background border-border text-foreground min-h-[100px]"
                 placeholder="Describe what you hope to achieve through networking, events, and resources..."
                 required
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="networkingGoals" className="text-white">What are your networking goals?</Label>
+              <Label htmlFor="networkingGoals" className="text-foreground">What are your networking goals?</Label>
               <Textarea
                 id="networkingGoals"
                 value={formData.networkingGoals}
                 onChange={(e) => handleInputChange("networkingGoals", e.target.value)}
-                className="bg-background/50 border-white/20 text-white min-h-[80px]"
+                className="bg-background border-border text-foreground min-h-[80px]"
                 placeholder="What type of connections are you looking to make?"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="commitment" className="text-white">How do you plan to contribute to the community? *</Label>
+              <Label htmlFor="commitment" className="text-foreground">How do you plan to contribute to the community? *</Label>
               <Textarea
                 id="commitment"
                 value={formData.commitment}
                 onChange={(e) => handleInputChange("commitment", e.target.value)}
-                className="bg-background/50 border-white/20 text-white min-h-[100px]"
+                className="bg-background border-border text-foreground min-h-[100px]"
                 placeholder="Describe how you would give back to fellow community members..."
                 required
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="referralSource" className="text-white">How did you hear about GLO?</Label>
+              <Label htmlFor="referralSource" className="text-foreground">How did you hear about GLO?</Label>
               <Input
                 id="referralSource"
                 value={formData.referralSource}
                 onChange={(e) => handleInputChange("referralSource", e.target.value)}
-                className="bg-background/50 border-white/20 text-white"
+                className="bg-background border-border text-foreground"
                 placeholder="e.g., Twitter, LinkedIn, friend referral, etc."
               />
             </div>
@@ -324,7 +324,7 @@ const IntakeForm = () => {
                 checked={formData.agreeTerms}
                 onCheckedChange={(checked) => handleInputChange("agreeTerms", checked as boolean)}
               />
-              <Label htmlFor="agreeTerms" className="text-white">
+              <Label htmlFor="agreeTerms" className="text-foreground">
                 I agree to the terms and conditions and privacy policy *
               </Label>
             </div>
@@ -332,7 +332,7 @@ const IntakeForm = () => {
             <Button 
               type="submit" 
               size="lg" 
-              className="w-full md:w-auto px-12 py-4 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-full text-lg shadow-2xl hover:shadow-primary/25 hover:scale-105 transition-all duration-300"
+              className="minimal-button w-full md:w-auto px-12 py-4 font-semibold rounded-full text-lg hover:scale-105 transition-all duration-200"
             >
               Submit Application
             </Button>
