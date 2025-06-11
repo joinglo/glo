@@ -66,26 +66,27 @@ const Hero = () => {
           </p>
         </div>
 
-        {/* Rating and CTA */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-          <div className="flex items-center gap-3">
-            <div className="flex text-yellow-400">
-              {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-3xl sm:text-4xl md:text-5xl">★</span>
-              ))}
-            </div>
-            <span className="text-muted-foreground text-lg sm:text-xl md:text-2xl font-bold">
-              members are ballers
-            </span>
-          </div>
-          
+        {/* CTA Button */}
+        <div className="flex justify-center mb-8">
           <Button 
             size="lg" 
-            className="minimal-button px-6 py-2 font-black rounded-full text-lg sm:text-xl md:text-2xl hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl hover:shadow-orange-500/25 glow-effect"
+            className="minimal-button px-8 py-4 font-black rounded-full text-xl sm:text-2xl md:text-3xl hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl orange-glow"
             onClick={scrollToIntakeForm}
           >
             Apply Now
           </Button>
+        </div>
+
+        {/* Rating */}
+        <div className="flex items-center justify-center gap-3">
+          <div className="flex text-yellow-400">
+            {[...Array(5)].map((_, i) => (
+              <span key={i} className="text-3xl sm:text-4xl md:text-5xl">★</span>
+            ))}
+          </div>
+          <span className="text-muted-foreground text-lg sm:text-xl md:text-2xl font-bold">
+            members are ballers
+          </span>
         </div>
       </div>
     </section>
