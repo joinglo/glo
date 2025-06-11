@@ -60,17 +60,17 @@ const IntakeForm = () => {
     <section className="py-20 px-6 bg-background">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-light text-foreground mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             Join the Community
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8 font-semibold">
             Tell us about yourself and your entrepreneurial journey. This helps us understand 
             how you'll contribute to and benefit from the GLO community.
           </p>
           
           <Button
             onClick={() => setIsFormExpanded(!isFormExpanded)}
-            className="minimal-button px-8 py-4 font-semibold rounded-full text-lg hover:scale-105 transition-all duration-200 flex items-center gap-2 mx-auto"
+            className="minimal-button px-8 py-4 font-bold rounded-full text-lg hover:scale-105 transition-all duration-200 flex items-center gap-2 mx-auto"
           >
             {isFormExpanded ? "Hide Application Form" : "Start Application"}
             {isFormExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
@@ -81,11 +81,11 @@ const IntakeForm = () => {
           <form onSubmit={handleSubmit} className="space-y-8 bg-card border border-border rounded-2xl p-8">
             {/* Personal Information */}
             <div className="space-y-6">
-              <h3 className="text-2xl font-medium text-foreground mb-4">Personal Information</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-4">Personal Information</h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="firstName" className="text-foreground">First Name *</Label>
+                  <Label htmlFor="firstName" className="text-foreground font-semibold">First Name *</Label>
                   <Input
                     id="firstName"
                     value={formData.firstName}
@@ -96,7 +96,7 @@ const IntakeForm = () => {
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="lastName" className="text-foreground">Last Name *</Label>
+                  <Label htmlFor="lastName" className="text-foreground font-semibold">Last Name *</Label>
                   <Input
                     id="lastName"
                     value={formData.lastName}
@@ -109,7 +109,7 @@ const IntakeForm = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-foreground">Email Address *</Label>
+                  <Label htmlFor="email" className="text-foreground font-semibold">Email Address *</Label>
                   <Input
                     id="email"
                     type="email"
@@ -121,7 +121,7 @@ const IntakeForm = () => {
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="phone" className="text-foreground">Phone Number</Label>
+                  <Label htmlFor="phone" className="text-foreground font-semibold">Phone Number</Label>
                   <Input
                     id="phone"
                     type="tel"
@@ -133,7 +133,7 @@ const IntakeForm = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="linkedin" className="text-foreground">LinkedIn Profile</Label>
+                <Label htmlFor="linkedin" className="text-foreground font-semibold">LinkedIn Profile</Label>
                 <Input
                   id="linkedin"
                   type="url"
@@ -146,11 +146,11 @@ const IntakeForm = () => {
 
               {/* Professional Background */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-medium text-foreground mb-4">Professional Background</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-4">Professional Background</h3>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="company" className="text-foreground">Current Company *</Label>
+                    <Label htmlFor="company" className="text-foreground font-semibold">Current Company *</Label>
                     <Input
                       id="company"
                       value={formData.company}
@@ -161,7 +161,7 @@ const IntakeForm = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="jobTitle" className="text-foreground">Job Title *</Label>
+                    <Label htmlFor="jobTitle" className="text-foreground font-semibold">Job Title *</Label>
                     <Input
                       id="jobTitle"
                       value={formData.jobTitle}
@@ -173,7 +173,7 @@ const IntakeForm = () => {
                 </div>
 
                 <div className="space-y-3">
-                  <Label className="text-foreground">Years of Experience *</Label>
+                  <Label className="text-foreground font-semibold">Years of Experience *</Label>
                   <RadioGroup 
                     value={formData.yearsExperience} 
                     onValueChange={(value) => handleInputChange("yearsExperience", value)}
@@ -182,7 +182,7 @@ const IntakeForm = () => {
                     {["0-2 years", "3-5 years", "6-10 years", "10+ years"].map((option) => (
                       <div key={option} className="flex items-center space-x-2">
                         <RadioGroupItem value={option} id={option} />
-                        <Label htmlFor={option} className="text-foreground">{option}</Label>
+                        <Label htmlFor={option} className="text-foreground font-medium">{option}</Label>
                       </div>
                     ))}
                   </RadioGroup>
@@ -190,7 +190,7 @@ const IntakeForm = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="industry" className="text-foreground">Industry *</Label>
+                    <Label htmlFor="industry" className="text-foreground font-semibold">Industry *</Label>
                     <Input
                       id="industry"
                       value={formData.industry}
@@ -202,7 +202,7 @@ const IntakeForm = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="techStack" className="text-foreground">Tech Stack</Label>
+                    <Label htmlFor="techStack" className="text-foreground font-semibold">Tech Stack</Label>
                     <Input
                       id="techStack"
                       value={formData.techStack}
@@ -216,10 +216,10 @@ const IntakeForm = () => {
 
               {/* Business Information */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-medium text-foreground mb-4">Business Information</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-4">Business Information</h3>
                 
                 <div className="space-y-3">
-                  <Label className="text-foreground">Current Annual Revenue</Label>
+                  <Label className="text-foreground font-semibold">Current Annual Revenue</Label>
                   <RadioGroup 
                     value={formData.currentRevenue} 
                     onValueChange={(value) => handleInputChange("currentRevenue", value)}
@@ -228,14 +228,14 @@ const IntakeForm = () => {
                     {["Pre-revenue", "$0-$100K", "$100K-$1M", "$1M-$10M", "$10M+"].map((option) => (
                       <div key={option} className="flex items-center space-x-2">
                         <RadioGroupItem value={option} id={option} />
-                        <Label htmlFor={option} className="text-foreground">{option}</Label>
+                        <Label htmlFor={option} className="text-foreground font-medium">{option}</Label>
                       </div>
                     ))}
                   </RadioGroup>
                 </div>
 
                 <div className="space-y-3">
-                  <Label className="text-foreground">Funding Stage</Label>
+                  <Label className="text-foreground font-semibold">Funding Stage</Label>
                   <RadioGroup 
                     value={formData.fundingStage} 
                     onValueChange={(value) => handleInputChange("fundingStage", value)}
@@ -244,14 +244,14 @@ const IntakeForm = () => {
                     {["Bootstrapped", "Pre-seed", "Seed", "Series A", "Series B+"].map((option) => (
                       <div key={option} className="flex items-center space-x-2">
                         <RadioGroupItem value={option} id={option} />
-                        <Label htmlFor={option} className="text-foreground">{option}</Label>
+                        <Label htmlFor={option} className="text-foreground font-medium">{option}</Label>
                       </div>
                     ))}
                   </RadioGroup>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="teamSize" className="text-foreground">Team Size</Label>
+                  <Label htmlFor="teamSize" className="text-foreground font-semibold">Team Size</Label>
                   <Input
                     id="teamSize"
                     value={formData.teamSize}
@@ -264,10 +264,10 @@ const IntakeForm = () => {
 
               {/* Application Questions */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-medium text-foreground mb-4">Application Questions</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-4">Application Questions</h3>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="whyJoin" className="text-foreground">Why do you want to join GLO? *</Label>
+                  <Label htmlFor="whyJoin" className="text-foreground font-semibold">Why do you want to join GLO? *</Label>
                   <Textarea
                     id="whyJoin"
                     value={formData.whyJoin}
@@ -279,7 +279,7 @@ const IntakeForm = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="expectations" className="text-foreground">What are your expectations from the GLO community? *</Label>
+                  <Label htmlFor="expectations" className="text-foreground font-semibold">What are your expectations from the GLO community? *</Label>
                   <Textarea
                     id="expectations"
                     value={formData.expectations}
@@ -291,7 +291,7 @@ const IntakeForm = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="networkingGoals" className="text-foreground">What are your networking goals?</Label>
+                  <Label htmlFor="networkingGoals" className="text-foreground font-semibold">What are your networking goals?</Label>
                   <Textarea
                     id="networkingGoals"
                     value={formData.networkingGoals}
@@ -302,7 +302,7 @@ const IntakeForm = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="commitment" className="text-foreground">How do you plan to contribute to the community? *</Label>
+                  <Label htmlFor="commitment" className="text-foreground font-semibold">How do you plan to contribute to the community? *</Label>
                   <Textarea
                     id="commitment"
                     value={formData.commitment}
@@ -314,7 +314,7 @@ const IntakeForm = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="referralSource" className="text-foreground">How did you hear about GLO?</Label>
+                  <Label htmlFor="referralSource" className="text-foreground font-semibold">How did you hear about GLO?</Label>
                   <Input
                     id="referralSource"
                     value={formData.referralSource}
@@ -333,7 +333,7 @@ const IntakeForm = () => {
                     checked={formData.agreeTerms}
                     onCheckedChange={(checked) => handleInputChange("agreeTerms", checked as boolean)}
                   />
-                  <Label htmlFor="agreeTerms" className="text-foreground">
+                  <Label htmlFor="agreeTerms" className="text-foreground font-medium">
                     I agree to the terms and conditions and privacy policy *
                   </Label>
                 </div>
@@ -341,7 +341,7 @@ const IntakeForm = () => {
                 <Button 
                   type="submit" 
                   size="lg" 
-                  className="minimal-button w-full md:w-auto px-12 py-4 font-semibold rounded-full text-lg hover:scale-105 transition-all duration-200"
+                  className="minimal-button w-full md:w-auto px-12 py-4 font-bold rounded-full text-lg hover:scale-105 transition-all duration-200"
                 >
                   Submit Application
                 </Button>

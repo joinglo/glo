@@ -1,4 +1,3 @@
-
 const Testimonials = () => {
   const testimonials = [
     {
@@ -31,16 +30,16 @@ const Testimonials = () => {
     <section className="py-20 px-6 bg-background">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <div className="text-purple-400 text-sm font-medium mb-4">Testimonial</div>
-          <h2 className="text-4xl md:text-5xl font-light text-foreground mb-8">
-            Silicon Valley's <span className="text-orange-400 font-medium">Veterans</span> and <span className="text-orange-400 font-medium">Rising Stars</span>
+          <div className="text-purple-400 text-sm font-semibold mb-4">Testimonial</div>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8">
+            Silicon Valley's <span className="text-orange-400 font-black">Veterans</span> and <span className="text-orange-400 font-black">Rising Stars</span>
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="bg-card border border-border rounded-2xl p-6">
-              <blockquote className="text-foreground mb-6 leading-relaxed">
+              <blockquote className="text-foreground mb-6 leading-relaxed font-medium">
                 "{testimonial.quote}"
               </blockquote>
               <div className="flex items-center gap-3">
@@ -48,8 +47,8 @@ const Testimonials = () => {
                   {testimonial.avatar}
                 </div>
                 <div>
-                  <div className="text-foreground font-medium">{testimonial.name}</div>
-                  <div className="text-muted-foreground text-sm">{testimonial.title}</div>
+                  <div className="text-foreground font-bold">{testimonial.name}</div>
+                  <div className="text-muted-foreground text-sm font-medium">{testimonial.title}</div>
                 </div>
               </div>
             </div>

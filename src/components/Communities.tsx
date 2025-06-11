@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 
@@ -27,10 +26,10 @@ const Communities = () => {
     <section className="py-20 px-6 bg-background">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-light text-foreground mb-4">
-            <span className="text-orange-400 font-medium">GLO</span> communities.
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <span className="text-orange-400 font-black">GLO</span> communities.
           </h2>
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto font-semibold">
             Members run, operate & invest in some of the fastest-growing startups in the world, across a wide array of industries.
           </p>
         </div>
@@ -39,14 +38,14 @@ const Communities = () => {
           {/* High-Traction Community */}
           <div className="bg-card border border-border rounded-2xl p-8 relative">
             <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-              <span className="bg-purple-600 text-white px-4 py-1 rounded-full text-sm font-medium">
+              <span className="bg-purple-600 text-white px-4 py-1 rounded-full text-sm font-bold">
                 Most Popular
               </span>
             </div>
             
             <div className="mb-6">
-              <h3 className="text-3xl font-bold text-foreground mb-2">High-Traction</h3>
-              <div className="text-muted-foreground space-y-1">
+              <h3 className="text-3xl font-black text-foreground mb-2">High-Traction</h3>
+              <div className="text-muted-foreground space-y-1 font-medium">
                 <div>General Benchmarks</div>
                 <div>Case by case</div>
               </div>
@@ -56,12 +55,12 @@ const Communities = () => {
               {highTractionFeatures.map((feature, index) => (
                 <div key={index} className="flex items-center gap-3">
                   <Check className="text-green-400 w-5 h-5 flex-shrink-0" />
-                  <span className="text-foreground">{feature}</span>
+                  <span className="text-foreground font-medium">{feature}</span>
                 </div>
               ))}
             </div>
 
-            <Button className="w-full bg-orange-500 hover:bg-orange-600 text-black font-semibold py-3 rounded-full">
+            <Button className="w-full bg-orange-500 hover:bg-orange-600 text-black font-bold py-3 rounded-full">
               Apply Now
             </Button>
           </div>
@@ -69,8 +68,8 @@ const Communities = () => {
           {/* Early-Traction Community */}
           <div className="bg-card border border-border rounded-2xl p-8">
             <div className="mb-6">
-              <h3 className="text-3xl font-bold text-foreground mb-2">Early-Traction</h3>
-              <div className="text-muted-foreground space-y-1">
+              <h3 className="text-3xl font-black text-foreground mb-2">Early-Traction</h3>
+              <div className="text-muted-foreground space-y-1 font-medium">
                 <div>General Benchmarks</div>
                 <div>Case by case</div>
               </div>
@@ -80,12 +79,12 @@ const Communities = () => {
               {earlyTractionFeatures.map((feature, index) => (
                 <div key={index} className="flex items-center gap-3">
                   <Check className="text-green-400 w-5 h-5 flex-shrink-0" />
-                  <span className="text-foreground">{feature}</span>
+                  <span className="text-foreground font-medium">{feature}</span>
                 </div>
               ))}
             </div>
 
-            <Button className="w-full bg-secondary hover:bg-secondary/80 text-foreground font-semibold py-3 rounded-full border border-border">
+            <Button className="w-full bg-secondary hover:bg-secondary/80 text-foreground font-bold py-3 rounded-full border border-border">
               Get Started
             </Button>
           </div>

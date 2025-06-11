@@ -15,14 +15,14 @@ const Header = () => {
       </div>
       
       <nav className="flex items-center gap-6">
-        <button className="flex items-center gap-2 px-4 py-2 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200">
+        <button className="flex items-center gap-2 px-4 py-2 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium">
           <Calendar size={16} />
           Events
         </button>
-        <button className="px-4 py-2 text-foreground hover:text-muted-foreground transition-colors">
+        <button className="px-4 py-2 text-foreground hover:text-muted-foreground transition-colors font-medium">
           Sign In
         </button>
-        <button className="minimal-button px-6 py-2 rounded-full font-medium">
+        <button className="minimal-button px-6 py-2 rounded-full font-bold">
           Apply Now
         </button>
       </nav>

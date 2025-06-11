@@ -1,4 +1,3 @@
-
 import { Gift, Users, DollarSign, Briefcase, BookOpen, FileText } from "lucide-react";
 
 const Features = () => {
@@ -41,10 +40,10 @@ const Features = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left side - What's inside GLO */}
           <div className="bg-card border border-border rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-foreground mb-6">
+            <h2 className="text-3xl font-black text-foreground mb-6">
               What's inside <span className="text-orange-400">GLO</span>?
             </h2>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed font-semibold">
               Curated community of high-traction founders/CEOs, active investors, influencers & c-suite operators. 
               Bootstrapped or backed by the likes of YC, Techstars, a16z, 500 global, General Catalyst & so much more.
             </p>
@@ -58,8 +57,8 @@ const Features = () => {
                   {feature.icon}
                 </div>
                 <div>
-                  <h3 className="text-foreground font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
+                  <h3 className="text-foreground font-bold mb-2">{feature.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed font-medium">{feature.description}</p>
                 </div>
               </div>
             ))}
