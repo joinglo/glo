@@ -84,7 +84,7 @@ const Hero = () => {
           
           <Button 
             size="lg" 
-            className="minimal-button px-8 sm:px-10 py-4 sm:py-5 font-black rounded-full text-lg sm:text-xl md:text-2xl hover:scale-105 transition-all duration-200"
+            className="minimal-button px-6 py-2 font-black rounded-full text-lg sm:text-xl md:text-2xl hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl hover:shadow-orange-500/25"
             onClick={scrollToIntakeForm}
           >
             Apply Now

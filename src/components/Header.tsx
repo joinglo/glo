@@ -26,7 +26,7 @@ const Header = () => {
           <img 
             src="/lovable-uploads/558b4ef1-fd58-48d7-ae03-bc5034b3e530.png" 
             alt="GLO"
-            className="w-6 h-6 sm:w-8 sm:h-8 object-contain"
+            className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
           />
         </div>
       </div>
@@ -37,7 +37,7 @@ const Header = () => {
           <Calendar size={16} />
           Events
         </button>
-        <button className="px-4 py-2 text-foreground hover:text-muted-foreground transition-colors font-medium">
+        <button className="px-4 py-2 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium">
           Sign In
         </button>
         <button 
@@ -61,7 +61,7 @@ const Header = () => {
               <Calendar size={16} />
               Events
             </button>
-            <button className="px-4 py-3 text-foreground hover:text-muted-foreground transition-colors font-medium text-center">
+            <button className="px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-center">
               Sign In
             </button>
             <button 
