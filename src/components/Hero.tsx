@@ -31,10 +31,10 @@ const Hero = () => {
 
         {/* Main heading */}
         <div className="mb-8">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-foreground mb-4">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-foreground mb-4">
             Join "GLO"
           </h1>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black gradient-text relative">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black gradient-text relative">
             Global Entrepreneurs Hub
             {/* Additional sparkles around the gradient text */}
             <span className="absolute -top-3 -right-6 text-yellow-400 text-2xl animate-pulse">✨</span>
