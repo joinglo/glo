@@ -32,13 +32,13 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-6 bg-background">
+    <section className="py-12 sm:py-16 px-4 sm:px-6 bg-background">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <div className="inline-block px-4 py-2 bg-primary/10 rounded-full mb-6">
+        <div className="text-center mb-10">
+          <div className="inline-block px-4 py-2 bg-primary/10 rounded-full mb-4">
             <span className="text-primary font-semibold text-sm uppercase tracking-wide">FAQ</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-4">
             Frequently Asked Questions
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -51,7 +51,7 @@ const FAQ = () => {
             <AccordionItem 
               key={index} 
               value={`item-${index}`}
-              className="border border-border rounded-lg px-6 bg-card/50 hover:bg-card/80 transition-colors"
+              className="border border-border rounded-lg px-6 bg-card/30 backdrop-blur-sm hover:bg-card/50 transition-colors"
             >
               <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary transition-colors">
                 {faq.question}

@@ -19,7 +19,7 @@ const IsGloForYou = () => {
   ];
 
   return (
-    <section className="py-16 px-6 bg-background">
+    <section className="py-12 px-6 bg-background">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left side - Description */}
@@ -34,7 +34,7 @@ const IsGloForYou = () => {
           </div>
 
           {/* Middle - GLO is for */}
-          <div className="bg-card border border-orange-500 rounded-2xl p-5">
+          <div className="bg-card/30 backdrop-blur-sm border border-orange-500 rounded-2xl p-5">
             <h3 className="text-lg font-black text-orange-400 mb-4">GLO is for:</h3>
             <div className="space-y-3">
               {gloIsFor.map((item, index) => (
@@ -47,7 +47,7 @@ const IsGloForYou = () => {
           </div>
 
           {/* Right - GLO is not for */}
-          <div className="bg-card border border-red-500 rounded-2xl p-5">
+          <div className="bg-card/30 backdrop-blur-sm border border-red-500 rounded-2xl p-5">
             <h3 className="text-lg font-black text-red-400 mb-4">GLO is not for:</h3>
             <div className="space-y-3">
               {gloIsNotFor.map((item, index) => (

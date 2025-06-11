@@ -20,10 +20,10 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-start pt-8 px-4 sm:px-6 text-center bg-background relative overflow-hidden">
+    <section className="min-h-screen flex flex-col items-center justify-start pt-6 px-4 sm:px-6 text-center bg-background relative overflow-hidden">
       <div className="max-w-6xl mx-auto relative z-10 w-full">
         {/* Follow button */}
-        <div className="mb-8 flex justify-center">
+        <div className="mb-6 flex justify-center">
           <button
             className="relative flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 via-purple-500 to-blue-600 rounded-full font-medium hover:scale-105 transition-all duration-200 text-white text-base border border-purple-400/30 shadow-lg hover:shadow-purple-500/25"
             onMouseEnter={() => setIsFollowHovered(true)}
@@ -34,9 +34,9 @@ const Hero = () => {
         </div>
 
         {/* Main heading */}
-        <div className="mb-6 sm:mb-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light italic text-foreground mb-4 sm:mb-6">
-            Join "GLO"
+        <div className="mb-4 sm:mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light italic text-foreground mb-3 sm:mb-4">
+            Join "<span className="font-light italic">GLO</span>"
           </h1>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black gradient-text relative">
             Global Entrepreneurs Hub
@@ -54,7 +54,7 @@ const Hero = () => {
         </div>
 
         {/* Description - Better proportioned */}
-        <div className="mb-10 sm:mb-12 space-y-1">
+        <div className="mb-8 sm:mb-10 space-y-1">
           <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-muted-foreground max-w-4xl mx-auto leading-tight">
             Silicon Valley's High-Traction Tech Community Builder.
           </p>
@@ -67,7 +67,7 @@ const Hero = () => {
         </div>
 
         {/* CTA Button */}
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-6">
           <Button 
             size="lg" 
             className="minimal-button px-12 py-6 font-black rounded-full text-xl sm:text-2xl md:text-3xl hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl orange-glow"
