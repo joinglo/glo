@@ -12,27 +12,27 @@ const Features = () => {
     {
       icon: <Users className="w-5 h-5" />,
       title: "Private Slack Community",
-      description: "Application-based private slack community, highly vetted founder, active investors, influencers & operators."
+      description: "Application-based private Slack community, highly vetted founders, active investors, influencers & operators."
     },
     {
       icon: <DollarSign className="w-5 h-5" />,
       title: "$4.6M+ in B2B SaaS Perks",
-      description: "Thats right, we've lined-up over $4.6 Million worth of of members-only perks to top B2B SaaS products from Notion Pro to AWS credits."
+      description: "That's right, we've lined up over $4.6 Million worth of members-only perks to top B2B SaaS products from Notion Pro to AWS credits."
     },
     {
       icon: <Briefcase className="w-5 h-5" />,
       title: "Community-Led Workshops",
-      description: "Member & guest speaker lead workshops on hot topics from the people who've actually done it."
+      description: "Member & guest speaker led workshops on hot topics from the people who've actually done it."
     },
     {
       icon: <BookOpen className="w-5 h-5" />,
       title: "Resource Libraries",
-      description: "A living library of notion boards, videos, articles of our communities collective experience and go-to resources. Digital tribal knowledge."
+      description: "A living library of Notion boards, videos, articles of our community's collective experience and go-to resources. Digital tribal knowledge."
     },
     {
       icon: <FileText className="w-5 h-5" />,
       title: "Bi-Weekly Insights Reports",
-      description: "Featuring member-wins, highlighting key insights and dropping the hottest members-only B2B SaaS deals."
+      description: "Featuring member wins, highlighting key insights and dropping the hottest members-only B2B SaaS deals."
     }
   ];
 
