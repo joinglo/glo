@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Linkedin, Twitter, Mail, Youtube, MessageCircle } from "lucide-react";
+import { Linkedin, Calendar, Mail, MessageCircle } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Newsletter = () => {
@@ -59,20 +59,17 @@ const Newsletter = () => {
             .
           </p>
           <div className="flex items-center justify-center gap-4">
-            <a href="https://www.linkedin.com/in/eli-al-shamari-b3629110b/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2">
+            <a href="https://www.linkedin.com/company/global-entrepreneurs-hub/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2">
               <Linkedin size={24} />
-            </a>
-            <a href="https://x.com/join_glo" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2">
-              <Twitter size={24} />
             </a>
             <a href="https://chat.whatsapp.com/CbN9EFNLkwf732wHkvFf58" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2">
               <MessageCircle size={24} />
             </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors p-2">
-              <Youtube size={24} />
-            </a>
-            <a href="mailto:hello@joinglocommunity.com" className="text-muted-foreground hover:text-primary transition-colors p-2">
+            <a href="https://global-entrepreneurs-hubs-newsletter.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2">
               <Mail size={24} />
+            </a>
+            <a href="https://lu.ma/glo_community" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2">
+              <Calendar size={24} />
             </a>
           </div>
         </div>

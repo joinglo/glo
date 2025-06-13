@@ -15,6 +15,13 @@ const Header = () => {
     const intakeForm = document.getElementById('intake-form');
     if (intakeForm) {
       intakeForm.scrollIntoView({ behavior: 'smooth' });
+      // Expand the form after scrolling
+      setTimeout(() => {
+        const expandButton = document.querySelector('[data-expand-form]') as HTMLButtonElement;
+        if (expandButton) {
+          expandButton.click();
+        }
+      }, 500);
     }
     setIsOpen(false);
   };
@@ -22,13 +29,13 @@ const Header = () => {
   return (
     <header className="w-full px-4 sm:px-6 py-4 sm:py-6 flex items-center justify-between bg-background">
       <div className="flex items-center">
-        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center overflow-hidden">
+        <a href="https://www.linkedin.com/company/global-entrepreneurs-hub/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center overflow-hidden">
           <img 
             src="/lovable-uploads/558b4ef1-fd58-48d7-ae03-bc5034b3e530.png" 
             alt="GLO"
             className="w-12 h-12 sm:w-14 sm:h-14 object-cover"
           />
-        </div>
+        </a>
       </div>
       
       {/* Desktop Navigation */}
@@ -37,9 +44,9 @@ const Header = () => {
           <Calendar size={16} />
           Events
         </a>
-        <button className="px-4 py-2 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-base">
+        <a href="https://joinglocommunity.com/signin" target="_blank" rel="noopener noreferrer" className="px-4 py-2 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-base">
           Sign In
-        </button>
+        </a>
         <button 
           className="minimal-button px-6 py-2 rounded-full font-bold glow-effect text-base"
           onClick={scrollToIntakeForm}
@@ -61,9 +68,9 @@ const Header = () => {
               <Calendar size={16} />
               Events
             </a>
-            <button className="px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-center text-base">
+            <a href="https://joinglocommunity.com/signin" target="_blank" rel="noopener noreferrer" className="px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-center text-base">
               Sign In
-            </button>
+            </a>
             <button 
               className="minimal-button px-6 py-3 rounded-full font-bold w-full text-base"
               onClick={scrollToIntakeForm}
