@@ -1,10 +1,9 @@
+
 import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/hooks/use-toast";
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
@@ -18,33 +17,22 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
   const [isFormExpanded, setIsFormExpanded] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
+    fullName: "",
     linkedin: "",
-    company: "",
-    jobTitle: "",
-    yearsExperience: "",
-    industry: "",
-    techStack: "",
-    currentRevenue: "",
-    fundingStage: "",
-    teamSize: "",
-    whyJoin: "",
-    expectations: "",
-    networkingGoals: "",
-    commitment: "",
-    referralSource: "",
-    agreeTerms: false,
+    companyWebsite: "",
+    mrr: "",
+    arr: "",
+    raised: "",
+    companyGoals: "",
+    professionalGoals: "",
+    personalGoals: "",
+    whatWillYouBring: "",
   });
 
   const steps = [
-    { title: "Personal Information", fields: ["firstName", "lastName", "email", "phone", "linkedin"] },
-    { title: "Professional Background", fields: ["company", "jobTitle", "yearsExperience", "industry", "techStack"] },
-    { title: "Business Information", fields: ["currentRevenue", "fundingStage", "teamSize"] },
-    { title: "Application Questions", fields: ["whyJoin", "expectations", "networkingGoals", "commitment", "referralSource"] },
-    { title: "Review & Submit", fields: ["agreeTerms"] }
+    { title: "Basic Information", fields: ["fullName", "linkedin", "companyWebsite"] },
+    { title: "Business Metrics", fields: ["mrr", "arr", "raised"] },
+    { title: "Goals & Contribution", fields: ["companyGoals", "professionalGoals", "personalGoals", "whatWillYouBring"] }
   ];
 
   const totalSteps = steps.length;
@@ -56,7 +44,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     }
   }));
 
-  const handleInputChange = (field: string, value: string | boolean) => {
+  const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
@@ -75,10 +63,11 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.agreeTerms) {
+    // Basic validation for required fields
+    if (!formData.fullName || !formData.linkedin || !formData.whatWillYouBring) {
       toast({
-        title: "Terms Required",
-        description: "Please agree to the terms and conditions to continue.",
+        title: "Required Fields Missing",
+        description: "Please fill in all required fields to continue.",
         variant: "destructive",
       });
       return;
@@ -96,66 +85,41 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
       case 0:
         return (
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-foreground mb-4">Personal Information</h3>
+            <h3 className="text-2xl font-bold text-foreground mb-4">Basic Information</h3>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="firstName" className="text-foreground font-semibold">First Name *</Label>
-                <Input
-                  id="firstName"
-                  value={formData.firstName}
-                  onChange={(e) => handleInputChange("firstName", e.target.value)}
-                  className="bg-secondary border-border text-foreground"
-                  required
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="lastName" className="text-foreground font-semibold">Last Name *</Label>
-                <Input
-                  id="lastName"
-                  value={formData.lastName}
-                  onChange={(e) => handleInputChange("lastName", e.target.value)}
-                  className="bg-secondary border-border text-foreground"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-foreground font-semibold">Email Address *</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => handleInputChange("email", e.target.value)}
-                  className="bg-background border-border text-foreground"
-                  required
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="phone" className="text-foreground font-semibold">Phone Number</Label>
-                <Input
-                  id="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) => handleInputChange("phone", e.target.value)}
-                  className="bg-background border-border text-foreground"
-                />
-              </div>
+            <div className="space-y-2">
+              <Label htmlFor="fullName" className="text-foreground font-semibold">Full Name *</Label>
+              <Input
+                id="fullName"
+                value={formData.fullName}
+                onChange={(e) => handleInputChange("fullName", e.target.value)}
+                className="bg-background border-border text-foreground"
+                required
+              />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="linkedin" className="text-foreground font-semibold">LinkedIn Profile</Label>
+              <Label htmlFor="linkedin" className="text-foreground font-semibold">LinkedIn Profile *</Label>
               <Input
                 id="linkedin"
                 type="url"
                 value={formData.linkedin}
                 onChange={(e) => handleInputChange("linkedin", e.target.value)}
-                className="bg-secondary border-border text-foreground"
+                className="bg-background border-border text-foreground"
                 placeholder="https://linkedin.com/in/yourprofile"
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="companyWebsite" className="text-foreground font-semibold">Company Website</Label>
+              <Input
+                id="companyWebsite"
+                type="url"
+                value={formData.companyWebsite}
+                onChange={(e) => handleInputChange("companyWebsite", e.target.value)}
+                className="bg-background border-border text-foreground"
+                placeholder="https://yourcompany.com"
               />
             </div>
           </div>
@@ -164,71 +128,39 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
       case 1:
         return (
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-foreground mb-4">Professional Background</h3>
+            <h3 className="text-2xl font-bold text-foreground mb-4">Business Metrics</h3>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="company" className="text-foreground font-semibold">Current Company *</Label>
-                <Input
-                  id="company"
-                  value={formData.company}
-                  onChange={(e) => handleInputChange("company", e.target.value)}
-                  className="bg-background border-border text-foreground"
-                  required
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="jobTitle" className="text-foreground font-semibold">Job Title *</Label>
-                <Input
-                  id="jobTitle"
-                  value={formData.jobTitle}
-                  onChange={(e) => handleInputChange("jobTitle", e.target.value)}
-                  className="bg-background border-border text-foreground"
-                  required
-                />
-              </div>
+            <div className="space-y-2">
+              <Label htmlFor="mrr" className="text-foreground font-semibold">MRR (Current Monthly Recurring Revenue)</Label>
+              <Input
+                id="mrr"
+                value={formData.mrr}
+                onChange={(e) => handleInputChange("mrr", e.target.value)}
+                className="bg-background border-border text-foreground"
+                placeholder="e.g., $50,000"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="arr" className="text-foreground font-semibold">ARR (Projected Annual Recurring Revenue This Year)</Label>
+              <Input
+                id="arr"
+                value={formData.arr}
+                onChange={(e) => handleInputChange("arr", e.target.value)}
+                className="bg-background border-border text-foreground"
+                placeholder="e.g., $1,200,000"
+              />
             </div>
 
-            <div className="space-y-3">
-              <Label className="text-foreground font-semibold">Years of Experience *</Label>
-              <RadioGroup 
-                value={formData.yearsExperience} 
-                onValueChange={(value) => handleInputChange("yearsExperience", value)}
-                className="flex flex-wrap gap-6"
-              >
-                {["0-2 years", "3-5 years", "6-10 years", "10+ years"].map((option) => (
-                  <div key={option} className="flex items-center space-x-2">
-                    <RadioGroupItem value={option} id={option} />
-                    <Label htmlFor={option} className="text-foreground font-medium">{option}</Label>
-                  </div>
-                ))}
-              </RadioGroup>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="industry" className="text-foreground font-semibold">Industry *</Label>
-                <Input
-                  id="industry"
-                  value={formData.industry}
-                  onChange={(e) => handleInputChange("industry", e.target.value)}
-                  className="bg-background border-border text-foreground"
-                  placeholder="e.g., SaaS, Fintech, E-commerce"
-                  required
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="techStack" className="text-foreground font-semibold">Tech Stack</Label>
-                <Input
-                  id="techStack"
-                  value={formData.techStack}
-                  onChange={(e) => handleInputChange("techStack", e.target.value)}
-                  className="bg-background border-border text-foreground"
-                  placeholder="e.g., React, Python, AWS"
-                />
-              </div>
+            <div className="space-y-2">
+              <Label htmlFor="raised" className="text-foreground font-semibold">Amount Raised</Label>
+              <Input
+                id="raised"
+                value={formData.raised}
+                onChange={(e) => handleInputChange("raised", e.target.value)}
+                className="bg-background border-border text-foreground"
+                placeholder="e.g., $2M Series A"
+              />
             </div>
           </div>
         );
@@ -236,154 +168,51 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
       case 2:
         return (
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-foreground mb-4">Business Information</h3>
-            
-            <div className="space-y-3">
-              <Label className="text-foreground font-semibold">Current Annual Revenue</Label>
-              <RadioGroup 
-                value={formData.currentRevenue} 
-                onValueChange={(value) => handleInputChange("currentRevenue", value)}
-                className="flex flex-wrap gap-6"
-              >
-                {["Pre-revenue", "$0-$100K", "$100K-$1M", "$1M-$10M", "$10M+"].map((option) => (
-                  <div key={option} className="flex items-center space-x-2">
-                    <RadioGroupItem value={option} id={option} />
-                    <Label htmlFor={option} className="text-foreground font-medium">{option}</Label>
-                  </div>
-                ))}
-              </RadioGroup>
-            </div>
-
-            <div className="space-y-3">
-              <Label className="text-foreground font-semibold">Funding Stage</Label>
-              <RadioGroup 
-                value={formData.fundingStage} 
-                onValueChange={(value) => handleInputChange("fundingStage", value)}
-                className="flex flex-wrap gap-6"
-              >
-                {["Bootstrapped", "Pre-seed", "Seed", "Series A", "Series B+"].map((option) => (
-                  <div key={option} className="flex items-center space-x-2">
-                    <RadioGroupItem value={option} id={option} />
-                    <Label htmlFor={option} className="text-foreground font-medium">{option}</Label>
-                  </div>
-                ))}
-              </RadioGroup>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="teamSize" className="text-foreground font-semibold">Team Size</Label>
-              <Input
-                id="teamSize"
-                value={formData.teamSize}
-                onChange={(e) => handleInputChange("teamSize", e.target.value)}
-                className="bg-secondary border-border text-foreground"
-                placeholder="e.g., 5-10 people"
-              />
-            </div>
-          </div>
-        );
-
-      case 3:
-        return (
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-foreground mb-4">Application Questions</h3>
+            <h3 className="text-2xl font-bold text-foreground mb-4">Goals & Contribution</h3>
             
             <div className="space-y-2">
-              <Label htmlFor="whyJoin" className="text-foreground font-semibold">Why do you want to join GLO? *</Label>
+              <Label htmlFor="companyGoals" className="text-foreground font-semibold">Company Goals (Optional)</Label>
               <Textarea
-                id="whyJoin"
-                value={formData.whyJoin}
-                onChange={(e) => handleInputChange("whyJoin", e.target.value)}
-                className="bg-background border-border text-foreground min-h-[100px]"
-                placeholder="Tell us about your motivation and what you hope to gain from the community..."
-                required
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="expectations" className="text-foreground font-semibold">What are your expectations from the GLO community? *</Label>
-              <Textarea
-                id="expectations"
-                value={formData.expectations}
-                onChange={(e) => handleInputChange("expectations", e.target.value)}
-                className="bg-background border-border text-foreground min-h-[100px]"
-                placeholder="Describe what you hope to achieve through networking, events, and resources..."
-                required
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="networkingGoals" className="text-foreground font-semibold">What are your networking goals?</Label>
-              <Textarea
-                id="networkingGoals"
-                value={formData.networkingGoals}
-                onChange={(e) => handleInputChange("networkingGoals", e.target.value)}
+                id="companyGoals"
+                value={formData.companyGoals}
+                onChange={(e) => handleInputChange("companyGoals", e.target.value)}
                 className="bg-background border-border text-foreground min-h-[80px]"
-                placeholder="What type of connections are you looking to make?"
+                placeholder="What are your company's main objectives for this year?"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="commitment" className="text-foreground font-semibold">How do you plan to contribute to the community? *</Label>
+              <Label htmlFor="professionalGoals" className="text-foreground font-semibold">Professional Goals (Optional)</Label>
               <Textarea
-                id="commitment"
-                value={formData.commitment}
-                onChange={(e) => handleInputChange("commitment", e.target.value)}
+                id="professionalGoals"
+                value={formData.professionalGoals}
+                onChange={(e) => handleInputChange("professionalGoals", e.target.value)}
+                className="bg-background border-border text-foreground min-h-[80px]"
+                placeholder="What are your professional development goals?"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="personalGoals" className="text-foreground font-semibold">Personal Goals (Optional)</Label>
+              <Textarea
+                id="personalGoals"
+                value={formData.personalGoals}
+                onChange={(e) => handleInputChange("personalGoals", e.target.value)}
+                className="bg-background border-border text-foreground min-h-[80px]"
+                placeholder="What are your personal aspirations?"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="whatWillYouBring" className="text-foreground font-semibold">What will you bring to the community? *</Label>
+              <Textarea
+                id="whatWillYouBring"
+                value={formData.whatWillYouBring}
+                onChange={(e) => handleInputChange("whatWillYouBring", e.target.value)}
                 className="bg-background border-border text-foreground min-h-[100px]"
-                placeholder="Describe how you would give back to fellow community members..."
+                placeholder="Tell us about your skill share, experience, expertise, or 'sauce' you'd contribute to fellow entrepreneurs..."
                 required
               />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="referralSource" className="text-foreground font-semibold">How did you hear about GLO?</Label>
-              <Input
-                id="referralSource"
-                value={formData.referralSource}
-                onChange={(e) => handleInputChange("referralSource", e.target.value)}
-                className="bg-background border-border text-foreground"
-                placeholder="e.g., Twitter, LinkedIn, friend referral, etc."
-              />
-            </div>
-          </div>
-        );
-
-      case 4:
-        return (
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-foreground mb-4">Review & Submit</h3>
-            
-            <div className="bg-secondary rounded-lg p-6 space-y-4">
-              <h4 className="font-semibold text-foreground">Application Summary</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                <div>
-                  <span className="text-muted-foreground">Name:</span>
-                  <span className="ml-2 text-foreground">{formData.firstName} {formData.lastName}</span>
-                </div>
-                <div>
-                  <span className="text-muted-foreground">Email:</span>
-                  <span className="ml-2 text-foreground">{formData.email}</span>
-                </div>
-                <div>
-                  <span className="text-muted-foreground">Company:</span>
-                  <span className="ml-2 text-foreground">{formData.company}</span>
-                </div>
-                <div>
-                  <span className="text-muted-foreground">Title:</span>
-                  <span className="ml-2 text-foreground">{formData.jobTitle}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-2">
-              <Checkbox
-                id="agreeTerms"
-                checked={formData.agreeTerms}
-                onCheckedChange={(checked) => handleInputChange("agreeTerms", checked as boolean)}
-              />
-              <Label htmlFor="agreeTerms" className="text-foreground font-medium">
-                I agree to the terms and conditions and privacy policy *
-              </Label>
             </div>
           </div>
         );
