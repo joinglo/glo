@@ -31,7 +31,32 @@ const Newsletter = () => {
             </div>
           </div>
           <p className="text-muted-foreground text-base mb-4">
-            Reach out to our founder Eli Al-Shamari on LinkedIn, WhatsApp or via email.
+            Reach out to our founder Eli Al-Shamari on{" "}
+            <a 
+              href="https://www.linkedin.com/in/eli-al-shamari-b3629110b/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-primary hover:underline"
+            >
+              LinkedIn
+            </a>
+            ,{" "}
+            <a 
+              href="https://chat.whatsapp.com/CbN9EFNLkwf732wHkvFf58" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-primary hover:underline"
+            >
+              WhatsApp
+            </a>
+            {" "}or via{" "}
+            <a 
+              href="mailto:hello@joinglocommunity.com" 
+              className="text-primary hover:underline"
+            >
+              email
+            </a>
+            .
           </p>
           <div className="flex items-center justify-center gap-4">
             <a href="https://www.linkedin.com/in/eli-al-shamari-b3629110b/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2">
