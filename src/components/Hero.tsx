@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -61,13 +60,7 @@ const Hero = () => {
         {/* Description */}
         <div className="mb-6 sm:mb-8 space-y-1">
           <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-muted-foreground max-w-4xl mx-auto leading-tight">
-            Silicon Valley's High-Traction Tech Community Builder.
-          </p>
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-muted-foreground max-w-4xl mx-auto leading-tight">
-            Exclusive Events, Private Slack Communities and over $4.6M
-          </p>
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-muted-foreground max-w-4xl mx-auto leading-tight">
-            in B2B SaaS perks for members.
+            GLO — Silicon Valley's Elite $1M ARR+ Entrepreneur Community
           </p>
         </div>
 
