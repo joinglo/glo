@@ -65,15 +65,11 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
 
   return (
     <section id="intake-form" className="py-12 px-6 bg-background">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Join the Community
+      <div className="max-w-xl mx-auto">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-foreground mb-6">
+            Explore a membership to our private community of startup founders.
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8 font-semibold">
-            Tell us about yourself and your entrepreneurial journey. This helps us understand 
-            how you'll contribute to and benefit from the GLO community.
-          </p>
           
           {!isFormExpanded && (
             <Button
@@ -88,128 +84,119 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
         </div>
 
         {isFormExpanded && (
-          <div className="bg-card border border-border rounded-2xl p-8">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="fullName" className="text-foreground font-semibold">Full Name *</Label>
+          <div className="bg-background">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
                   <Input
                     id="fullName"
                     value={formData.fullName}
                     onChange={(e) => handleInputChange("fullName", e.target.value)}
-                    className="bg-background border-border text-foreground"
+                    className="bg-muted/30 border-muted text-foreground h-12 text-base placeholder:text-muted-foreground/60"
+                    placeholder="Full Name"
                     required
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="linkedin" className="text-foreground font-semibold">LinkedIn *</Label>
+                <div>
                   <Input
                     id="linkedin"
                     type="url"
                     value={formData.linkedin}
                     onChange={(e) => handleInputChange("linkedin", e.target.value)}
-                    className="bg-background border-border text-foreground"
-                    placeholder="https://linkedin.com/in/yourprofile"
+                    className="bg-muted/30 border-muted text-foreground h-12 text-base placeholder:text-muted-foreground/60"
+                    placeholder="LinkedIn"
                     required
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="companyUrl" className="text-foreground font-semibold">Company URL *</Label>
-                  <Input
-                    id="companyUrl"
-                    type="url"
-                    value={formData.companyUrl}
-                    onChange={(e) => handleInputChange("companyUrl", e.target.value)}
-                    className="bg-background border-border text-foreground"
-                    placeholder="https://yourcompany.com"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="text-foreground font-semibold">Email *</Label>
+                <div>
                   <Input
                     id="email"
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
-                    className="bg-background border-border text-foreground"
-                    placeholder="your@email.com"
+                    className="bg-muted/30 border-muted text-foreground h-12 text-base placeholder:text-muted-foreground/60"
+                    placeholder="Email"
                     required
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="whatsapp" className="text-foreground font-semibold">WhatsApp *</Label>
+                <div>
+                  <Input
+                    id="companyUrl"
+                    type="url"
+                    value={formData.companyUrl}
+                    onChange={(e) => handleInputChange("companyUrl", e.target.value)}
+                    className="bg-muted/30 border-muted text-foreground h-12 text-base placeholder:text-muted-foreground/60"
+                    placeholder="Company URL"
+                    required
+                  />
+                </div>
+
+                <div>
                   <Input
                     id="whatsapp"
                     type="tel"
                     value={formData.whatsapp}
                     onChange={(e) => handleInputChange("whatsapp", e.target.value)}
-                    className="bg-background border-border text-foreground"
-                    placeholder="+1234567890"
+                    className="bg-muted/30 border-muted text-foreground h-12 text-base placeholder:text-muted-foreground/60"
+                    placeholder="WhatsApp"
                     required
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="jobTitle" className="text-foreground font-semibold">Job Title *</Label>
+                <div>
                   <Input
                     id="jobTitle"
                     value={formData.jobTitle}
                     onChange={(e) => handleInputChange("jobTitle", e.target.value)}
-                    className="bg-background border-border text-foreground"
-                    placeholder="CEO, Founder, etc."
+                    className="bg-muted/30 border-muted text-foreground h-12 text-base placeholder:text-muted-foreground/60"
+                    placeholder="Job Title"
                     required
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="mrr" className="text-foreground font-semibold">MRR * (current monthly recurring revenue)</Label>
+                <div>
                   <Input
                     id="mrr"
                     value={formData.mrr}
                     onChange={(e) => handleInputChange("mrr", e.target.value)}
-                    className="bg-background border-border text-foreground"
-                    placeholder="e.g., $50,000"
+                    className="bg-muted/30 border-muted text-foreground h-12 text-base placeholder:text-muted-foreground/60"
+                    placeholder="MRR (current monthly recurring revenue)"
                     required
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="arr" className="text-foreground font-semibold">ARR * (projected 2025 annual recurring revenue)</Label>
+                <div>
                   <Input
                     id="arr"
                     value={formData.arr}
                     onChange={(e) => handleInputChange("arr", e.target.value)}
-                    className="bg-background border-border text-foreground"
-                    placeholder="e.g., $1,200,000"
+                    className="bg-muted/30 border-muted text-foreground h-12 text-base placeholder:text-muted-foreground/60"
+                    placeholder="ARR (projected 2025 annual recurring revenue)"
                     required
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="raised" className="text-foreground font-semibold">Raised *</Label>
+                <div>
                   <Input
                     id="raised"
                     value={formData.raised}
                     onChange={(e) => handleInputChange("raised", e.target.value)}
-                    className="bg-background border-border text-foreground"
-                    placeholder="e.g., $2M Series A"
+                    className="bg-muted/30 border-muted text-foreground h-12 text-base placeholder:text-muted-foreground/60"
+                    placeholder="Raised"
                     required
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="cities" className="text-foreground font-semibold">City(s) *</Label>
+                <div>
                   <Input
                     id="cities"
                     value={formData.cities}
                     onChange={(e) => handleInputChange("cities", e.target.value)}
-                    className="bg-background border-border text-foreground"
-                    placeholder="San Francisco, New York, etc."
+                    className="bg-muted/30 border-muted text-foreground h-12 text-base placeholder:text-muted-foreground/60"
+                    placeholder="City(s)"
                     required
                   />
                 </div>
@@ -218,9 +205,9 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
               <div className="flex justify-center pt-6">
                 <Button 
                   type="submit" 
-                  className="minimal-button px-8 py-3 font-bold rounded-full hover:scale-105 transition-all duration-200"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 h-12 font-semibold rounded-md text-base"
                 >
-                  Submit Application
+                  Submit
                 </Button>
               </div>
             </form>
