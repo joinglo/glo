@@ -90,115 +90,145 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-2 gap-4">
                 <div>
+                  <Label htmlFor="fullName" className="text-sm font-medium text-foreground/80 mb-2 block">
+                    Full Name <span className="text-red-500">*</span>
+                  </Label>
                   <Input
                     id="fullName"
                     value={formData.fullName}
                     onChange={(e) => handleInputChange("fullName", e.target.value)}
                     className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
-                    placeholder="Full Name*"
+                    placeholder="Enter your full name"
                     required
                   />
                 </div>
 
                 <div>
+                  <Label htmlFor="linkedin" className="text-sm font-medium text-foreground/80 mb-2 block">
+                    LinkedIn <span className="text-red-500">*</span>
+                  </Label>
                   <Input
                     id="linkedin"
                     type="url"
                     value={formData.linkedin}
                     onChange={(e) => handleInputChange("linkedin", e.target.value)}
                     className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
-                    placeholder="LinkedIn*"
+                    placeholder="LinkedIn profile URL"
                     required
                   />
                 </div>
 
                 <div>
+                  <Label htmlFor="companyUrl" className="text-sm font-medium text-foreground/80 mb-2 block">
+                    Company URL <span className="text-red-500">*</span>
+                  </Label>
                   <Input
                     id="companyUrl"
                     type="url"
                     value={formData.companyUrl}
                     onChange={(e) => handleInputChange("companyUrl", e.target.value)}
                     className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
-                    placeholder="Company URL*"
+                    placeholder="Your company website"
                     required
                   />
                 </div>
 
                 <div>
+                  <Label htmlFor="email" className="text-sm font-medium text-foreground/80 mb-2 block">
+                    Email <span className="text-red-500">*</span>
+                  </Label>
                   <Input
                     id="email"
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
                     className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
-                    placeholder="Email*"
+                    placeholder="Your email address"
                     required
                   />
                 </div>
 
                 <div>
+                  <Label htmlFor="whatsapp" className="text-sm font-medium text-foreground/80 mb-2 block">
+                    WhatsApp <span className="text-red-500">*</span>
+                  </Label>
                   <Input
                     id="whatsapp"
                     type="tel"
                     value={formData.whatsapp}
                     onChange={(e) => handleInputChange("whatsapp", e.target.value)}
                     className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
-                    placeholder="WhatsApp*"
+                    placeholder="WhatsApp number"
                     required
                   />
                 </div>
 
                 <div>
+                  <Label htmlFor="jobTitle" className="text-sm font-medium text-foreground/80 mb-2 block">
+                    Job Title <span className="text-red-500">*</span>
+                  </Label>
                   <Input
                     id="jobTitle"
                     value={formData.jobTitle}
                     onChange={(e) => handleInputChange("jobTitle", e.target.value)}
                     className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
-                    placeholder="Job Title*"
+                    placeholder="Your current role"
                     required
                   />
                 </div>
 
                 <div>
+                  <Label htmlFor="mrr" className="text-sm font-medium text-foreground/80 mb-2 block">
+                    MRR <span className="text-red-500">*</span>
+                  </Label>
                   <Input
                     id="mrr"
                     value={formData.mrr}
                     onChange={(e) => handleInputChange("mrr", e.target.value)}
                     className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
-                    placeholder="MRR* (current monthly recurring revenue)"
+                    placeholder="Current monthly recurring revenue"
                     required
                   />
                 </div>
 
                 <div>
+                  <Label htmlFor="arr" className="text-sm font-medium text-foreground/80 mb-2 block">
+                    ARR <span className="text-red-500">*</span>
+                  </Label>
                   <Input
                     id="arr"
                     value={formData.arr}
                     onChange={(e) => handleInputChange("arr", e.target.value)}
                     className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
-                    placeholder="ARR* (projected 2025 annual recurring revenue)"
+                    placeholder="Projected 2025 annual recurring revenue"
                     required
                   />
                 </div>
 
                 <div>
+                  <Label htmlFor="raised" className="text-sm font-medium text-foreground/80 mb-2 block">
+                    Raised <span className="text-red-500">*</span>
+                  </Label>
                   <Input
                     id="raised"
                     value={formData.raised}
                     onChange={(e) => handleInputChange("raised", e.target.value)}
                     className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
-                    placeholder="Raised*"
+                    placeholder="Total funding raised"
                     required
                   />
                 </div>
 
                 <div>
+                  <Label htmlFor="cities" className="text-sm font-medium text-foreground/80 mb-2 block">
+                    City(s) <span className="text-red-500">*</span>
+                  </Label>
                   <Input
                     id="cities"
                     value={formData.cities}
                     onChange={(e) => handleInputChange("cities", e.target.value)}
                     className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
-                    placeholder="City(s)*"
+                    placeholder="Where are you based?"
                     required
                   />
                 </div>
