@@ -21,7 +21,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-start pt-6 px-4 sm:px-6 text-center bg-background relative overflow-hidden">
+    <section className="flex flex-col items-center justify-center px-4 sm:px-6 text-center bg-background relative overflow-hidden h-[90vh]">
       <div className="max-w-6xl mx-auto relative z-10 w-full animate-fade-in">
         {/* Follow button */}
         <div className="mb-6 flex justify-center">
