@@ -88,7 +88,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
         {isFormExpanded && (
           <div className="bg-background max-w-lg mx-auto">
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Input
                     id="fullName"
@@ -202,22 +202,22 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     required
                   />
                 </div>
+              </div>
 
-                <div className="pt-4">
-                  <Label htmlFor="story" className="text-sm font-medium text-foreground/80 mb-2 block">
-                    Tell us your story
-                  </Label>
-                  <p className="text-xs text-muted-foreground mb-3">
-                    What will you bring to the community? (company goals: fundraise/invest, sales/GTM, other; personal goals: financial freedom, relationships, health, peace of mind)
-                  </p>
-                  <Textarea
-                    id="story"
-                    value={formData.story}
-                    onChange={(e) => handleInputChange("story", e.target.value)}
-                    className="w-full min-h-[100px] px-4 py-3 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary resize-none"
-                    placeholder="Share your journey and aspirations..."
-                  />
-                </div>
+              <div className="pt-4">
+                <Label htmlFor="story" className="text-sm font-medium text-foreground/80 mb-2 block">
+                  Tell us your story
+                </Label>
+                <p className="text-xs text-muted-foreground mb-3">
+                  What will you bring to the community? (company goals: fundraise/invest, sales/GTM, other; personal goals: financial freedom, relationships, health, peace of mind)
+                </p>
+                <Textarea
+                  id="story"
+                  value={formData.story}
+                  onChange={(e) => handleInputChange("story", e.target.value)}
+                  className="w-full min-h-[100px] px-4 py-3 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary resize-none"
+                  placeholder="Share your journey and aspirations..."
+                />
               </div>
 
               <div className="flex justify-center pt-6">
