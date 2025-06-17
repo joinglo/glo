@@ -66,7 +66,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
   };
 
   return (
-    <section id="intake-form" className="py-8 px-6 bg-background">
+    <section id="intake-form" className="py-4 px-6 bg-background">
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-foreground mb-6">
@@ -205,15 +205,15 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
               </div>
 
               <div className="pt-4">
-                <p className="text-xs text-muted-foreground mb-3">
-                  What will you bring to the community? (company goals: fundraise/invest, sales/GTM, other; personal goals: financial freedom, relationships, health, peace of mind)
+                <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
+                  What unique value will you contribute to our community? Share your company objectives and personal aspirations.
                 </p>
                 <Textarea
                   id="story"
                   value={formData.story}
                   onChange={(e) => handleInputChange("story", e.target.value)}
-                  className="w-full min-h-[100px] px-4 py-3 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary resize-none"
-                  placeholder="Share your journey and aspirations..."
+                  className="w-full min-h-[120px] px-4 py-3 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary resize-none text-sm"
+                  placeholder="Describe your entrepreneurial journey and vision..."
                 />
               </div>
 
