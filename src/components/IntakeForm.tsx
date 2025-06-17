@@ -68,7 +68,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
   return (
     <section id="intake-form" className="py-8 px-6 bg-background">
       <div className="max-w-2xl mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-foreground mb-6">
             Explore a membership to our private community of startup founders.
           </h2>
@@ -94,7 +94,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     id="fullName"
                     value={formData.fullName}
                     onChange={(e) => handleInputChange("fullName", e.target.value)}
-                    className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
+                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
                     placeholder="Full Name *"
                     required
                   />
@@ -106,7 +106,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     type="url"
                     value={formData.linkedin}
                     onChange={(e) => handleInputChange("linkedin", e.target.value)}
-                    className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
+                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
                     placeholder="LinkedIn *"
                     required
                   />
@@ -118,7 +118,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     type="url"
                     value={formData.companyUrl}
                     onChange={(e) => handleInputChange("companyUrl", e.target.value)}
-                    className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
+                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
                     placeholder="Company URL *"
                     required
                   />
@@ -130,7 +130,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
-                    className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
+                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
                     placeholder="Email *"
                     required
                   />
@@ -142,7 +142,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     type="tel"
                     value={formData.whatsapp}
                     onChange={(e) => handleInputChange("whatsapp", e.target.value)}
-                    className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
+                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
                     placeholder="WhatsApp *"
                     required
                   />
@@ -153,7 +153,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     id="jobTitle"
                     value={formData.jobTitle}
                     onChange={(e) => handleInputChange("jobTitle", e.target.value)}
-                    className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
+                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
                     placeholder="Job Title *"
                     required
                   />
@@ -164,8 +164,8 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     id="mrr"
                     value={formData.mrr}
                     onChange={(e) => handleInputChange("mrr", e.target.value)}
-                    className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
-                    placeholder="Current monthly recurring revenue *"
+                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                    placeholder="Monthly Revenue *"
                     required
                   />
                 </div>
@@ -175,8 +175,8 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     id="arr"
                     value={formData.arr}
                     onChange={(e) => handleInputChange("arr", e.target.value)}
-                    className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
-                    placeholder="Projected 2025 annual recurring revenue *"
+                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                    placeholder="2025 ARR Projection *"
                     required
                   />
                 </div>
@@ -186,8 +186,8 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     id="raised"
                     value={formData.raised}
                     onChange={(e) => handleInputChange("raised", e.target.value)}
-                    className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
-                    placeholder="Raised *"
+                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                    placeholder="Capital Raised *"
                     required
                   />
                 </div>
@@ -197,7 +197,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     id="cities"
                     value={formData.cities}
                     onChange={(e) => handleInputChange("cities", e.target.value)}
-                    className="w-full h-12 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
+                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
                     placeholder="City(s) *"
                     required
                   />
