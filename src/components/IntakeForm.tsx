@@ -1,3 +1,4 @@
+
 import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -228,23 +229,40 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
           </div>
         )}
 
-        {/* Airtable Form Section */}
-        <div className="mt-16 max-w-lg mx-auto">
+        {/* Enhanced Airtable Form Section */}
+        <div className="mt-20 max-w-lg mx-auto">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-foreground mb-4">
               Alternative Application Form
             </h3>
+            <p className="text-muted-foreground text-sm">
+              Prefer a different format? Use our streamlined application form below.
+            </p>
           </div>
           
-          <div className="airtable-form-container">
-            <iframe 
-              className="airtable-embed" 
-              src="https://airtable.com/embed/appsw9HMZglMGtXbx/pag1Ojag3YiMPtz9Z/form" 
-              frameBorder="0" 
-              width="100%" 
-              height="533" 
-              style={{ background: 'transparent', border: 'none', borderRadius: '8px' }}
-            />
+          <div className="relative">
+            {/* Decorative background elements */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl blur-xl"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur opacity-25"></div>
+            
+            {/* Main form container */}
+            <div className="relative bg-background/95 backdrop-blur-sm border border-border/50 rounded-2xl p-6 shadow-2xl">
+              <div className="bg-background/80 border border-border/30 rounded-xl overflow-hidden shadow-inner">
+                <iframe 
+                  className="w-full h-[533px] border-0 rounded-xl"
+                  src="https://airtable.com/embed/appsw9HMZglMGtXbx/pag1Ojag3YiMPtz9Z/form" 
+                  style={{ 
+                    background: 'transparent',
+                    filter: 'brightness(0.95) contrast(1.05)',
+                  }}
+                />
+              </div>
+              
+              {/* Bottom accent */}
+              <div className="mt-4 flex justify-center">
+                <div className="h-1 w-16 bg-gradient-to-r from-primary to-secondary rounded-full opacity-60"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
