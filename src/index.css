@@ -109,4 +109,17 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  /* Airtable form styling to match site theme */
+  .airtable-form-container {
+    background: hsl(var(--background));
+    border: 1px solid hsl(var(--border));
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .airtable-embed {
+    border-radius: 8px;
+    background: hsl(var(--background)) !important;
+  }
 }

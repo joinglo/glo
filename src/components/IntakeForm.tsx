@@ -228,7 +228,45 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
             </form>
           </div>
         )}
+
+        {/* Airtable Form Section */}
+        <div className="mt-16 max-w-lg mx-auto">
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-bold text-foreground mb-4">
+              Alternative Application Form
+            </h3>
+          </div>
+          
+          <div className="airtable-form-container">
+            <iframe 
+              className="airtable-embed" 
+              src="https://airtable.com/embed/appsw9HMZglMGtXbx/pag1Ojag3YiMPtz9Z/form" 
+              frameBorder="0" 
+              width="100%" 
+              height="533" 
+              style={{ background: 'transparent', border: 'none', borderRadius: '8px' }}
+            />
+          </div>
+        </div>
       </div>
+
+      <style jsx>{`
+        .airtable-form-container {
+          background: hsl(var(--background));
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .airtable-embed {
+          filter: brightness(0.9) contrast(1.1);
+        }
+        
+        /* Target Airtable form elements to match our design */
+        .airtable-embed iframe {
+          background: hsl(var(--background)) !important;
+        }
+      `}</style>
     </section>
   );
 });
