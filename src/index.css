@@ -116,10 +116,17 @@
     border: 1px solid hsl(var(--border));
     border-radius: 8px;
     overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   }
   
   .airtable-embed {
     border-radius: 8px;
+    background: hsl(var(--background)) !important;
+    filter: brightness(0.9) contrast(1.1);
+  }
+  
+  /* Target Airtable form elements to match our design */
+  .airtable-embed iframe {
     background: hsl(var(--background)) !important;
   }
 }

@@ -1,4 +1,3 @@
-
 import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -249,24 +248,6 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .airtable-form-container {
-          background: hsl(var(--background));
-          border-radius: 8px;
-          overflow: hidden;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        
-        .airtable-embed {
-          filter: brightness(0.9) contrast(1.1);
-        }
-        
-        /* Target Airtable form elements to match our design */
-        .airtable-embed iframe {
-          background: hsl(var(--background)) !important;
-        }
-      `}</style>
     </section>
   );
 });
