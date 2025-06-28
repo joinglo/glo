@@ -36,12 +36,40 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
 
   const mrrOptions = [
     { value: "pre-revenue", label: "Pre-Revenue" },
+    { value: "< $250K", label: "< $250K" },
+    { value: "$250K - $1M", label: "$250K - $1M" },
+    { value: "$1M - $10M", label: "$1M - $10M" },
+    { value: "$10M - $100M", label: "$10M - $100M" },
+    { value: "$100M - $1B", label: "$100M - $1B" },
+    { value: "> $1B", label: "> $1B" },
+  ];
+
+  const arrOptions = [
+    { value: "pre-revenue", label: "Pre-Revenue" },
     { value: "< $100K", label: "< $100K" },
     { value: "$100K - $500K", label: "$100K - $500K" },
-    { value: "$500 - $1M", label: "$500 - $1M" },
+    { value: "$500K - $1M", label: "$500K - $1M" },
     { value: "$1M - $10M", label: "$1M - $10M" },
     { value: "$10M - $100M", label: "$10M - $100M" },
     { value: "> $100M", label: "> $100M" },
+    { value: "does-not-apply", label: "Does Not Apply" },
+  ];
+
+  const raisedOptions = [
+    { value: "pre-funding", label: "Pre-Funding" },
+    { value: "bootstrapping", label: "Bootstrapping" },
+    { value: "< $250K", label: "< $250K" },
+    { value: "> $250K", label: "> $250K" },
+    { value: "> $500K", label: "> $500K" },
+    { value: "> $1M", label: "> $1M" },
+    { value: "> $5M", label: "> $5M" },
+    { value: "> $10M", label: "> $10M" },
+    { value: "> $25M", label: "> $25M" },
+    { value: "> $100M", label: "> $100M" },
+    { value: "> $250M", label: "> $250M" },
+    { value: "> $500M", label: "> $500M" },
+    { value: "> $1B", label: "> $1B" },
+    { value: "> $5B", label: "> $5B" },
     { value: "does-not-apply", label: "Does Not Apply" },
   ];
 
@@ -109,16 +137,10 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
         }
         break;
       case 'mrr':
-        // MRR is now a select field, so if there's a value, it's valid
-        if (value) {
-          isValid = true;
-        }
-        break;
       case 'arr':
       case 'raised':
-        if (value && isNaN(Number(value))) {
-          error = 'Numbers only please';
-        } else if (value) {
+        // These are now select fields, so if there's a value, it's valid
+        if (value) {
           isValid = true;
         }
         break;
@@ -147,10 +169,6 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     switch (field) {
       case 'whatsapp':
         processedValue = formatPhoneNumber(value);
-        break;
-      case 'arr':
-      case 'raised':
-        processedValue = formatNumericField(value);
         break;
       case 'linkedin':
       case 'companyUrl':
@@ -400,32 +418,46 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                 </div>
 
                 <div className="relative">
-                  <Input
-                    id="arr"
-                    value={formData.arr}
-                    onChange={(e) => handleInputChange("arr", e.target.value)}
-                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="2025 ARR Projection *"
-                    required
-                  />
-                  {renderFieldIcon("arr")}
-                  {fieldErrors.arr && (
-                    <p className="text-red-500 text-xs mt-1">{fieldErrors.arr}</p>
+                  <Select onValueChange={(value) => handleSelectChange("arr", value)} required>
+                    <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm">
+                      <SelectValue placeholder="2025 ARR Projection *" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
+                      {arrOptions.map((option) => (
+                        <SelectItem 
+                          key={option.value} 
+                          value={option.value}
+                          className="text-foreground hover:bg-muted/50 cursor-pointer px-4 py-2"
+                        >
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {formData.arr && (
+                    <Check className="absolute right-10 top-1/2 transform -translate-y-1/2 text-green-500 w-4 h-4 pointer-events-none" />
                   )}
                 </div>
 
                 <div className="relative">
-                  <Input
-                    id="raised"
-                    value={formData.raised}
-                    onChange={(e) => handleInputChange("raised", e.target.value)}
-                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-forefront/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="Capital Raised *"
-                    required
-                  />
-                  {renderFieldIcon("raised")}
-                  {fieldErrors.raised && (
-                    <p className="text-red-500 text-xs mt-1">{fieldErrors.raised}</p>
+                  <Select onValueChange={(value) => handleSelectChange("raised", value)} required>
+                    <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm">
+                      <SelectValue placeholder="Capital Raised *" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
+                      {raisedOptions.map((option) => (
+                        <SelectItem 
+                          key={option.value} 
+                          value={option.value}
+                          className="text-foreground hover:bg-muted/50 cursor-pointer px-4 py-2"
+                        >
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {formData.raised && (
+                    <Check className="absolute right-10 top-1/2 transform -translate-y-1/2 text-green-500 w-4 h-4 pointer-events-none" />
                   )}
                 </div>
 
