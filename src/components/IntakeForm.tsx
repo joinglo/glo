@@ -86,23 +86,47 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     }
   }));
 
-  // Enhanced phone number validation and formatting
-  const formatPhoneNumber = (value: string) => {
+  // Enhanced phone number parsing and formatting
+  const parsePhoneNumber = (input: string) => {
+    // Remove all non-numeric characters except + at the start
+    let cleaned = input.replace(/[^\d+]/g, '');
+    
+    // Handle various input formats
+    const originalInput = input.trim();
+    
+    // If it already starts with +, keep it as is (just clean it)
+    if (originalInput.startsWith('+')) {
+      return cleaned;
+    }
+    
+    // Extract numbers only for pattern matching
+    const numbersOnly = input.replace(/\D/g, '');
+    
+    // Handle North American formats (10 or 11 digits)
+    if (numbersOnly.length === 10) {
+      // Assume US/Canada if 10 digits: 4165551234 -> +14165551234
+      return `+1${numbersOnly}`;
+    } else if (numbersOnly.length === 11 && numbersOnly.startsWith('1')) {
+      // US/Canada with country code: 14165551234 -> +14165551234
+      return `+${numbersOnly}`;
+    }
+    
+    // For other lengths, require explicit country code
+    if (numbersOnly.length >= 10 && numbersOnly.length <= 15) {
+      // If no country code provided, we can't reliably determine it
+      return `+${numbersOnly}`;
+    }
+    
+    return cleaned;
+  };
+
+  const formatPhoneForDisplay = (value: string) => {
     // Remove all non-numeric characters except + at the start
     const cleaned = value.replace(/[^\d+]/g, '');
     
-    // If it starts with +, keep it, otherwise remove any + in the middle
-    let formatted = '';
-    if (cleaned.startsWith('+')) {
-      formatted = '+' + cleaned.slice(1).replace(/\+/g, '');
-    } else {
-      formatted = cleaned.replace(/\+/g, '');
-    }
-
-    // Apply formatting for better UX
-    if (formatted.startsWith('+1') && formatted.length > 2) {
-      // US/Canada format: +1 (XXX) XXX-XXXX
-      const digits = formatted.slice(2);
+    // If it starts with +1 (North America), format nicely
+    if (cleaned.startsWith('+1') && cleaned.length > 2) {
+      const digits = cleaned.slice(2);
       if (digits.length <= 3) {
         return `+1 (${digits}`;
       } else if (digits.length <= 6) {
@@ -110,9 +134,9 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
       } else {
         return `+1 (${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
       }
-    } else if (formatted.startsWith('+') && formatted.length > 1) {
+    } else if (cleaned.startsWith('+') && cleaned.length > 1) {
       // International format: +XX XXX XXX XXXX
-      const countryAndNumber = formatted.slice(1);
+      const countryAndNumber = cleaned.slice(1);
       if (countryAndNumber.length <= 3) {
         return `+${countryAndNumber}`;
       } else if (countryAndNumber.length <= 6) {
@@ -124,16 +148,23 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
       }
     }
     
-    return formatted;
+    return cleaned;
   };
 
   const validatePhoneNumber = (phone: string) => {
-    // Remove all formatting for validation
-    const cleaned = phone.replace(/[^\d+]/g, '');
+    const parsed = parsePhoneNumber(phone);
+    console.log("Validating phone:", phone, "-> parsed:", parsed);
     
-    // Must start with + and have at least 10 digits total (including country code)
-    const phoneRegex = /^\+\d{10,15}$/;
-    return phoneRegex.test(cleaned);
+    // Must be in E.164 format: +[1-9][0-9]{1,14}
+    const e164Regex = /^\+[1-9]\d{1,14}$/;
+    const isValid = e164Regex.test(parsed);
+    
+    console.log("Phone validation result:", isValid);
+    return isValid;
+  };
+
+  const getE164Phone = (phone: string) => {
+    return parsePhoneNumber(phone);
   };
 
   // Numeric validation for financial fields
@@ -172,7 +203,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
         if (!value) {
           error = 'WhatsApp number is required';
         } else if (!validatePhoneNumber(value)) {
-          error = 'Please enter a valid phone number starting with country code (e.g., +1)';
+          error = 'Please enter a valid phone number (e.g., 416-555-1234, +1 416 555 1234)';
         } else {
           isValid = true;
         }
@@ -210,11 +241,15 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     // Apply field-specific formatting
     switch (field) {
       case 'whatsapp':
-        // Ensure it starts with + if user starts typing numbers
+        // If user starts typing numbers without +, help them out
         if (value && !value.startsWith('+') && /^\d/.test(value)) {
-          processedValue = '+' + value;
+          // Don't automatically add + here, let them type naturally
+          processedValue = value;
         }
-        processedValue = formatPhoneNumber(processedValue);
+        // Format for display
+        if (value) {
+          processedValue = formatPhoneForDisplay(value);
+        }
         break;
       case 'linkedin':
       case 'companyUrl':
@@ -277,14 +312,17 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     console.log("Form submitted:", formData);
 
     try {
-      // Prepare data with normalized URLs
+      // Prepare data with normalized URLs and E.164 phone format
       const submitData = {
         ...formData,
         linkedin: normalizeUrl(formData.linkedin),
         companyUrl: normalizeUrl(formData.companyUrl),
+        whatsapp: getE164Phone(formData.whatsapp), // Convert to E.164 for submission
         timestamp: new Date().toISOString(),
         source: "GLO Website Application Form"
       };
+
+      console.log("Submitting data with E.164 phone:", submitData.whatsapp);
 
       // Send data to webhook
       const response = await fetch(WEBHOOK_URL, {
@@ -301,7 +339,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
           description: "Thank you for applying to GLO. We'll review your application and get back to you soon.",
         });
         
-        // Reset form
+        // Reset form completely including select fields
         setFormData({
           fullName: "",
           linkedin: "",
@@ -317,6 +355,12 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
         });
         setFieldErrors({});
         setFieldValid({});
+        
+        // Force re-render to reset select components
+        setTimeout(() => {
+          setIsFormExpanded(false);
+          setTimeout(() => setIsFormExpanded(true), 100);
+        }, 1000);
       } else {
         throw new Error("Failed to submit application");
       }
@@ -430,7 +474,11 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                 </div>
 
                 <div className="relative">
-                  <Select onValueChange={(value) => handleSelectChange("jobTitle", value)} required>
+                  <Select 
+                    value={formData.jobTitle} 
+                    onValueChange={(value) => handleSelectChange("jobTitle", value)} 
+                    required
+                  >
                     <SelectTrigger className="w-full h-14 px-4 bg-muted/10 border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
                       <SelectValue placeholder="Role *" />
                     </SelectTrigger>
@@ -452,7 +500,11 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                 </div>
 
                 <div className="relative">
-                  <Select onValueChange={(value) => handleSelectChange("mrr", value)} required>
+                  <Select 
+                    value={formData.mrr} 
+                    onValueChange={(value) => handleSelectChange("mrr", value)} 
+                    required
+                  >
                     <SelectTrigger className="w-full h-14 px-4 bg-muted/10 border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
                       <SelectValue placeholder="Monthly Revenue *" />
                     </SelectTrigger>
@@ -474,7 +526,11 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                 </div>
 
                 <div className="relative">
-                  <Select onValueChange={(value) => handleSelectChange("arr", value)} required>
+                  <Select 
+                    value={formData.arr} 
+                    onValueChange={(value) => handleSelectChange("arr", value)} 
+                    required
+                  >
                     <SelectTrigger className="w-full h-14 px-4 bg-muted/10 border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
                       <SelectValue placeholder="2025 ARR Projection *" />
                     </SelectTrigger>
@@ -496,7 +552,11 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                 </div>
 
                 <div className="relative">
-                  <Select onValueChange={(value) => handleSelectChange("raised", value)} required>
+                  <Select 
+                    value={formData.raised} 
+                    onValueChange={(value) => handleSelectChange("raised", value)} 
+                    required
+                  >
                     <SelectTrigger className="w-full h-14 px-4 bg-muted/10 border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
                       <SelectValue placeholder="Capital Raised *" />
                     </SelectTrigger>
