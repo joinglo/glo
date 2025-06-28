@@ -1,4 +1,3 @@
-
 import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -37,8 +36,62 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     }
   }));
 
+  // Phone number validation and formatting
+  const formatPhoneNumber = (value: string) => {
+    // Remove all non-numeric characters except + at the start
+    const cleaned = value.replace(/[^\d+]/g, '');
+    
+    // If it starts with +, keep it, otherwise remove any + in the middle
+    if (cleaned.startsWith('+')) {
+      return '+' + cleaned.slice(1).replace(/\+/g, '');
+    }
+    return cleaned.replace(/\+/g, '');
+  };
+
+  const validatePhoneNumber = (phone: string) => {
+    // Basic phone validation - should start with + followed by digits, or just digits
+    const phoneRegex = /^(\+\d{1,3})?\d{10,15}$/;
+    return phoneRegex.test(phone.replace(/\s/g, ''));
+  };
+
+  // Numeric validation for financial fields
+  const formatNumericField = (value: string) => {
+    // Remove all non-numeric characters except decimal point
+    return value.replace(/[^\d.]/g, '').replace(/(\..*)\./g, '$1');
+  };
+
+  // URL normalization
+  const normalizeUrl = (url: string) => {
+    if (!url) return url;
+    
+    // Remove any existing protocol
+    let cleanUrl = url.replace(/^https?:\/\//, '');
+    
+    // Add https:// prefix
+    return `https://${cleanUrl}`;
+  };
+
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    let processedValue = value;
+
+    // Apply field-specific formatting
+    switch (field) {
+      case 'whatsapp':
+        processedValue = formatPhoneNumber(value);
+        break;
+      case 'mrr':
+      case 'arr':
+      case 'raised':
+        processedValue = formatNumericField(value);
+        break;
+      case 'linkedin':
+      case 'companyUrl':
+        // Store the raw input, normalize on submit
+        processedValue = value;
+        break;
+    }
+
+    setFormData(prev => ({ ...prev, [field]: processedValue }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -61,21 +114,50 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
       return;
     }
 
+    // Validate phone number
+    if (!validatePhoneNumber(formData.whatsapp)) {
+      toast({
+        title: "Invalid Phone Number",
+        description: "Please enter a valid phone number (e.g., +14165551234 or 4165551234)",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validate numeric fields
+    const numericFields = ['mrr', 'arr', 'raised'];
+    for (const field of numericFields) {
+      const value = formData[field as keyof typeof formData];
+      if (value && isNaN(Number(value))) {
+        toast({
+          title: "Invalid Numeric Value",
+          description: `Please enter numbers only for ${field.toUpperCase()} (no $ or commas)`,
+          variant: "destructive",
+        });
+        return;
+      }
+    }
+
     setIsSubmitting(true);
     console.log("Form submitted:", formData);
 
     try {
+      // Prepare data with normalized URLs
+      const submitData = {
+        ...formData,
+        linkedin: normalizeUrl(formData.linkedin),
+        companyUrl: normalizeUrl(formData.companyUrl),
+        timestamp: new Date().toISOString(),
+        source: "GLO Website Application Form"
+      };
+
       // Send data to webhook
       const response = await fetch(WEBHOOK_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          ...formData,
-          timestamp: new Date().toISOString(),
-          source: "GLO Website Application Form"
-        }),
+        body: JSON.stringify(submitData),
       });
 
       if (response.ok) {
@@ -151,11 +233,10 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                 <div>
                   <Input
                     id="linkedin"
-                    type="url"
                     value={formData.linkedin}
                     onChange={(e) => handleInputChange("linkedin", e.target.value)}
                     className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="LinkedIn *"
+                    placeholder="LinkedIn (e.g., linkedin.com/in/jane) *"
                     required
                   />
                 </div>
@@ -163,11 +244,10 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                 <div>
                   <Input
                     id="companyUrl"
-                    type="url"
                     value={formData.companyUrl}
                     onChange={(e) => handleInputChange("companyUrl", e.target.value)}
                     className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="Company URL *"
+                    placeholder="Company URL (e.g., mycompany.com) *"
                     required
                   />
                 </div>
@@ -187,11 +267,10 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                 <div>
                   <Input
                     id="whatsapp"
-                    type="tel"
                     value={formData.whatsapp}
                     onChange={(e) => handleInputChange("whatsapp", e.target.value)}
                     className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="WhatsApp *"
+                    placeholder="WhatsApp (+14165551234) *"
                     required
                   />
                 </div>
@@ -213,7 +292,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     value={formData.mrr}
                     onChange={(e) => handleInputChange("mrr", e.target.value)}
                     className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="Monthly Revenue *"
+                    placeholder="Monthly Revenue (numbers only) *"
                     required
                   />
                 </div>
@@ -224,7 +303,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     value={formData.arr}
                     onChange={(e) => handleInputChange("arr", e.target.value)}
                     className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="2025 ARR Projection *"
+                    placeholder="2025 ARR Projection (numbers only) *"
                     required
                   />
                 </div>
@@ -235,7 +314,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     value={formData.raised}
                     onChange={(e) => handleInputChange("raised", e.target.value)}
                     className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="Capital Raised *"
+                    placeholder="Capital Raised (numbers only) *"
                     required
                   />
                 </div>
