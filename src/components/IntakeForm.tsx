@@ -79,6 +79,16 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     let isValid = false;
 
     switch (field) {
+      case 'linkedin':
+      case 'companyUrl':
+        // Basic URL validation - must contain a dot and have reasonable length
+        const urlRegex = /^[^\s]*\.[^\s]+$/;
+        if (value && !urlRegex.test(value.replace(/^https?:\/\//, ''))) {
+          error = 'Please enter a valid URL';
+        } else if (value) {
+          isValid = true;
+        }
+        break;
       case 'whatsapp':
         if (value && !validatePhoneNumber(value)) {
           error = 'Please enter a valid phone number';
