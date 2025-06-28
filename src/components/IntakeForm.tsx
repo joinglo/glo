@@ -1,4 +1,3 @@
-
 import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,6 +13,7 @@ export interface IntakeFormRef {
 const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
   const { toast } = useToast();
   const [isFormExpanded, setIsFormExpanded] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     linkedin: "",
@@ -28,6 +28,8 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     story: "",
   });
 
+  const WEBHOOK_URL = "https://hook.us2.make.com/cormdw65d4eejdwsvpqryytpwvw2stne";
+
   useImperativeHandle(ref, () => ({
     expandForm: () => {
       setIsFormExpanded(true);
@@ -38,7 +40,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation for required fields
@@ -58,11 +60,56 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
       return;
     }
 
+    setIsSubmitting(true);
     console.log("Form submitted:", formData);
-    toast({
-      title: "Application Submitted!",
-      description: "Thank you for applying to GLO. We'll review your application and get back to you soon.",
-    });
+
+    try {
+      // Send data to webhook
+      const response = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          timestamp: new Date().toISOString(),
+          source: "GLO Website Application Form"
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Application Submitted!",
+          description: "Thank you for applying to GLO. We'll review your application and get back to you soon.",
+        });
+        
+        // Reset form
+        setFormData({
+          fullName: "",
+          linkedin: "",
+          companyUrl: "",
+          email: "",
+          whatsapp: "",
+          jobTitle: "",
+          mrr: "",
+          arr: "",
+          raised: "",
+          cities: "",
+          story: "",
+        });
+      } else {
+        throw new Error("Failed to submit application");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast({
+        title: "Submission Failed",
+        description: "There was an error submitting your application. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -220,9 +267,10 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
               <div className="flex justify-center pt-6">
                 <Button 
                   type="submit" 
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-3 h-12 font-semibold rounded-md text-base min-w-[200px]"
+                  disabled={isSubmitting}
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-3 h-12 font-semibold rounded-md text-base min-w-[200px] disabled:opacity-50"
                 >
-                  Submit Application
+                  {isSubmitting ? "Submitting..." : "Submit Application"}
                 </Button>
               </div>
             </form>
