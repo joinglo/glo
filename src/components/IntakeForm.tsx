@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { ChevronDown, Check, X } from "lucide-react";
 
@@ -32,6 +33,17 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
   });
 
   const WEBHOOK_URL = "https://hook.us2.make.com/cormdw65d4eejdwsvpqryytpwvw2stne";
+
+  const mrrOptions = [
+    { value: "pre-revenue", label: "Pre-Revenue" },
+    { value: "< $100K", label: "< $100K" },
+    { value: "$100K - $500K", label: "$100K - $500K" },
+    { value: "$500 - $1M", label: "$500 - $1M" },
+    { value: "$1M - $10M", label: "$1M - $10M" },
+    { value: "$10M - $100M", label: "$10M - $100M" },
+    { value: "> $100M", label: "> $100M" },
+    { value: "does-not-apply", label: "Does Not Apply" },
+  ];
 
   useImperativeHandle(ref, () => ({
     expandForm: () => {
@@ -97,6 +109,11 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
         }
         break;
       case 'mrr':
+        // MRR is now a select field, so if there's a value, it's valid
+        if (value) {
+          isValid = true;
+        }
+        break;
       case 'arr':
       case 'raised':
         if (value && isNaN(Number(value))) {
@@ -131,7 +148,6 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
       case 'whatsapp':
         processedValue = formatPhoneNumber(value);
         break;
-      case 'mrr':
       case 'arr':
       case 'raised':
         processedValue = formatNumericField(value);
@@ -145,6 +161,11 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
 
     setFormData(prev => ({ ...prev, [field]: processedValue }));
     validateField(field, processedValue);
+  };
+
+  const handleSelectChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    validateField(field, value);
   };
 
   const renderFieldIcon = (field: string) => {
@@ -293,6 +314,9 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     required
                   />
                   {renderFieldIcon("linkedin")}
+                  {fieldErrors.linkedin && (
+                    <p className="text-red-500 text-xs mt-1">{fieldErrors.linkedin}</p>
+                  )}
                 </div>
 
                 <div className="relative">
@@ -305,6 +329,9 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     required
                   />
                   {renderFieldIcon("companyUrl")}
+                  {fieldErrors.companyUrl && (
+                    <p className="text-red-500 text-xs mt-1">{fieldErrors.companyUrl}</p>
+                  )}
                 </div>
 
                 <div className="relative">
@@ -351,17 +378,24 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                 </div>
 
                 <div className="relative">
-                  <Input
-                    id="mrr"
-                    value={formData.mrr}
-                    onChange={(e) => handleInputChange("mrr", e.target.value)}
-                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="Monthly Revenue *"
-                    required
-                  />
-                  {renderFieldIcon("mrr")}
-                  {fieldErrors.mrr && (
-                    <p className="text-red-500 text-xs mt-1">{fieldErrors.mrr}</p>
+                  <Select onValueChange={(value) => handleSelectChange("mrr", value)} required>
+                    <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm">
+                      <SelectValue placeholder="Monthly Revenue *" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
+                      {mrrOptions.map((option) => (
+                        <SelectItem 
+                          key={option.value} 
+                          value={option.value}
+                          className="text-foreground hover:bg-muted/50 cursor-pointer px-4 py-2"
+                        >
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {formData.mrr && (
+                    <Check className="absolute right-10 top-1/2 transform -translate-y-1/2 text-green-500 w-4 h-4 pointer-events-none" />
                   )}
                 </div>
 
@@ -385,7 +419,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     id="raised"
                     value={formData.raised}
                     onChange={(e) => handleInputChange("raised", e.target.value)}
-                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-forefront/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
                     placeholder="Capital Raised *"
                     required
                   />
