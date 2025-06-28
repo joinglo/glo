@@ -86,22 +86,54 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     }
   }));
 
-  // Phone number validation and formatting
+  // Enhanced phone number validation and formatting
   const formatPhoneNumber = (value: string) => {
     // Remove all non-numeric characters except + at the start
     const cleaned = value.replace(/[^\d+]/g, '');
     
     // If it starts with +, keep it, otherwise remove any + in the middle
+    let formatted = '';
     if (cleaned.startsWith('+')) {
-      return '+' + cleaned.slice(1).replace(/\+/g, '');
+      formatted = '+' + cleaned.slice(1).replace(/\+/g, '');
+    } else {
+      formatted = cleaned.replace(/\+/g, '');
     }
-    return cleaned.replace(/\+/g, '');
+
+    // Apply formatting for better UX
+    if (formatted.startsWith('+1') && formatted.length > 2) {
+      // US/Canada format: +1 (XXX) XXX-XXXX
+      const digits = formatted.slice(2);
+      if (digits.length <= 3) {
+        return `+1 (${digits}`;
+      } else if (digits.length <= 6) {
+        return `+1 (${digits.slice(0, 3)}) ${digits.slice(3)}`;
+      } else {
+        return `+1 (${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
+      }
+    } else if (formatted.startsWith('+') && formatted.length > 1) {
+      // International format: +XX XXX XXX XXXX
+      const countryAndNumber = formatted.slice(1);
+      if (countryAndNumber.length <= 3) {
+        return `+${countryAndNumber}`;
+      } else if (countryAndNumber.length <= 6) {
+        return `+${countryAndNumber.slice(0, 3)} ${countryAndNumber.slice(3)}`;
+      } else if (countryAndNumber.length <= 9) {
+        return `+${countryAndNumber.slice(0, 3)} ${countryAndNumber.slice(3, 6)} ${countryAndNumber.slice(6)}`;
+      } else {
+        return `+${countryAndNumber.slice(0, 3)} ${countryAndNumber.slice(3, 6)} ${countryAndNumber.slice(6, 9)} ${countryAndNumber.slice(9, 13)}`;
+      }
+    }
+    
+    return formatted;
   };
 
   const validatePhoneNumber = (phone: string) => {
-    // Basic phone validation - should start with + followed by digits, or just digits
-    const phoneRegex = /^(\+\d{1,3})?\d{10,15}$/;
-    return phoneRegex.test(phone.replace(/\s/g, ''));
+    // Remove all formatting for validation
+    const cleaned = phone.replace(/[^\d+]/g, '');
+    
+    // Must start with + and have at least 10 digits total (including country code)
+    const phoneRegex = /^\+\d{10,15}$/;
+    return phoneRegex.test(cleaned);
   };
 
   // Numeric validation for financial fields
@@ -137,9 +169,11 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
         }
         break;
       case 'whatsapp':
-        if (value && !validatePhoneNumber(value)) {
-          error = 'Please enter a valid phone number';
-        } else if (value) {
+        if (!value) {
+          error = 'WhatsApp number is required';
+        } else if (!validatePhoneNumber(value)) {
+          error = 'Please enter a valid phone number starting with country code (e.g., +1)';
+        } else {
           isValid = true;
         }
         break;
@@ -176,7 +210,11 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     // Apply field-specific formatting
     switch (field) {
       case 'whatsapp':
-        processedValue = formatPhoneNumber(value);
+        // Ensure it starts with + if user starts typing numbers
+        if (value && !value.startsWith('+') && /^\d/.test(value)) {
+          processedValue = '+' + value;
+        }
+        processedValue = formatPhoneNumber(processedValue);
         break;
       case 'linkedin':
       case 'companyUrl':
@@ -382,7 +420,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     value={formData.whatsapp}
                     onChange={(e) => handleInputChange("whatsapp", e.target.value)}
                     className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="WhatsApp *"
+                    placeholder="WhatsApp (e.g., +1 234 567-8900) *"
                     required
                   />
                   {renderFieldIcon("whatsapp")}
