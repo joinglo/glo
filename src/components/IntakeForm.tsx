@@ -1,10 +1,11 @@
+
 import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Check, X } from "lucide-react";
 
 export interface IntakeFormRef {
   expandForm: () => void;
@@ -14,6 +15,8 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
   const { toast } = useToast();
   const [isFormExpanded, setIsFormExpanded] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [fieldValid, setFieldValid] = useState<Record<string, boolean>>({});
   const [formData, setFormData] = useState({
     fullName: "",
     linkedin: "",
@@ -71,6 +74,45 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     return `https://${cleanUrl}`;
   };
 
+  const validateField = (field: string, value: string) => {
+    let error = '';
+    let isValid = false;
+
+    switch (field) {
+      case 'whatsapp':
+        if (value && !validatePhoneNumber(value)) {
+          error = 'Please enter a valid phone number';
+        } else if (value) {
+          isValid = true;
+        }
+        break;
+      case 'mrr':
+      case 'arr':
+      case 'raised':
+        if (value && isNaN(Number(value))) {
+          error = 'Numbers only please';
+        } else if (value) {
+          isValid = true;
+        }
+        break;
+      case 'email':
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (value && !emailRegex.test(value)) {
+          error = 'Please enter a valid email';
+        } else if (value) {
+          isValid = true;
+        }
+        break;
+      default:
+        if (value.trim()) {
+          isValid = true;
+        }
+    }
+
+    setFieldErrors(prev => ({ ...prev, [field]: error }));
+    setFieldValid(prev => ({ ...prev, [field]: isValid }));
+  };
+
   const handleInputChange = (field: string, value: string) => {
     let processedValue = value;
 
@@ -92,6 +134,17 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     }
 
     setFormData(prev => ({ ...prev, [field]: processedValue }));
+    validateField(field, processedValue);
+  };
+
+  const renderFieldIcon = (field: string) => {
+    if (fieldValid[field]) {
+      return <Check className="absolute right-3 top-1/2 transform -translate-y-1/2 text-green-500 w-4 h-4" />;
+    }
+    if (fieldErrors[field]) {
+      return <X className="absolute right-3 top-1/2 transform -translate-y-1/2 text-red-500 w-4 h-4" />;
+    }
+    return null;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -114,28 +167,15 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
       return;
     }
 
-    // Validate phone number
-    if (!validatePhoneNumber(formData.whatsapp)) {
+    // Check for any validation errors
+    const hasErrors = Object.values(fieldErrors).some(error => error);
+    if (hasErrors) {
       toast({
-        title: "Invalid Phone Number",
-        description: "Please enter a valid phone number (e.g., +14165551234 or 4165551234)",
+        title: "Please fix validation errors",
+        description: "Some fields need to be corrected before submitting.",
         variant: "destructive",
       });
       return;
-    }
-
-    // Validate numeric fields
-    const numericFields = ['mrr', 'arr', 'raised'];
-    for (const field of numericFields) {
-      const value = formData[field as keyof typeof formData];
-      if (value && isNaN(Number(value))) {
-        toast({
-          title: "Invalid Numeric Value",
-          description: `Please enter numbers only for ${field.toUpperCase()} (no $ or commas)`,
-          variant: "destructive",
-        });
-        return;
-      }
     }
 
     setIsSubmitting(true);
@@ -180,6 +220,8 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
           cities: "",
           story: "",
         });
+        setFieldErrors({});
+        setFieldValid({});
       } else {
         throw new Error("Failed to submit application");
       }
@@ -219,115 +261,140 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
           <div className="bg-background max-w-lg mx-auto">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-2 gap-4">
-                <div>
+                <div className="relative">
                   <Input
                     id="fullName"
                     value={formData.fullName}
                     onChange={(e) => handleInputChange("fullName", e.target.value)}
-                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
                     placeholder="Full Name *"
                     required
                   />
+                  {renderFieldIcon("fullName")}
                 </div>
 
-                <div>
+                <div className="relative">
                   <Input
                     id="linkedin"
                     value={formData.linkedin}
                     onChange={(e) => handleInputChange("linkedin", e.target.value)}
-                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
                     placeholder="LinkedIn (e.g., linkedin.com/in/jane) *"
                     required
                   />
+                  {renderFieldIcon("linkedin")}
                 </div>
 
-                <div>
+                <div className="relative">
                   <Input
                     id="companyUrl"
                     value={formData.companyUrl}
                     onChange={(e) => handleInputChange("companyUrl", e.target.value)}
-                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
                     placeholder="Company URL (e.g., mycompany.com) *"
                     required
                   />
+                  {renderFieldIcon("companyUrl")}
                 </div>
 
-                <div>
+                <div className="relative">
                   <Input
                     id="email"
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
-                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
                     placeholder="Email *"
                     required
                   />
+                  {renderFieldIcon("email")}
+                  {fieldErrors.email && (
+                    <p className="text-red-500 text-xs mt-1">{fieldErrors.email}</p>
+                  )}
                 </div>
 
-                <div>
+                <div className="relative">
                   <Input
                     id="whatsapp"
                     value={formData.whatsapp}
                     onChange={(e) => handleInputChange("whatsapp", e.target.value)}
-                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
                     placeholder="WhatsApp (+14165551234) *"
                     required
                   />
+                  {renderFieldIcon("whatsapp")}
+                  {fieldErrors.whatsapp && (
+                    <p className="text-red-500 text-xs mt-1">{fieldErrors.whatsapp}</p>
+                  )}
                 </div>
 
-                <div>
+                <div className="relative">
                   <Input
                     id="jobTitle"
                     value={formData.jobTitle}
                     onChange={(e) => handleInputChange("jobTitle", e.target.value)}
-                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
                     placeholder="Job Title *"
                     required
                   />
+                  {renderFieldIcon("jobTitle")}
                 </div>
 
-                <div>
+                <div className="relative">
                   <Input
                     id="mrr"
                     value={formData.mrr}
                     onChange={(e) => handleInputChange("mrr", e.target.value)}
-                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
                     placeholder="Monthly Revenue (numbers only) *"
                     required
                   />
+                  {renderFieldIcon("mrr")}
+                  {fieldErrors.mrr && (
+                    <p className="text-red-500 text-xs mt-1">{fieldErrors.mrr}</p>
+                  )}
                 </div>
 
-                <div>
+                <div className="relative">
                   <Input
                     id="arr"
                     value={formData.arr}
                     onChange={(e) => handleInputChange("arr", e.target.value)}
-                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
                     placeholder="2025 ARR Projection (numbers only) *"
                     required
                   />
+                  {renderFieldIcon("arr")}
+                  {fieldErrors.arr && (
+                    <p className="text-red-500 text-xs mt-1">{fieldErrors.arr}</p>
+                  )}
                 </div>
 
-                <div>
+                <div className="relative">
                   <Input
                     id="raised"
                     value={formData.raised}
                     onChange={(e) => handleInputChange("raised", e.target.value)}
-                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
                     placeholder="Capital Raised (numbers only) *"
                     required
                   />
+                  {renderFieldIcon("raised")}
+                  {fieldErrors.raised && (
+                    <p className="text-red-500 text-xs mt-1">{fieldErrors.raised}</p>
+                  )}
                 </div>
 
-                <div>
+                <div className="relative">
                   <Input
                     id="cities"
                     value={formData.cities}
                     onChange={(e) => handleInputChange("cities", e.target.value)}
-                    className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
                     placeholder="City(s) *"
                     required
                   />
+                  {renderFieldIcon("cities")}
                 </div>
               </div>
 
