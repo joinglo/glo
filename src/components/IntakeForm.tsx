@@ -420,7 +420,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     value={formData.whatsapp}
                     onChange={(e) => handleInputChange("whatsapp", e.target.value)}
                     className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="WhatsApp (e.g., +1 234 567-8900) *"
+                    placeholder="WhatsApp *"
                     required
                   />
                   {renderFieldIcon("whatsapp")}
@@ -431,7 +431,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
 
                 <div className="relative">
                   <Select onValueChange={(value) => handleSelectChange("jobTitle", value)} required>
-                    <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm">
+                    <SelectTrigger className="w-full h-14 px-4 bg-muted/10 border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
                       <SelectValue placeholder="Role *" />
                     </SelectTrigger>
                     <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
@@ -453,7 +453,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
 
                 <div className="relative">
                   <Select onValueChange={(value) => handleSelectChange("mrr", value)} required>
-                    <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm">
+                    <SelectTrigger className="w-full h-14 px-4 bg-muted/10 border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
                       <SelectValue placeholder="Monthly Revenue *" />
                     </SelectTrigger>
                     <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
@@ -475,7 +475,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
 
                 <div className="relative">
                   <Select onValueChange={(value) => handleSelectChange("arr", value)} required>
-                    <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm">
+                    <SelectTrigger className="w-full h-14 px-4 bg-muted/10 border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
                       <SelectValue placeholder="2025 ARR Projection *" />
                     </SelectTrigger>
                     <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
@@ -497,7 +497,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
 
                 <div className="relative">
                   <Select onValueChange={(value) => handleSelectChange("raised", value)} required>
-                    <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm">
+                    <SelectTrigger className="w-full h-14 px-4 bg-muted/10 border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
                       <SelectValue placeholder="Capital Raised *" />
                     </SelectTrigger>
                     <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
