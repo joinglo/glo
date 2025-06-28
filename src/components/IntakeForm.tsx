@@ -279,7 +279,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     value={formData.linkedin}
                     onChange={(e) => handleInputChange("linkedin", e.target.value)}
                     className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="LinkedIn (e.g., linkedin.com/in/jane) *"
+                    placeholder="LinkedIn *"
                     required
                   />
                   {renderFieldIcon("linkedin")}
@@ -291,7 +291,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     value={formData.companyUrl}
                     onChange={(e) => handleInputChange("companyUrl", e.target.value)}
                     className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="Company URL (e.g., mycompany.com) *"
+                    placeholder="Company URL *"
                     required
                   />
                   {renderFieldIcon("companyUrl")}
@@ -319,7 +319,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     value={formData.whatsapp}
                     onChange={(e) => handleInputChange("whatsapp", e.target.value)}
                     className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="WhatsApp (+14165551234) *"
+                    placeholder="WhatsApp *"
                     required
                   />
                   {renderFieldIcon("whatsapp")}
@@ -346,7 +346,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     value={formData.mrr}
                     onChange={(e) => handleInputChange("mrr", e.target.value)}
                     className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="Monthly Revenue (numbers only) *"
+                    placeholder="Monthly Revenue *"
                     required
                   />
                   {renderFieldIcon("mrr")}
@@ -361,7 +361,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     value={formData.arr}
                     onChange={(e) => handleInputChange("arr", e.target.value)}
                     className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="2025 ARR Projection (numbers only) *"
+                    placeholder="2025 ARR Projection *"
                     required
                   />
                   {renderFieldIcon("arr")}
@@ -376,7 +376,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     value={formData.raised}
                     onChange={(e) => handleInputChange("raised", e.target.value)}
                     className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="Capital Raised (numbers only) *"
+                    placeholder="Capital Raised *"
                     required
                   />
                   {renderFieldIcon("raised")}
