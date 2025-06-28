@@ -1,4 +1,3 @@
-
 import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -73,6 +72,14 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     { value: "does-not-apply", label: "Does Not Apply" },
   ];
 
+  const roleOptions = [
+    { value: "founder-ceo", label: "Founder/CEO" },
+    { value: "investor", label: "Investor" },
+    { value: "c-suite-executive", label: "C-Suite Executive" },
+    { value: "influencer-creator", label: "Influencer/Creator" },
+    { value: "other", label: "Other" },
+  ];
+
   useImperativeHandle(ref, () => ({
     expandForm: () => {
       setIsFormExpanded(true);
@@ -139,6 +146,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
       case 'mrr':
       case 'arr':
       case 'raised':
+      case 'jobTitle':
         // These are now select fields, so if there's a value, it's valid
         if (value) {
           isValid = true;
@@ -384,15 +392,25 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                 </div>
 
                 <div className="relative">
-                  <Input
-                    id="jobTitle"
-                    value={formData.jobTitle}
-                    onChange={(e) => handleInputChange("jobTitle", e.target.value)}
-                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="Job Title *"
-                    required
-                  />
-                  {renderFieldIcon("jobTitle")}
+                  <Select onValueChange={(value) => handleSelectChange("jobTitle", value)} required>
+                    <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm">
+                      <SelectValue placeholder="Role *" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
+                      {roleOptions.map((option) => (
+                        <SelectItem 
+                          key={option.value} 
+                          value={option.value}
+                          className="text-foreground hover:bg-muted/50 cursor-pointer px-4 py-2"
+                        >
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {formData.jobTitle && (
+                    <Check className="absolute right-10 top-1/2 transform -translate-y-1/2 text-green-500 w-4 h-4 pointer-events-none" />
+                  )}
                 </div>
 
                 <div className="relative">
