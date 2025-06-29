@@ -86,16 +86,13 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     }
   }));
 
-  // Enhanced phone number parsing and formatting
-  const parsePhoneNumber = (input: string) => {
+  // Enhanced phone number parsing and formatting for E.164
+  const parsePhoneToE164 = (input: string) => {
     // Remove all non-numeric characters except + at the start
-    let cleaned = input.replace(/[^\d+]/g, '');
+    const cleaned = input.replace(/[^\d+]/g, '');
     
-    // Handle various input formats
-    const originalInput = input.trim();
-    
-    // If it already starts with +, keep it as is (just clean it)
-    if (originalInput.startsWith('+')) {
+    // If already starts with +, validate and return
+    if (cleaned.startsWith('+')) {
       return cleaned;
     }
     
@@ -111,9 +108,8 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
       return `+${numbersOnly}`;
     }
     
-    // For other lengths, require explicit country code
-    if (numbersOnly.length >= 10 && numbersOnly.length <= 15) {
-      // If no country code provided, we can't reliably determine it
+    // For other lengths, assume they provided country code
+    if (numbersOnly.length >= 7 && numbersOnly.length <= 15) {
       return `+${numbersOnly}`;
     }
     
@@ -121,50 +117,38 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
   };
 
   const formatPhoneForDisplay = (value: string) => {
-    // Remove all non-numeric characters except + at the start
-    const cleaned = value.replace(/[^\d+]/g, '');
+    // Remove all non-numeric characters
+    const numbersOnly = value.replace(/\D/g, '');
     
-    // If it starts with +1 (North America), format nicely
-    if (cleaned.startsWith('+1') && cleaned.length > 2) {
-      const digits = cleaned.slice(2);
-      if (digits.length <= 3) {
-        return `+1 (${digits}`;
-      } else if (digits.length <= 6) {
-        return `+1 (${digits.slice(0, 3)}) ${digits.slice(3)}`;
+    // Handle North American formatting
+    if (numbersOnly.length <= 10) {
+      if (numbersOnly.length <= 3) {
+        return numbersOnly;
+      } else if (numbersOnly.length <= 6) {
+        return `(${numbersOnly.slice(0, 3)}) ${numbersOnly.slice(3)}`;
       } else {
-        return `+1 (${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
+        return `(${numbersOnly.slice(0, 3)}) ${numbersOnly.slice(3, 6)}-${numbersOnly.slice(6, 10)}`;
       }
-    } else if (cleaned.startsWith('+') && cleaned.length > 1) {
-      // International format: +XX XXX XXX XXXX
-      const countryAndNumber = cleaned.slice(1);
-      if (countryAndNumber.length <= 3) {
-        return `+${countryAndNumber}`;
-      } else if (countryAndNumber.length <= 6) {
-        return `+${countryAndNumber.slice(0, 3)} ${countryAndNumber.slice(3)}`;
-      } else if (countryAndNumber.length <= 9) {
-        return `+${countryAndNumber.slice(0, 3)} ${countryAndNumber.slice(3, 6)} ${countryAndNumber.slice(6)}`;
-      } else {
-        return `+${countryAndNumber.slice(0, 3)} ${countryAndNumber.slice(3, 6)} ${countryAndNumber.slice(6, 9)} ${countryAndNumber.slice(9, 13)}`;
-      }
+    } else if (numbersOnly.length === 11 && numbersOnly.startsWith('1')) {
+      // 11 digits starting with 1 (North American with country code)
+      const withoutCountryCode = numbersOnly.slice(1);
+      return `+1 (${withoutCountryCode.slice(0, 3)}) ${withoutCountryCode.slice(3, 6)}-${withoutCountryCode.slice(6)}`;
+    } else {
+      // International format: show + and group digits
+      return `+${numbersOnly}`;
     }
-    
-    return cleaned;
   };
 
   const validatePhoneNumber = (phone: string) => {
-    const parsed = parsePhoneNumber(phone);
-    console.log("Validating phone:", phone, "-> parsed:", parsed);
+    const e164 = parsePhoneToE164(phone);
+    console.log("Validating phone:", phone, "-> E.164:", e164);
     
     // Must be in E.164 format: +[1-9][0-9]{1,14}
     const e164Regex = /^\+[1-9]\d{1,14}$/;
-    const isValid = e164Regex.test(parsed);
+    const isValid = e164Regex.test(e164);
     
     console.log("Phone validation result:", isValid);
     return isValid;
-  };
-
-  const getE164Phone = (phone: string) => {
-    return parsePhoneNumber(phone);
   };
 
   // Numeric validation for financial fields
@@ -203,7 +187,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
         if (!value) {
           error = 'WhatsApp number is required';
         } else if (!validatePhoneNumber(value)) {
-          error = 'Please enter a valid phone number (e.g., 416-555-1234, +1 416 555 1234)';
+          error = 'Please enter a valid phone number';
         } else {
           isValid = true;
         }
@@ -241,15 +225,8 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     // Apply field-specific formatting
     switch (field) {
       case 'whatsapp':
-        // If user starts typing numbers without +, help them out
-        if (value && !value.startsWith('+') && /^\d/.test(value)) {
-          // Don't automatically add + here, let them type naturally
-          processedValue = value;
-        }
-        // Format for display
-        if (value) {
-          processedValue = formatPhoneForDisplay(value);
-        }
+        // Format for display while user types
+        processedValue = formatPhoneForDisplay(value);
         break;
       case 'linkedin':
       case 'companyUrl':
@@ -313,16 +290,17 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
 
     try {
       // Prepare data with normalized URLs and E.164 phone format
+      const e164Phone = parsePhoneToE164(formData.whatsapp);
       const submitData = {
         ...formData,
         linkedin: normalizeUrl(formData.linkedin),
         companyUrl: normalizeUrl(formData.companyUrl),
-        whatsapp: getE164Phone(formData.whatsapp), // Convert to E.164 for submission
+        whatsapp: e164Phone, // Convert to clean E.164 for submission
         timestamp: new Date().toISOString(),
         source: "GLO Website Application Form"
       };
 
-      console.log("Submitting data with E.164 phone:", submitData.whatsapp);
+      console.log("Submitting data with E.164 phone:", e164Phone);
 
       // Send data to webhook
       const response = await fetch(WEBHOOK_URL, {
