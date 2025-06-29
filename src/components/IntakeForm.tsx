@@ -89,11 +89,13 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
   // Enhanced phone number parsing and formatting for E.164
   const parsePhoneToE164 = (input: string) => {
     // Remove all non-numeric characters except + at the start
-    const cleaned = input.replace(/[^\d+]/g, '');
+    let cleaned = input.replace(/[^\d+]/g, '');
     
     // If already starts with +, validate and return
     if (cleaned.startsWith('+')) {
-      return cleaned;
+      // Ensure it matches E.164 format
+      const e164Regex = /^\+[1-9]\d{1,14}$/;
+      return e164Regex.test(cleaned) ? cleaned : '';
     }
     
     // Extract numbers only for pattern matching
@@ -113,7 +115,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
       return `+${numbersOnly}`;
     }
     
-    return cleaned;
+    return '';
   };
 
   const formatPhoneForDisplay = (value: string) => {
@@ -145,7 +147,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     
     // Must be in E.164 format: +[1-9][0-9]{1,14}
     const e164Regex = /^\+[1-9]\d{1,14}$/;
-    const isValid = e164Regex.test(e164);
+    const isValid = e164Regex.test(e164) && e164.length > 0;
     
     console.log("Phone validation result:", isValid);
     return isValid;
@@ -289,18 +291,27 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     console.log("Form submitted:", formData);
 
     try {
-      // Prepare data with normalized URLs and E.164 phone format
+      // Convert phone to clean E.164 format
       const e164Phone = parsePhoneToE164(formData.whatsapp);
+      console.log("Converting phone for submission:", formData.whatsapp, "->", e164Phone);
+      
+      // Validate the final E.164 format
+      if (!e164Phone || !/^\+[1-9]\d{1,14}$/.test(e164Phone)) {
+        throw new Error("Invalid phone number format for submission");
+      }
+
+      // Prepare data with normalized URLs and clean E.164 phone format
       const submitData = {
         ...formData,
         linkedin: normalizeUrl(formData.linkedin),
         companyUrl: normalizeUrl(formData.companyUrl),
-        whatsapp: e164Phone, // Convert to clean E.164 for submission
+        whatsapp: e164Phone, // Send clean E.164 format: +14165551234
         timestamp: new Date().toISOString(),
         source: "GLO Website Application Form"
       };
 
-      console.log("Submitting data with E.164 phone:", e164Phone);
+      console.log("Final submission data:", submitData);
+      console.log("WhatsApp field being sent:", submitData.whatsapp);
 
       // Send data to webhook
       const response = await fetch(WEBHOOK_URL, {
