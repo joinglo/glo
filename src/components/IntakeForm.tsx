@@ -1,3 +1,4 @@
+
 import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,29 +35,30 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
   const WEBHOOK_URL = "https://hook.us2.make.com/cormdw65d4eejdwsvpqryytpwvw2stne";
 
   const mrrOptions = [
-    { value: "pre-revenue", label: "Pre-Revenue" },
-    { value: "< $250K", label: "< $250K" },
-    { value: "$250K - $1M", label: "$250K - $1M" },
-    { value: "$1M - $10M", label: "$1M - $10M" },
-    { value: "$10M - $100M", label: "$10M - $100M" },
-    { value: "$100M - $1B", label: "$100M - $1B" },
-    { value: "> $1B", label: "> $1B" },
-  ];
-
-  const arrOptions = [
-    { value: "pre-revenue", label: "Pre-Revenue" },
+    { value: "Pre-Revenue", label: "Pre-Revenue" },
     { value: "< $100K", label: "< $100K" },
     { value: "$100K - $500K", label: "$100K - $500K" },
     { value: "$500K - $1M", label: "$500K - $1M" },
     { value: "$1M - $10M", label: "$1M - $10M" },
     { value: "$10M - $100M", label: "$10M - $100M" },
     { value: "> $100M", label: "> $100M" },
-    { value: "does-not-apply", label: "Does Not Apply" },
+    { value: "Does Not Apply", label: "Does Not Apply" },
+  ];
+
+  const arrOptions = [
+    { value: "Pre-Revenue", label: "Pre-Revenue" },
+    { value: "< $250K", label: "< $250K" },
+    { value: "$250K - $1M", label: "$250K - $1M" },
+    { value: "$1M - $10M", label: "$1M - $10M" },
+    { value: "$10M - $100M", label: "$10M - $100M" },
+    { value: "$100M - $1B", label: "$100M - $1B" },
+    { value: "> $1B", label: "> $1B" },
+    { value: "Does Not Apply", label: "Does Not Apply" },
   ];
 
   const raisedOptions = [
-    { value: "pre-funding", label: "Pre-Funding" },
-    { value: "bootstrapping", label: "Bootstrapping" },
+    { value: "Pre-Funding", label: "Pre-Funding" },
+    { value: "Bootstrapping", label: "Bootstrapping" },
     { value: "< $250K", label: "< $250K" },
     { value: "> $250K", label: "> $250K" },
     { value: "> $500K", label: "> $500K" },
@@ -69,7 +71,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     { value: "> $500M", label: "> $500M" },
     { value: "> $1B", label: "> $1B" },
     { value: "> $5B", label: "> $5B" },
-    { value: "does-not-apply", label: "Does Not Apply" },
+    { value: "Does Not Apply", label: "Does Not Apply" },
   ];
 
   const roleOptions = [
