@@ -88,33 +88,31 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
 
   // Enhanced phone number parsing and formatting for E.164
   const parsePhoneToE164 = (input: string) => {
-    // Remove all non-numeric characters except + at the start
-    let cleaned = input.replace(/[^\d+]/g, '');
+    if (!input || input.trim() === '') return '';
     
-    // If already starts with +, validate and return
-    if (cleaned.startsWith('+')) {
-      // Ensure it matches E.164 format
-      const e164Regex = /^\+[1-9]\d{1,14}$/;
-      return e164Regex.test(cleaned) ? cleaned : '';
-    }
-    
-    // Extract numbers only for pattern matching
+    // Remove all non-numeric characters
     const numbersOnly = input.replace(/\D/g, '');
+    console.log("Parsing phone input:", input, "-> numbers only:", numbersOnly);
     
-    // Handle North American formats (10 or 11 digits)
+    // Handle different input lengths
     if (numbersOnly.length === 10) {
-      // Assume US/Canada if 10 digits: 4165551234 -> +14165551234
-      return `+1${numbersOnly}`;
+      // Assume US/Canada: 4165551234 -> +14165551234
+      const result = `+1${numbersOnly}`;
+      console.log("10 digits, adding +1:", result);
+      return result;
     } else if (numbersOnly.length === 11 && numbersOnly.startsWith('1')) {
       // US/Canada with country code: 14165551234 -> +14165551234
-      return `+${numbersOnly}`;
+      const result = `+${numbersOnly}`;
+      console.log("11 digits starting with 1:", result);
+      return result;
+    } else if (numbersOnly.length >= 7 && numbersOnly.length <= 15) {
+      // International format, add + if not present
+      const result = `+${numbersOnly}`;
+      console.log("International format:", result);
+      return result;
     }
     
-    // For other lengths, assume they provided country code
-    if (numbersOnly.length >= 7 && numbersOnly.length <= 15) {
-      return `+${numbersOnly}`;
-    }
-    
+    console.log("Could not parse phone number:", input);
     return '';
   };
 
@@ -122,15 +120,13 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     // Remove all non-numeric characters
     const numbersOnly = value.replace(/\D/g, '');
     
-    // Handle North American formatting
-    if (numbersOnly.length <= 10) {
-      if (numbersOnly.length <= 3) {
-        return numbersOnly;
-      } else if (numbersOnly.length <= 6) {
-        return `(${numbersOnly.slice(0, 3)}) ${numbersOnly.slice(3)}`;
-      } else {
-        return `(${numbersOnly.slice(0, 3)}) ${numbersOnly.slice(3, 6)}-${numbersOnly.slice(6, 10)}`;
-      }
+    // Handle North American formatting for display
+    if (numbersOnly.length <= 3) {
+      return numbersOnly;
+    } else if (numbersOnly.length <= 6) {
+      return `(${numbersOnly.slice(0, 3)}) ${numbersOnly.slice(3)}`;
+    } else if (numbersOnly.length <= 10) {
+      return `(${numbersOnly.slice(0, 3)}) ${numbersOnly.slice(3, 6)}-${numbersOnly.slice(6)}`;
     } else if (numbersOnly.length === 11 && numbersOnly.startsWith('1')) {
       // 11 digits starting with 1 (North American with country code)
       const withoutCountryCode = numbersOnly.slice(1);
@@ -147,7 +143,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     
     // Must be in E.164 format: +[1-9][0-9]{1,14}
     const e164Regex = /^\+[1-9]\d{1,14}$/;
-    const isValid = e164Regex.test(e164) && e164.length > 0;
+    const isValid = e164Regex.test(e164) && e164.length >= 8; // Minimum reasonable phone length
     
     console.log("Phone validation result:", isValid);
     return isValid;
@@ -297,6 +293,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
       
       // Validate the final E.164 format
       if (!e164Phone || !/^\+[1-9]\d{1,14}$/.test(e164Phone)) {
+        console.error("Invalid phone format for submission:", e164Phone);
         throw new Error("Invalid phone number format for submission");
       }
 
@@ -453,7 +450,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     value={formData.whatsapp}
                     onChange={(e) => handleInputChange("whatsapp", e.target.value)}
                     className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="WhatsApp *"
+                    placeholder="WhatsApp Number *"
                     required
                   />
                   {renderFieldIcon("whatsapp")}
