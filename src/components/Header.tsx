@@ -1,5 +1,5 @@
 
-import { Calendar, Menu } from "lucide-react";
+import { Calendar, Menu, Mail } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,7 +15,6 @@ const Header = () => {
     const intakeForm = document.getElementById('intake-form');
     if (intakeForm) {
       intakeForm.scrollIntoView({ behavior: 'smooth' });
-      // Expand the form after scrolling
       setTimeout(() => {
         const expandButton = document.querySelector('[data-expand-form]') as HTMLButtonElement;
         if (expandButton) {
@@ -44,6 +43,10 @@ const Header = () => {
           <Calendar size={16} />
           Events
         </a>
+        <a href="https://global-entrepreneurs-hubs-newsletter.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-base">
+          <Mail size={16} />
+          Newsletter
+        </a>
         <a href="https://joinglocommunity.com/signin" target="_blank" rel="noopener noreferrer" className="px-4 py-2 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-base">
           Sign In
         </a>
@@ -68,6 +71,10 @@ const Header = () => {
               <Calendar size={16} />
               Events
             </a>
+            <a href="https://global-entrepreneurs-hubs-newsletter.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium w-full justify-center text-base">
+              <Mail size={16} />
+              Newsletter
+            </a>
             <a href="https://joinglocommunity.com/signin" target="_blank" rel="noopener noreferrer" className="px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-center text-base">
               Sign In
             </a>
@@ -85,3 +92,4 @@ const Header = () => {
 };
 
 export default Header;
+

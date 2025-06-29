@@ -1,19 +1,9 @@
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Linkedin, Calendar, Mail, MessageCircle } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Newsletter = () => {
   const { ref, isVisible } = useScrollAnimation();
-  const [email, setEmail] = useState("");
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle newsletter subscription
-    console.log("Newsletter subscription:", email);
-  };
 
   return (
     <section 
@@ -73,36 +63,10 @@ const Newsletter = () => {
             </a>
           </div>
         </div>
-
-        {/* Newsletter Section */}
-        <div className="bg-card/30 backdrop-blur-sm border border-border rounded-lg px-8 py-8">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            GLO Newsletter
-          </h2>
-          <p className="text-muted-foreground text-lg mb-6 max-w-2xl mx-auto">
-            Silicon Valley's high-traction tech community builder. Exclusive events, private slack communities and over $4.6M in B2B SaaS perks for members.
-          </p>
-          
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <Input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 bg-background border-border"
-              required
-            />
-            <Button 
-              type="submit"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-2 font-semibold"
-            >
-              Subscribe
-            </Button>
-          </form>
-        </div>
       </div>
     </section>
   );
 };
 
 export default Newsletter;
+

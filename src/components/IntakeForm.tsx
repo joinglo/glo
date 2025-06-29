@@ -1,4 +1,3 @@
-
 import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -467,7 +466,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     onValueChange={(value) => handleSelectChange("jobTitle", value)} 
                     required
                   >
-                    <SelectTrigger className="w-full h-14 px-4 bg-muted/10 border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
+                    <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
                       <SelectValue placeholder="Role *" />
                     </SelectTrigger>
                     <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
@@ -493,7 +492,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     onValueChange={(value) => handleSelectChange("mrr", value)} 
                     required
                   >
-                    <SelectTrigger className="w-full h-14 px-4 bg-muted/10 border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
+                    <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
                       <SelectValue placeholder="Monthly Revenue *" />
                     </SelectTrigger>
                     <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
@@ -519,7 +518,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     onValueChange={(value) => handleSelectChange("arr", value)} 
                     required
                   >
-                    <SelectTrigger className="w-full h-14 px-4 bg-muted/10 border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
+                    <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
                       <SelectValue placeholder="2025 ARR Projection *" />
                     </SelectTrigger>
                     <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
@@ -545,7 +544,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     onValueChange={(value) => handleSelectChange("raised", value)} 
                     required
                   >
-                    <SelectTrigger className="w-full h-14 px-4 bg-muted/10 border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
+                    <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
                       <SelectValue placeholder="Capital Raised *" />
                     </SelectTrigger>
                     <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">

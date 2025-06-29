@@ -8,7 +8,6 @@ import Features from "@/components/Features";
 import IsGloForYou from "@/components/IsGloForYou";
 import IntakeForm, { IntakeFormRef } from "@/components/IntakeForm";
 import FAQ from "@/components/FAQ";
-import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -24,10 +23,10 @@ const Index = () => {
       <Features />
       <IsGloForYou />
       <FAQ />
-      <Newsletter />
       <Footer />
     </div>
   );
 };
 
 export default Index;
+
