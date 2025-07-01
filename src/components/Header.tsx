@@ -1,4 +1,3 @@
-
 import { Calendar, Menu, Mail } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -47,9 +46,6 @@ const Header = () => {
           <Mail size={16} />
           Newsletter
         </a>
-        <a href="https://joinglocommunity.com/signin" target="_blank" rel="noopener noreferrer" className="px-4 py-2 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-base">
-          Sign In
-        </a>
         <button 
           className="minimal-button px-6 py-2 rounded-full font-bold glow-effect text-base"
           onClick={scrollToIntakeForm}
@@ -74,9 +70,6 @@ const Header = () => {
             <a href="https://global-entrepreneurs-hubs-newsletter.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium w-full justify-center text-base">
               <Mail size={16} />
               Newsletter
-            </a>
-            <a href="https://joinglocommunity.com/signin" target="_blank" rel="noopener noreferrer" className="px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-center text-base">
-              Sign In
             </a>
             <button 
               className="minimal-button px-6 py-3 rounded-full font-bold w-full text-base"

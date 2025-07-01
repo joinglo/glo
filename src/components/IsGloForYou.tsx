@@ -1,4 +1,3 @@
-
 import { Check, X } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
@@ -29,7 +28,7 @@ const IsGloForYou = () => {
       }`}
     >
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
           {/* Left side - Description */}
           <div className="lg:col-span-1">
             <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">
@@ -55,7 +54,7 @@ const IsGloForYou = () => {
           </div>
 
           {/* Right - GLO is not for */}
-          <div className="bg-card/30 backdrop-blur-sm border border-red-500 rounded-2xl p-5">
+          <div className="bg-card/30 backdrop-blur-sm border border-red-500 rounded-2xl p-5 w-auto h-auto">
             <h3 className="text-lg font-black text-red-400 mb-4">GLO is not for:</h3>
             <div className="space-y-3">
               {gloIsNotFor.map((item, index) => (
