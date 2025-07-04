@@ -386,7 +386,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
         </div>
 
         {isFormExpanded && (
-          <div className="bg-background max-w-lg mx-auto">
+          <div className="bg-background max-w-xl mx-auto">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-2 gap-4">
                 <div className="relative">
