@@ -29,7 +29,7 @@ const Header = () => {
       <div className="flex items-center">
         <a href="https://www.linkedin.com/company/global-entrepreneurs-hub/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center overflow-hidden">
           <img 
-            src="/lovable-uploads/558b4ef1-fd58-48d7-ae03-bc5034b3e530.png" 
+            src="/favicon.png" 
             alt="GLO"
             className="w-12 h-12 sm:w-14 sm:h-14 object-cover"
           />
