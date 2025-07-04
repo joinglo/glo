@@ -36,40 +36,42 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
   const mrrOptions = [
     { value: "Pre-Revenue", label: "Pre-Revenue" },
     { value: "< $100K", label: "< $100K" },
-    { value: "$100K - $500K", label: "$100K - $500K" },
-    { value: "$500K - $1M", label: "$500K - $1M" },
-    { value: "$1M - $10M", label: "$1M - $10M" },
-    { value: "$10M - $100M", label: "$10M - $100M" },
-    { value: "> $100M", label: "> $100M" },
+    { value: "$100K - $250K", label: "$100K - $250K" },
+    { value: "$250K - $999K", label: "$250K - $999K" },
+    { value: "$1M - $5M", label: "$1M - $5M" },
+    { value: "$5M - $10M", label: "$5M - $10M" },
+    { value: "$10M - $25M", label: "$10M - $25M" },
+    { value: "$25M - $100M", label: "$25M - $100M" },
+    { value: "$100M+", label: "$100M+" },
     { value: "Does Not Apply", label: "Does Not Apply" },
   ];
 
   const arrOptions = [
     { value: "Pre-Revenue", label: "Pre-Revenue" },
-    { value: "< $250K", label: "< $250K" },
-    { value: "$250K - $1M", label: "$250K - $1M" },
-    { value: "$1M - $10M", label: "$1M - $10M" },
-    { value: "$10M - $100M", label: "$10M - $100M" },
-    { value: "$100M - $1B", label: "$100M - $1B" },
-    { value: "> $1B", label: "> $1B" },
+    { value: "< $999K", label: "< $999K" },
+    { value: "$1M - $5M", label: "$1M - $5M" },
+    { value: "$5M - $10M", label: "$5M - $10M" },
+    { value: "$10M - $25M", label: "$10M - $25M" },
+    { value: "$25M - $100M", label: "$25M - $100M" },
+    { value: "$100M - $500M", label: "$100M - $500M" },
+    { value: "$500M - $1B", label: "$500M - $1B" },
+    { value: "$1B+", label: "$1B+" },
     { value: "Does Not Apply", label: "Does Not Apply" },
   ];
 
   const raisedOptions = [
     { value: "Pre-Funding", label: "Pre-Funding" },
     { value: "Bootstrapping", label: "Bootstrapping" },
-    { value: "< $250K", label: "< $250K" },
-    { value: "> $250K", label: "> $250K" },
-    { value: "> $500K", label: "> $500K" },
-    { value: "> $1M", label: "> $1M" },
-    { value: "> $5M", label: "> $5M" },
-    { value: "> $10M", label: "> $10M" },
-    { value: "> $25M", label: "> $25M" },
-    { value: "> $100M", label: "> $100M" },
-    { value: "> $250M", label: "> $250M" },
-    { value: "> $500M", label: "> $500M" },
-    { value: "> $1B", label: "> $1B" },
-    { value: "> $5B", label: "> $5B" },
+    { value: "< $100K", label: "< $100K" },
+    { value: "$100K - $500K", label: "$100K - $500K" },
+    { value: "$500K - $999K", label: "$500K - $999K" },
+    { value: "$1M - $5M", label: "$1M - $5M" },
+    { value: "$5M - $10M", label: "$5M - $10M" },
+    { value: "$10M - $25M", label: "$10M - $25M" },
+    { value: "$25M - $100M", label: "$25M - $100M" },
+    { value: "$100M - $500M", label: "$100M - $500M" },
+    { value: "$500M - $1B", label: "$500M - $1B" },
+    { value: "$1B+", label: "$1B+" },
     { value: "Does Not Apply", label: "Does Not Apply" },
   ];
 
@@ -493,7 +495,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     required
                   >
                     <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
-                      <SelectValue placeholder="Monthly Revenue *" />
+                      <SelectValue placeholder="Monthly Revenue ($MRR) *" />
                     </SelectTrigger>
                     <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
                       {mrrOptions.map((option) => (
@@ -519,7 +521,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     required
                   >
                     <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
-                      <SelectValue placeholder="2025 ARR Projection *" />
+                      <SelectValue placeholder="Annual Revenue 2025 ($ARR) *" />
                     </SelectTrigger>
                     <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
                       {arrOptions.map((option) => (
@@ -545,7 +547,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
                     required
                   >
                     <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
-                      <SelectValue placeholder="Capital Raised *" />
+                      <SelectValue placeholder="Funding Raised *" />
                     </SelectTrigger>
                     <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
                       {raisedOptions.map((option) => (
