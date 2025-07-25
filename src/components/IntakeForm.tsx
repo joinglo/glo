@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { ChevronDown, Check, X } from "lucide-react";
+import { ChevronDown, Check, X, Send } from "lucide-react";
 
 export interface IntakeFormRef {
   expandForm: () => void;
@@ -13,7 +13,6 @@ export interface IntakeFormRef {
 
 const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
   const { toast } = useToast();
-  const [isFormExpanded, setIsFormExpanded] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [fieldValid, setFieldValid] = useState<Record<string, boolean>>({});
@@ -85,7 +84,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     expandForm: () => {
-      setIsFormExpanded(true);
+      // Form is now always expanded, so this is just for compatibility
     }
   }));
 
@@ -344,12 +343,6 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
         });
         setFieldErrors({});
         setFieldValid({});
-        
-        // Force re-render to reset select components
-        setTimeout(() => {
-          setIsFormExpanded(false);
-          setTimeout(() => setIsFormExpanded(true), 100);
-        }, 1000);
       } else {
         throw new Error("Failed to submit application");
       }
@@ -366,244 +359,241 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
   };
 
   return (
-    <section id="intake-form" className="py-4 px-6 bg-background">
+    <section id="intake-form" className="py-12 px-6 bg-background">
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-foreground mb-6">
             Explore a membership to our private community of startup founders.
           </h2>
-          
-          {!isFormExpanded && (
-            <Button
-              onClick={() => setIsFormExpanded(true)}
-              className="minimal-button px-8 py-4 font-bold rounded-full text-lg hover:scale-105 transition-all duration-200 flex items-center gap-2 mx-auto"
-              data-expand-form
-            >
-              Start Application
-              <ChevronDown size={20} />
-            </Button>
-          )}
         </div>
 
-        {isFormExpanded && (
-          <div className="bg-background max-w-xl mx-auto">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="relative">
-                  <Input
-                    id="fullName"
-                    value={formData.fullName}
-                    onChange={(e) => handleInputChange("fullName", e.target.value)}
-                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="Full Name *"
-                    required
-                  />
-                  {renderFieldIcon("fullName")}
-                </div>
-
-                <div className="relative">
-                  <Input
-                    id="linkedin"
-                    value={formData.linkedin}
-                    onChange={(e) => handleInputChange("linkedin", e.target.value)}
-                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="LinkedIn *"
-                    required
-                  />
-                  {renderFieldIcon("linkedin")}
-                  {fieldErrors.linkedin && (
-                    <p className="text-red-500 text-xs mt-1">{fieldErrors.linkedin}</p>
-                  )}
-                </div>
-
-                <div className="relative">
-                  <Input
-                    id="companyUrl"
-                    value={formData.companyUrl}
-                    onChange={(e) => handleInputChange("companyUrl", e.target.value)}
-                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="Company URL *"
-                    required
-                  />
-                  {renderFieldIcon("companyUrl")}
-                  {fieldErrors.companyUrl && (
-                    <p className="text-red-500 text-xs mt-1">{fieldErrors.companyUrl}</p>
-                  )}
-                </div>
-
-                <div className="relative">
-                  <Input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange("email", e.target.value)}
-                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="Email *"
-                    required
-                  />
-                  {renderFieldIcon("email")}
-                  {fieldErrors.email && (
-                    <p className="text-red-500 text-xs mt-1">{fieldErrors.email}</p>
-                  )}
-                </div>
-
-                <div className="relative">
-                  <Input
-                    id="whatsapp"
-                    value={formData.whatsapp}
-                    onChange={(e) => handleInputChange("whatsapp", e.target.value)}
-                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="WhatsApp Number *"
-                    required
-                  />
-                  {renderFieldIcon("whatsapp")}
-                  {fieldErrors.whatsapp && (
-                    <p className="text-red-500 text-xs mt-1">{fieldErrors.whatsapp}</p>
-                  )}
-                </div>
-
-                <div className="relative">
-                  <Select 
-                    value={formData.jobTitle} 
-                    onValueChange={(value) => handleSelectChange("jobTitle", value)} 
-                    required
-                  >
-                    <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
-                      <SelectValue placeholder="Role *" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
-                      {roleOptions.map((option) => (
-                        <SelectItem 
-                          key={option.value} 
-                          value={option.value}
-                          className="text-foreground hover:bg-muted/50 cursor-pointer px-4 py-2"
-                        >
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {formData.jobTitle && (
-                    <Check className="absolute right-10 top-1/2 transform -translate-y-1/2 text-green-500 w-4 h-4 pointer-events-none" />
-                  )}
-                </div>
-
-                <div className="relative">
-                  <Select 
-                    value={formData.mrr} 
-                    onValueChange={(value) => handleSelectChange("mrr", value)} 
-                    required
-                  >
-                    <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
-                      <SelectValue placeholder="Monthly Revenue ($MRR) *" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
-                      {mrrOptions.map((option) => (
-                        <SelectItem 
-                          key={option.value} 
-                          value={option.value}
-                          className="text-foreground hover:bg-muted/50 cursor-pointer px-4 py-2"
-                        >
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {formData.mrr && (
-                    <Check className="absolute right-10 top-1/2 transform -translate-y-1/2 text-green-500 w-4 h-4 pointer-events-none" />
-                  )}
-                </div>
-
-                <div className="relative">
-                  <Select 
-                    value={formData.arr} 
-                    onValueChange={(value) => handleSelectChange("arr", value)} 
-                    required
-                  >
-                    <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
-                      <SelectValue placeholder="Annual Revenue 2025 ($ARR) *" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
-                      {arrOptions.map((option) => (
-                        <SelectItem 
-                          key={option.value} 
-                          value={option.value}
-                          className="text-foreground hover:bg-muted/50 cursor-pointer px-4 py-2"
-                        >
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {formData.arr && (
-                    <Check className="absolute right-10 top-1/2 transform -translate-y-1/2 text-green-500 w-4 h-4 pointer-events-none" />
-                  )}
-                </div>
-
-                <div className="relative">
-                  <Select 
-                    value={formData.raised} 
-                    onValueChange={(value) => handleSelectChange("raised", value)} 
-                    required
-                  >
-                    <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
-                      <SelectValue placeholder="Funding Raised *" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
-                      {raisedOptions.map((option) => (
-                        <SelectItem 
-                          key={option.value} 
-                          value={option.value}
-                          className="text-foreground hover:bg-muted/50 cursor-pointer px-4 py-2"
-                        >
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {formData.raised && (
-                    <Check className="absolute right-10 top-1/2 transform -translate-y-1/2 text-green-500 w-4 h-4 pointer-events-none" />
-                  )}
-                </div>
-
-                <div className="relative">
-                  <Input
-                    id="cities"
-                    value={formData.cities}
-                    onChange={(e) => handleInputChange("cities", e.target.value)}
-                    className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    placeholder="City(s) *"
-                    required
-                  />
-                  {renderFieldIcon("cities")}
-                </div>
-              </div>
-
-              <div className="pt-4">
-                <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
-                  What unique value will you contribute to our community? Share your company objectives and personal aspirations.
-                </p>
-                <Textarea
-                  id="story"
-                  value={formData.story}
-                  onChange={(e) => handleInputChange("story", e.target.value)}
-                  className="w-full min-h-[120px] px-4 py-3 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary resize-none text-sm"
-                  placeholder="Describe your entrepreneurial journey and vision..."
+        <div className="bg-background max-w-xl mx-auto">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="relative">
+                <Input
+                  id="fullName"
+                  value={formData.fullName}
+                  onChange={(e) => handleInputChange("fullName", e.target.value)}
+                  className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                  placeholder="Full Name *"
+                  required
                 />
+                {renderFieldIcon("fullName")}
               </div>
 
-              <div className="flex justify-center pt-6">
-                <Button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-3 h-12 font-semibold rounded-md text-base min-w-[200px] disabled:opacity-50"
-                >
-                  {isSubmitting ? "Submitting..." : "Submit Application"}
-                </Button>
+              <div className="relative">
+                <Input
+                  id="linkedin"
+                  value={formData.linkedin}
+                  onChange={(e) => handleInputChange("linkedin", e.target.value)}
+                  className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                  placeholder="LinkedIn *"
+                  required
+                />
+                {renderFieldIcon("linkedin")}
+                {fieldErrors.linkedin && (
+                  <p className="text-red-500 text-xs mt-1">{fieldErrors.linkedin}</p>
+                )}
               </div>
-            </form>
-          </div>
-        )}
+
+              <div className="relative">
+                <Input
+                  id="companyUrl"
+                  value={formData.companyUrl}
+                  onChange={(e) => handleInputChange("companyUrl", e.target.value)}
+                  className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                  placeholder="Company URL *"
+                  required
+                />
+                {renderFieldIcon("companyUrl")}
+                {fieldErrors.companyUrl && (
+                  <p className="text-red-500 text-xs mt-1">{fieldErrors.companyUrl}</p>
+                )}
+              </div>
+
+              <div className="relative">
+                <Input
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => handleInputChange("email", e.target.value)}
+                  className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                  placeholder="Email *"
+                  required
+                />
+                {renderFieldIcon("email")}
+                {fieldErrors.email && (
+                  <p className="text-red-500 text-xs mt-1">{fieldErrors.email}</p>
+                )}
+              </div>
+
+              <div className="relative">
+                <Input
+                  id="whatsapp"
+                  value={formData.whatsapp}
+                  onChange={(e) => handleInputChange("whatsapp", e.target.value)}
+                  className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                  placeholder="WhatsApp Number *"
+                  required
+                />
+                {renderFieldIcon("whatsapp")}
+                {fieldErrors.whatsapp && (
+                  <p className="text-red-500 text-xs mt-1">{fieldErrors.whatsapp}</p>
+                )}
+              </div>
+
+              <div className="relative">
+                <Select 
+                  value={formData.jobTitle} 
+                  onValueChange={(value) => handleSelectChange("jobTitle", value)} 
+                  required
+                >
+                  <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
+                    <SelectValue placeholder="Role *" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
+                    {roleOptions.map((option) => (
+                      <SelectItem 
+                        key={option.value} 
+                        value={option.value}
+                        className="text-foreground hover:bg-muted/50 cursor-pointer px-4 py-2"
+                      >
+                        {option.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {formData.jobTitle && (
+                  <Check className="absolute right-10 top-1/2 transform -translate-y-1/2 text-green-500 w-4 h-4 pointer-events-none" />
+                )}
+              </div>
+
+              <div className="relative">
+                <Select 
+                  value={formData.mrr} 
+                  onValueChange={(value) => handleSelectChange("mrr", value)} 
+                  required
+                >
+                  <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
+                    <SelectValue placeholder="Monthly Revenue ($MRR) *" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
+                    {mrrOptions.map((option) => (
+                      <SelectItem 
+                        key={option.value} 
+                        value={option.value}
+                        className="text-foreground hover:bg-muted/50 cursor-pointer px-4 py-2"
+                      >
+                        {option.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {formData.mrr && (
+                  <Check className="absolute right-10 top-1/2 transform -translate-y-1/2 text-green-500 w-4 h-4 pointer-events-none" />
+                )}
+              </div>
+
+              <div className="relative">
+                <Select 
+                  value={formData.arr} 
+                  onValueChange={(value) => handleSelectChange("arr", value)} 
+                  required
+                >
+                  <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
+                    <SelectValue placeholder="Annual Revenue 2025 ($ARR) *" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
+                    {arrOptions.map((option) => (
+                      <SelectItem 
+                        key={option.value} 
+                        value={option.value}
+                        className="text-foreground hover:bg-muted/50 cursor-pointer px-4 py-2"
+                      >
+                        {option.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {formData.arr && (
+                  <Check className="absolute right-10 top-1/2 transform -translate-y-1/2 text-green-500 w-4 h-4 pointer-events-none" />
+                )}
+              </div>
+
+              <div className="relative">
+                <Select 
+                  value={formData.raised} 
+                  onValueChange={(value) => handleSelectChange("raised", value)} 
+                  required
+                >
+                  <SelectTrigger className="w-full h-14 px-4 bg-background border border-muted-foreground/20 rounded-md text-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm data-[placeholder]:text-muted-foreground">
+                    <SelectValue placeholder="Funding Raised *" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background border border-muted-foreground/20 rounded-md shadow-lg z-50">
+                    {raisedOptions.map((option) => (
+                      <SelectItem 
+                        key={option.value} 
+                        value={option.value}
+                        className="text-foreground hover:bg-muted/50 cursor-pointer px-4 py-2"
+                      >
+                        {option.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {formData.raised && (
+                  <Check className="absolute right-10 top-1/2 transform -translate-y-1/2 text-green-500 w-4 h-4 pointer-events-none" />
+                )}
+              </div>
+
+              <div className="relative">
+                <Input
+                  id="cities"
+                  value={formData.cities}
+                  onChange={(e) => handleInputChange("cities", e.target.value)}
+                  className="w-full h-14 px-4 pr-10 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                  placeholder="City(s) *"
+                  required
+                />
+                {renderFieldIcon("cities")}
+              </div>
+            </div>
+
+            <div className="pt-4">
+              <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
+                What unique value will you contribute to our community? Share your company objectives and personal aspirations.
+              </p>
+              <Textarea
+                id="story"
+                value={formData.story}
+                onChange={(e) => handleInputChange("story", e.target.value)}
+                className="w-full min-h-[120px] px-4 py-3 bg-background border border-muted-foreground/20 rounded-md text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary resize-none text-sm"
+                placeholder="Describe your entrepreneurial journey and vision..."
+              />
+            </div>
+
+            <div className="flex justify-center pt-8">
+              <Button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold px-12 py-4 h-14 rounded-full text-lg min-w-[280px] disabled:opacity-50 transform transition-all duration-200 hover:scale-[1.02] hover:shadow-lg disabled:hover:scale-100 disabled:hover:shadow-none flex items-center gap-3"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    Submit Application
+                    <Send size={20} />
+                  </>
+                )}
+              </Button>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
   );
