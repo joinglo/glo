@@ -1,4 +1,4 @@
-import { Calendar, Menu, Mail } from "lucide-react";
+import { Calendar, Menu } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -42,10 +42,6 @@ const Header = () => {
           <Calendar size={16} />
           Events
         </a>
-        <a href="https://global-entrepreneurs-hubs-newsletter.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-base">
-          <Mail size={16} />
-          Newsletter
-        </a>
         <button 
           className="minimal-button px-6 py-2 rounded-full font-bold glow-effect text-base"
           onClick={scrollToIntakeForm}
@@ -66,10 +62,6 @@ const Header = () => {
             <a href="https://lu.ma/glo_community" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium w-full justify-center text-base">
               <Calendar size={16} />
               Events
-            </a>
-            <a href="https://global-entrepreneurs-hubs-newsletter.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium w-full justify-center text-base">
-              <Mail size={16} />
-              Newsletter
             </a>
             <button 
               className="minimal-button px-6 py-3 rounded-full font-bold w-full text-base"
