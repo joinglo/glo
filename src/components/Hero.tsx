@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import AnimatedStars from "@/components/AnimatedStars";
 
@@ -14,8 +12,6 @@ function getRandomInt(max) {
 }
 
 const Hero = () => {
-  const [isFollowHovered, setIsFollowHovered] = useState(false);
-
   const scrollToIntakeForm = () => {
     const intakeForm = document.getElementById('intake-form');
     if (intakeForm) {
@@ -33,20 +29,6 @@ const Hero = () => {
   return (
     <section className="flex flex-col items-center justify-center px-4 sm:px-6 text-center bg-background relative overflow-hidden h-[70vh] sm:h-[90vh] pt-8 sm:pt-0 pb-4 sm:pb-0">
       <div className="max-w-6xl mx-auto relative z-10 w-full animate-fade-in">
-        {/* Follow button */}
-        <div className="mb-6 flex justify-center">
-          <a
-            href="https://x.com/join_glo"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative flex items-center gap-2 px-4 py-2 bg-transparent rounded-md font-medium hover:scale-105 transition-all duration-200 text-white text-base border border-purple-400/30 shadow-lg hover:shadow-purple-500/25"
-            onMouseEnter={() => setIsFollowHovered(true)}
-            onMouseLeave={() => setIsFollowHovered(false)}
-          >
-            <span className="relative">Follow on 𝕏</span>
-          </a>
-        </div>
-
         {/* Main heading */}
         <div className="mb-2 sm:mb-6">
           <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-foreground mb-3 sm:mb-4 opacity-80">
