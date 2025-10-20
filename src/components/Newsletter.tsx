@@ -1,5 +1,5 @@
 
-import { Linkedin, Calendar, Mail, MessageCircle } from "lucide-react";
+import { Linkedin, Calendar, Mail, Instagram } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Newsletter = () => {
@@ -30,15 +30,6 @@ const Newsletter = () => {
             >
               LinkedIn
             </a>
-            {', '}
-            <a 
-              href="https://chat.whatsapp.com/CbN9EFNLkwf732wHkvFf58" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-primary hover:underline"
-            >
-              WhatsApp
-            </a>
             {' '}or via{' '}
             <a 
               href="mailto:hello@joinglocommunity.com" 
@@ -52,8 +43,8 @@ const Newsletter = () => {
             <a href="https://www.linkedin.com/company/global-entrepreneurs-hub/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2">
               <Linkedin size={24} />
             </a>
-            <a href="https://chat.whatsapp.com/CbN9EFNLkwf732wHkvFf58" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2">
-              <MessageCircle size={24} />
+            <a href="https://www.instagram.com/global.entrepreneurs.hub/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2">
+              <Instagram size={24} />
             </a>
             <a href="https://global-entrepreneurs-hubs-newsletter.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2">
               <Mail size={24} />
