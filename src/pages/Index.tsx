@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Testimonials from "@/components/Testimonials";
 import Communities from "@/components/Communities";
+import MembershipOverview from "@/components/MembershipOverview";
 import IntakeForm, { IntakeFormRef } from "@/components/IntakeForm";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
@@ -18,6 +19,7 @@ const Index = () => {
       <IntakeForm ref={intakeFormRef} />
       <Testimonials />
       <Communities />
+      <MembershipOverview />
       <Newsletter />
       <Footer />
     </div>
