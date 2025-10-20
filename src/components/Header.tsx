@@ -1,5 +1,6 @@
 import { Calendar, Menu } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -38,6 +39,15 @@ const Header = () => {
       
       {/* Desktop Navigation */}
       <nav className="hidden md:flex items-center gap-6">
+        <Link to="/founders" className="text-foreground hover:text-primary transition-colors font-medium text-base">
+          Founders
+        </Link>
+        <Link to="/creators" className="text-foreground hover:text-primary transition-colors font-medium text-base">
+          Creators
+        </Link>
+        <Link to="/investors" className="text-foreground hover:text-primary transition-colors font-medium text-base">
+          Investors
+        </Link>
         <a href="https://lu.ma/glo_community" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium text-base">
           <Calendar size={16} />
           Events
@@ -59,6 +69,15 @@ const Header = () => {
         </SheetTrigger>
         <SheetContent side="right" className="w-[280px]">
           <div className="flex flex-col gap-4 mt-8">
+            <Link to="/founders" onClick={() => setIsOpen(false)} className="px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium w-full text-center text-base">
+              Founders
+            </Link>
+            <Link to="/creators" onClick={() => setIsOpen(false)} className="px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium w-full text-center text-base">
+              Creators
+            </Link>
+            <Link to="/investors" onClick={() => setIsOpen(false)} className="px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium w-full text-center text-base">
+              Investors
+            </Link>
             <a href="https://lu.ma/glo_community" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-3 text-foreground border border-border rounded-full hover:bg-secondary transition-all duration-200 font-medium w-full justify-center text-base">
               <Calendar size={16} />
               Events
