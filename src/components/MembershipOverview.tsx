@@ -1,5 +1,5 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { Users, TrendingUp, Calendar, Handshake } from "lucide-react";
+import { Users, TrendingUp, Calendar, Handshake, Zap, Network, Layers, CreditCard, Gift } from "lucide-react";
 
 const MembershipOverview = () => {
   const { ref, isVisible } = useScrollAnimation();
@@ -44,41 +44,44 @@ const MembershipOverview = () => {
           </div>
         </div>
 
-        {/* The GLO Advantage */}
-        <div>
-          <h2 className="text-3xl md:text-4xl font-black text-center text-foreground mb-8">
-            The <span className="text-orange-400">GLO</span> Advantage
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-card/30 backdrop-blur-sm border border-border rounded-2xl p-6">
-              <h4 className="text-xl font-black text-foreground mb-3">90% Digital, 100% Engagement</h4>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                No group chats or mass networking. Every member receives personalized, direct introductions via WhatsApp and email based on specific business needs and goals every week.
-              </p>
-            </div>
-            <div className="bg-card/30 backdrop-blur-sm border border-border rounded-2xl p-6">
-              <h4 className="text-xl font-black text-foreground mb-3">Exclusive Network Access</h4>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                Vetted community of $1M+ ARR founders, investors, Silicon Valley operators, and strategic partners who are actively engaged and accessible.
-              </p>
-            </div>
-            <div className="bg-card/30 backdrop-blur-sm border border-border rounded-2xl p-6">
-              <h4 className="text-xl font-black text-foreground mb-3">Full-Stack Support</h4>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                Fundraising, go-to-market strategy, talent acquisition, media & PR, legal and operational partnerships.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Community Features */}
+        {/* Community Features & Advantages */}
         <div>
           <h2 className="text-3xl md:text-4xl font-black text-center text-foreground mb-8">
             Community Features
           </h2>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-card/30 backdrop-blur-sm border border-border rounded-2xl p-6">
-              <h4 className="text-xl font-black text-foreground mb-3">Freemium Membership</h4>
+              <div className="flex items-center gap-2 mb-3">
+                <Zap className="text-orange-400 w-6 h-6" />
+                <h4 className="text-xl font-black text-foreground">100% Engagement</h4>
+              </div>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                No group chats or mass networking. Personalized, direct introductions via WhatsApp and email based on your specific business needs every week.
+              </p>
+            </div>
+            <div className="bg-card/30 backdrop-blur-sm border border-border rounded-2xl p-6">
+              <div className="flex items-center gap-2 mb-3">
+                <Network className="text-orange-400 w-6 h-6" />
+                <h4 className="text-xl font-black text-foreground">Exclusive Network</h4>
+              </div>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                Vetted community of $1M+ ARR founders, investors, Silicon Valley operators, and strategic partners.
+              </p>
+            </div>
+            <div className="bg-card/30 backdrop-blur-sm border border-border rounded-2xl p-6">
+              <div className="flex items-center gap-2 mb-3">
+                <Layers className="text-orange-400 w-6 h-6" />
+                <h4 className="text-xl font-black text-foreground">Full-Stack Support</h4>
+              </div>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                Fundraising, go-to-market strategy, talent acquisition, media & PR, legal and operational partnerships.
+              </p>
+            </div>
+            <div className="bg-card/30 backdrop-blur-sm border border-border rounded-2xl p-6">
+              <div className="flex items-center gap-2 mb-3">
+                <CreditCard className="text-orange-400 w-6 h-6" />
+                <h4 className="text-xl font-black text-foreground">Freemium Membership</h4>
+              </div>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 Free + subscription-based networking services with personalized introduction services maintaining 100% member engagement.
               </p>
@@ -109,8 +112,11 @@ const MembershipOverview = () => {
                 Curated relationships with service providers, investors, and corporate partners.
               </p>
             </div>
-            <div className="bg-gradient-to-r from-orange-500/10 to-orange-600/10 border border-orange-500/30 rounded-2xl p-6">
-              <h4 className="text-xl font-black text-foreground mb-2">$5.2M+ in Benefits</h4>
+          </div>
+          <div className="bg-gradient-to-r from-orange-500/10 to-orange-600/10 border border-orange-500/30 rounded-2xl p-6 mt-6 flex items-center gap-4">
+            <Gift className="text-orange-400 w-10 h-10 flex-shrink-0" />
+            <div>
+              <h4 className="text-xl font-black text-foreground mb-1">$5.2M+ in Benefits</h4>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 Exclusive B2B SaaS product benefits and discounts across the ecosystem.
               </p>
