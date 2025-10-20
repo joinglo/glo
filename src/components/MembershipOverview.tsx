@@ -124,22 +124,6 @@ const MembershipOverview = () => {
           </div>
         </div>
 
-        {/* Media & Growth + Silicon Valley Native */}
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-card/30 backdrop-blur-sm border border-border rounded-2xl p-6">
-            <h4 className="text-xl font-black text-foreground mb-3">(soon) Media & Growth Strategy</h4>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              Building organic growth through authentic content across TikTok, Instagram, YouTube, X, and LinkedIn, featuring member success stories and Silicon Valley startup lifestyle content. This creates a flywheel effect that attracts both high-quality founders and strategic partners.
-            </p>
-          </div>
-          <div className="bg-card/30 backdrop-blur-sm border border-border rounded-2xl p-6">
-            <h4 className="text-xl font-black text-foreground mb-3">Silicon Valley Native</h4>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              Deep integration with the ecosystem where 30% of US venture funding occurs. We understand the unique challenges international founders face and provide the infrastructure needed to succeed in the world's most important startup ecosystem.
-            </p>
-          </div>
-        </div>
-
         {/* Footer tagline */}
         <div className="text-center pt-8">
           <p className="text-lg text-muted-foreground italic">
