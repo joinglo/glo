@@ -28,7 +28,7 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
           </h2>
         </div>
         <div
-          style={{ width: "50%", height: "500px" }}
+          style={{ width: "100%", height: "500px" }}
           data-fillout-id="doa6VrZAARus"
           data-fillout-embed-type="standard"
           data-fillout-inherit-parameters
