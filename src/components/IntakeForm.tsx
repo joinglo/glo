@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle } from "react";
+import { forwardRef, useEffect, useImperativeHandle } from "react";
 
 export interface IntakeFormRef {
   expandForm: () => void;
@@ -9,6 +9,16 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
     expandForm: () => {},
   }));
 
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://server.fillout.com/embed/v1/";
+    script.async = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <section id="intake-form" className="py-12 px-6 bg-background">
       <div className="max-w-2xl mx-auto">
@@ -17,13 +27,12 @@ const IntakeForm = forwardRef<IntakeFormRef>((props, ref) => {
             Explore a membership to our private community of startup founders.
           </h2>
         </div>
-        <iframe
-          className="airtable-embed"
-          src="https://airtable.com/embed/appsw9HMZglMGtXbx/pagdJuQumjh4VIqm1/form"
-          frameBorder="0"
-          width="100%"
-          height="533"
-          style={{ background: "transparent", border: "1px solid #ccc" }}
+        <div
+          style={{ width: "50%", height: "500px" }}
+          data-fillout-id="doa6VrZAARus"
+          data-fillout-embed-type="standard"
+          data-fillout-inherit-parameters
+          data-fillout-dynamic-resize
         />
       </div>
     </section>
