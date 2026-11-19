@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/founders", "destination": "/", "permanent": true },
+    { "source": "/creators", "destination": "/", "permanent": true },
+    { "source": "/investors", "destination": "/", "permanent": true },
+    { "source": "/apply", "destination": "/nominate", "permanent": true },
+    { "source": "/join", "destination": "/nominate", "permanent": true }
+  ]
+}
