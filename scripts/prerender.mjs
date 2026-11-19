@@ -14,8 +14,12 @@ const template = fs.readFileSync(path.join(dist, "index.html"), "utf-8");
 const escapeAttr = (s) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 const escapeText = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 
-for (const route of routes) {
-  const { title, description } = PAGE_META[route];
+// "/404" is not a real route, so it renders the NotFound page; hosts serve 404.html for unknown paths.
+const pages = [...routes, "/404"];
+const NOT_FOUND_META = { title: "Page not found | Global Entrepreneurs Hub", description: PAGE_META["/"].description };
+
+for (const route of pages) {
+  const { title, description } = PAGE_META[route] ?? NOT_FOUND_META;
   const appHtml = render(route);
   if (!appHtml.trim()) throw new Error(`Prerender produced empty HTML for ${route}`);
 
