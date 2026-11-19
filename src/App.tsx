@@ -2,30 +2,26 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import Founders from "./pages/Founders";
-import Creators from "./pages/Creators";
-import Investors from "./pages/Investors";
+import Membership from "./pages/Membership";
+import Nominate from "./pages/Nominate";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// The router is supplied by main.tsx (browser) or entry-server.tsx (prerender).
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/founders" element={<Founders />} />
-          <Route path="/creators" element={<Creators />} />
-          <Route path="/investors" element={<Investors />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/membership" element={<Membership />} />
+        <Route path="/nominate" element={<Nominate />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </TooltipProvider>
   </QueryClientProvider>
 );
