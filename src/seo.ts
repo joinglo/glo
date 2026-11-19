@@ -4,7 +4,7 @@ export const TAGLINE =
 export const META_DESCRIPTION =
   "GLO Fellows are elected by the GLO Admissions Council, a body of recognized national and international experts, on verified evidence of outstanding achievements in building companies. There is no application, no fee, and no open enrolment.";
 
-export const NOMINATIONS_EMAIL = "nominations@joinglocommunity.com";
+export const NOMINATIONS_EMAIL = "team@glocommunity.com";
 
 export interface PageMeta {
   title: string;
